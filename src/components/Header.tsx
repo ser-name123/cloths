@@ -27,7 +27,10 @@ import {
   Tag,
   Download,
   Eye,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Palette,
+  Check,
+  Award
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -42,9 +45,11 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleMouseEnter = (menuKey: string) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setActiveMegaMenu(menuKey);
+  const handleMouseEnter = (menu: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setActiveMegaMenu(menu);
   };
 
   const handleMouseLeave = () => {
@@ -60,32 +65,32 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-200/80 shadow-xs">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
       
       {/* ============================================================== */}
-      {/* 1. TOP ANNOUNCEMENT TICKER                                      */}
+      {/* 1. TOP ANNOUNCEMENT TICKER (High-End Luxury Micro Bar)          */}
       {/* ============================================================== */}
-      <div className="w-full bg-slate-950 text-slate-300 text-[11px] py-2.5 border-b border-slate-800">
-        <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-4">
+      <div className="w-full bg-slate-950 text-slate-300 text-[11px] py-2 border-b border-slate-800/80">
+        <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           
           {/* Left: Live Factory Status & Standards */}
-          <div className="flex items-center gap-5">
-            <span className="inline-flex items-center gap-1.5 font-medium text-emerald-400">
+          <div className="flex items-center gap-4 sm:gap-6 overflow-hidden">
+            <span className="inline-flex items-center gap-1.5 font-medium text-emerald-400 shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              Ajman Factory Active & Producing
+              Ajman Factory Active
             </span>
-            <span className="hidden sm:inline-flex items-center gap-1 text-slate-400">
+            <span className="hidden sm:inline-flex items-center gap-1 text-slate-400 shrink-0">
               <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
               ISO 9001:2015 & NFPA 2112 Certified
             </span>
-            <span className="hidden md:inline-flex items-center gap-1 text-slate-400">
+            <span className="hidden md:inline-flex items-center gap-1 text-slate-400 shrink-0">
               <Clock className="w-3.5 h-3.5 text-sky-400" />
-              Express GCC Shipping: 48–72h Doorstep Delivery
+              Express GCC Shipping: 48–72h Delivery
             </span>
           </div>
 
           {/* Right: Direct UAE Hotline */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 shrink-0">
             <a
               href="https://wa.me/971501234567?text=Hi%20Kraftwear%20Dubai,%20I%20would%20like%20to%20inquire%20about%20custom%20apparel."
               target="_blank"
@@ -95,610 +100,734 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
               <MessageSquare className="w-3.5 h-3.5" />
               <span>WhatsApp: +971 50 123 4567</span>
             </a>
-            <span className="text-slate-700">|</span>
-            <span className="text-slate-400 font-mono text-[10px]">Showroom: Dubai d3</span>
+            <span className="text-slate-700 hidden sm:inline">|</span>
+            <span className="text-slate-400 font-mono text-[10px] hidden sm:inline">Showroom: Dubai d3</span>
           </div>
 
         </div>
       </div>
 
       {/* ============================================================== */}
-      {/* 2. MAIN NAVBAR & MEGA MENU TRIGGERS                             */}
+      {/* 2. MAIN NAVBAR & NAVIGATION (Sleek, Uncluttered, No-Wrap)       */}
       {/* ============================================================== */}
-      <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-        <div className="flex items-center justify-between h-[70px] gap-2 lg:gap-4">
-          
-          {/* Brand Logo */}
-          <div className="shrink-0">
-            <Logo variant="light" size="md" />
-          </div>
-
-          {/* Desktop Nav with Mega Menu Triggers */}
-          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 h-full">
+      <div className="w-full">
+        <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-[66px] gap-4">
             
-            {/* Mega Menu 1: Custom Apparel */}
-            <div 
-              className="relative h-full flex items-center"
-              onMouseEnter={() => handleMouseEnter('apparel')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button 
-                type="button"
-                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap ${
-                  activeMegaMenu === 'apparel' ? 'text-amber-600 bg-slate-50' : 'text-slate-700 hover:text-slate-900'
-                }`}
+            {/* Brand Logo (Always protected with shrink-0) */}
+            <div className="shrink-0">
+              <Logo variant="light" size="md" />
+            </div>
+
+            {/* Desktop Navigation (5 Perfectly Spaced Categories) */}
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 h-full">
+              
+              {/* Mega Menu 1: Custom Apparel */}
+              <div 
+                className="relative h-full flex items-center"
+                onMouseEnter={() => handleMouseEnter('apparel')}
+                onMouseLeave={handleMouseLeave}
               >
-                <span>Custom Apparel</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'apparel' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                <button 
+                  type="button"
+                  className={`px-3 py-2 rounded-xl text-[13px] font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                    activeMegaMenu === 'apparel' 
+                      ? 'text-amber-600 bg-amber-50/80 shadow-2xs' 
+                      : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100/70'
+                  }`}
+                >
+                  <span>Custom Apparel</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'apparel' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                </button>
+              </div>
+
+              {/* Mega Menu 2: Workwear & Safety */}
+              <div 
+                className="relative h-full flex items-center"
+                onMouseEnter={() => handleMouseEnter('workwear')}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button 
+                  type="button"
+                  className={`px-3 py-2 rounded-xl text-[13px] font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                    activeMegaMenu === 'workwear' 
+                      ? 'text-amber-600 bg-amber-50/80 shadow-2xs' 
+                      : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100/70'
+                  }`}
+                >
+                  <span>Workwear & Safety</span>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200/80 shrink-0">
+                    NFPA
+                  </span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'workwear' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                </button>
+              </div>
+
+              {/* Mega Menu 3: Corporate Gifts */}
+              <div 
+                className="relative h-full flex items-center"
+                onMouseEnter={() => handleMouseEnter('gifting')}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button 
+                  type="button"
+                  className={`px-3 py-2 rounded-xl text-[13px] font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                    activeMegaMenu === 'gifting' 
+                      ? 'text-amber-600 bg-amber-50/80 shadow-2xs' 
+                      : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100/70'
+                  }`}
+                >
+                  <span>Corporate Gifts</span>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-200/80 shrink-0">
+                    VIP
+                  </span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'gifting' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                </button>
+              </div>
+
+              {/* Submenu 4: In-House Factory & Machines */}
+              <div 
+                className="relative h-full flex items-center"
+                onMouseEnter={() => handleMouseEnter('factory')}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button 
+                  type="button"
+                  className={`px-3 py-2 rounded-xl text-[13px] font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                    activeMegaMenu === 'factory' 
+                      ? 'text-amber-600 bg-amber-50/80 shadow-2xs' 
+                      : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100/70'
+                  }`}
+                >
+                  <span>In-House Factory</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'factory' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                </button>
+              </div>
+
+              {/* Direct Link 5: 3D Studio & Pricing */}
+              <a 
+                href="#customizer" 
+                className="px-3 py-2 rounded-xl text-[13px] font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-100/70 transition-all flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <Eye className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                <span>3D Studio</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              </a>
+
+              {/* Direct Link 6: Cost Calculator */}
+              <a 
+                href="#quote-builder" 
+                className="px-3 py-2 rounded-xl text-[13px] font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-100/70 transition-all whitespace-nowrap"
+              >
+                Cost Estimator
+              </a>
+
+            </nav>
+
+            {/* Desktop Right CTAs (Compact, Elegant, No Overflow) */}
+            <div className="hidden sm:flex items-center gap-2.5 shrink-0">
+              <a
+                href="https://wa.me/971501234567?text=Hi%20Kraftwear%20UAE,%20I%20would%20like%20to%20discuss%20a%20bulk%20order."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/80 text-xs font-bold hover:bg-emerald-100 transition-colors whitespace-nowrap shadow-2xs"
+              >
+                <MessageSquare className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>WhatsApp</span>
+              </a>
+
+              <button
+                onClick={() => onOpenQuoteModal()}
+                className="px-4.5 py-2.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm hover:shadow flex items-center gap-2 group whitespace-nowrap"
+              >
+                <Calculator className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>Instant RFQ</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform shrink-0" />
               </button>
             </div>
 
-            {/* Mega Menu 2: Industrial Workwear & Safety */}
-            <div 
-              className="relative h-full flex items-center"
-              onMouseEnter={() => handleMouseEnter('workwear')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button 
-                type="button"
-                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap ${
-                  activeMegaMenu === 'workwear' ? 'text-amber-600 bg-slate-50' : 'text-slate-700 hover:text-slate-900'
-                }`}
+            {/* Mobile Actions */}
+            <div className="lg:hidden flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => onOpenQuoteModal()}
+                className="px-3.5 py-1.5 rounded-full bg-slate-950 text-white text-xs font-bold shadow-xs whitespace-nowrap"
               >
-                <span>Workwear & Safety</span>
-                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200 shrink-0">
-                  NFPA
-                </span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'workwear' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                RFQ
+              </button>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 rounded-lg text-slate-700 hover:text-slate-950 hover:bg-slate-100"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
 
-            {/* Mega Menu 3: Corporate Gifts */}
-            <div 
-              className="relative h-full flex items-center"
-              onMouseEnter={() => handleMouseEnter('gifting')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button 
-                type="button"
-                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap ${
-                  activeMegaMenu === 'gifting' ? 'text-amber-600 bg-slate-50' : 'text-slate-700 hover:text-slate-900'
-                }`}
-              >
-                <span>Corporate Gifts</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'gifting' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
-              </button>
-            </div>
-
-            {/* Submenu 4: In-House Factory & Machines */}
-            <div 
-              className="relative h-full flex items-center"
-              onMouseEnter={() => handleMouseEnter('factory')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button 
-                type="button"
-                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap ${
-                  activeMegaMenu === 'factory' ? 'text-amber-600 bg-slate-50' : 'text-slate-700 hover:text-slate-900'
-                }`}
-              >
-                <span>In-House Factory</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'factory' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
-              </button>
-            </div>
-
-            {/* Direct Tool Links */}
-            <a 
-              href="#customizer" 
-              className="px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap"
-            >
-              <span>3D Studio</span>
-              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200 shrink-0">
-                Live
-              </span>
-            </a>
-
-            <a 
-              href="#quote-builder" 
-              className="px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors whitespace-nowrap"
-            >
-              Cost Calculator
-            </a>
-          </nav>
-
-          {/* Desktop Right CTAs */}
-          <div className="hidden sm:flex items-center gap-2 xl:gap-3 shrink-0">
-            <button
-              onClick={() => onOpenQuoteModal()}
-              className="px-3 xl:px-3.5 py-2 rounded-full border border-slate-300 hover:border-slate-400 text-xs font-bold text-slate-800 transition-colors flex items-center gap-1.5 bg-white shadow-2xs whitespace-nowrap"
-            >
-              <Calculator className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-              <span>Instant RFQ</span>
-            </button>
-
-            <a
-              href="https://wa.me/971501234567?text=Hi%20Kraftwear%20UAE,%20I%20would%20like%20to%20discuss%20a%20bulk%20order."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3.5 xl:px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm hover:shadow flex items-center gap-1.5 group whitespace-nowrap"
-            >
-              <span>Talk to Specialist</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform shrink-0" />
-            </a>
           </div>
-
-          {/* Mobile Hamburger */}
-          <div className="lg:hidden flex items-center gap-2">
-            <button
-              onClick={() => onOpenQuoteModal()}
-              className="px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-xs font-bold"
-            >
-              Quote
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-
         </div>
       </div>
 
       {/* ============================================================== */}
-      {/* 3. INTERACTIVE MEGA MENU DROPDOWN PANELS                         */}
+      {/* 3. LUXURY FLOATING MEGA MENU DROPDOWNS (Glassmorphic & Visual)   */}
       {/* ============================================================== */}
       
-      {/* --- MEGA MENU 1: CUSTOM APPAREL (Times Clothing + Merchlist) --- */}
+      {/* --- MEGA MENU 1: CUSTOM APPAREL --- */}
       {activeMegaMenu === 'apparel' && (
         <div 
-          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 animate-in fade-in slide-in-from-top-2 duration-150"
+          className="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] max-w-[1360px] bg-white/98 backdrop-blur-2xl rounded-3xl border border-slate-200/90 shadow-2xl p-6 lg:p-8 mt-2 animate-in fade-in slide-in-from-top-2 duration-150 z-50"
           onMouseEnter={() => handleMouseEnter('apparel')}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
             
-            {/* Col 1: Custom Knits & Streetwear */}
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 block font-mono">
-                01 / Custom Knits & Streetwear
-              </span>
-              <ul className="space-y-2 text-xs">
-                <li>
-                  <a href="#catalog" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Heavyweight 280 GSM T-Shirts</span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-amber-600">Bio-Washed →</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">100% Combed French Terry with drop shoulder cut.</p>
-                </li>
-                <li>
-                  <a href="#catalog" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Brushed Fleece Hoodies (380 GSM)</span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-amber-600">Cross-Grain →</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Zero shrink guarantee with double-layer hood.</p>
-                </li>
-                <li>
-                  <a href="#catalog" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Activewear & DryFit Performance</span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-amber-600">Moisture-Wicking →</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Sublimated poly-spandex with UV protection.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 2: Corporate & Tailored Wear */}
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 block font-mono">
-                02 / Corporate Attire & Polos
-              </span>
-              <ul className="space-y-2 text-xs">
-                <li>
-                  <a href="#catalog" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Executive Pique Corporate Polos</span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-amber-600">240 GSM →</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Double-lacoste with anti-curl reinforced collars.</p>
-                </li>
-                <li>
-                  <a href="#catalog" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Non-Iron Oxford Business Shirts</span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-amber-600">Tailored →</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">100% Egyptian Giza cotton for executive teams.</p>
-                </li>
-                <li>
-                  <a href="#catalog" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Bespoke Corporate Blazers</span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-amber-600">GCC Tropical →</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Poly-viscose breathable tropical weave.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 3: Outerwear & Accessories */}
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 block font-mono">
-                03 / Outerwear & Accessories
-              </span>
-              <ul className="space-y-2 text-xs">
-                <li>
-                  <a href="#catalog" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Varsity Bomber & Quilted Jackets</span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-amber-600">Chenille →</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Wool-blend body with diamond satin lining.</p>
-                </li>
-                <li>
-                  <a href="#catalog" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Custom Structured Caps & Beanies</span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-amber-600">Snapback →</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">6-panel twill with 3D puff front embroidery.</p>
-                </li>
-                <li>
-                  <a href="#catalog" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>14oz Organic Exhibition Totes</span>
-                    <span className="text-[10px] text-slate-400 group-hover:text-amber-600">GOTS →</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Heavyweight cross-stitched natural canvas.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 4: Featured Promo Card */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between">
-              <div>
-                <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-800 uppercase tracking-wider">
-                  2026 Lookbook Available
+            {/* Col 1: Custom Knits (4 cols) */}
+            <div className="md:col-span-4 space-y-4">
+              <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                <span className="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold text-xs">
+                  01
                 </span>
-                <h4 className="text-sm font-bold text-slate-900 mt-2">
-                  Wholesale Fabric Swatches & Pantone Matching
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                  Heavyweight Knits & Streetwear
+                </span>
+              </div>
+
+              <div className="space-y-1.5">
+                <a href="#catalog" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-100 group-hover:text-amber-800 transition-colors">
+                    👕
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Heavyweight 280 GSM Tees</span>
+                      <span className="text-[10px] font-mono text-slate-400">Bio-Washed</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">100% Combed French Terry Cotton, Drop Shoulder Cut.</p>
+                  </div>
+                </a>
+
+                <a href="#catalog" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-100 group-hover:text-amber-800 transition-colors">
+                    🧥
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Brushed Fleece Hoodies (380 GSM)</span>
+                      <span className="text-[10px] font-mono text-slate-400">Zero Shrink</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Double-layer hood, thick metal aglets & cross-grain.</p>
+                  </div>
+                </a>
+
+                <a href="#catalog" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-100 group-hover:text-amber-800 transition-colors">
+                    🏃
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Activewear & DriFit Performance</span>
+                      <span className="text-[10px] font-mono text-slate-400">UV 50+</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Breathable poly-spandex blends for gym & sport teams.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Col 2: Corporate & Outerwear (4 cols) */}
+            <div className="md:col-span-4 space-y-4">
+              <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                <span className="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold text-xs">
+                  02
+                </span>
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                  Corporate Attire & Outerwear
+                </span>
+              </div>
+
+              <div className="space-y-1.5">
+                <a href="#catalog" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-100 group-hover:text-amber-800 transition-colors">
+                    👔
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Executive Pique Corporate Polos</span>
+                      <span className="text-[10px] font-mono text-slate-400">240 GSM</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Double-lacoste combed cotton with anti-curl collars.</p>
+                  </div>
+                </a>
+
+                <a href="#catalog" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-100 group-hover:text-amber-800 transition-colors">
+                    🧥
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Varsity Bomber & Quilted Jackets</span>
+                      <span className="text-[10px] font-mono text-slate-400">Chenille</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Wool-blend body with diamond satin interior quilting.</p>
+                  </div>
+                </a>
+
+                <a href="#catalog" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-100 group-hover:text-amber-800 transition-colors">
+                    🏷️
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Custom Woven Labels & Hangtags</span>
+                      <span className="text-[10px] font-mono text-slate-400">Damask</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Tearaway neck tags, soft damask labels & retail polybags.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Col 3: Visual Specimen Spotlight (4 cols) */}
+            <div className="md:col-span-4 bg-gradient-to-b from-slate-50 to-slate-100/60 border border-slate-200/90 rounded-2xl p-5 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-500 text-slate-950 uppercase tracking-wider">
+                    Streetwear Bestseller
+                  </span>
+                  <span className="text-xs font-bold font-mono text-slate-900">from AED 38</span>
+                </div>
+
+                <div className="relative h-36 w-full rounded-xl overflow-hidden bg-slate-200 mb-3 shadow-inner">
+                  <img
+                    src="/images/products/heavy-tee.jpg"
+                    alt="Heavyweight Streetwear Tee"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-slate-900/80 backdrop-blur-sm text-[10px] text-white font-mono">
+                    280 GSM French Terry
+                  </div>
+                </div>
+
+                <h4 className="text-xs font-bold text-slate-900">
+                  Ready for 3D Puff Embroidery & Silkscreen
                 </h4>
                 <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                  Request our curated textile kit with pre-dyed French terry, pique, and fleece swatches sent to your Dubai office.
+                  Engineered for UAE climate. Zero minimum order for samples; volume tiers up to 50,000 units.
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  setActiveMegaMenu(null);
-                  onOpenQuoteModal('fabric-swatch-kit');
-                }}
-                className="mt-4 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5"
-              >
-                <span>Request Free Swatch Kit</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+
+              <div className="pt-4 border-t border-slate-200 flex items-center gap-2">
+                <a
+                  href="#customizer"
+                  onClick={() => setActiveMegaMenu(null)}
+                  className="flex-1 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold text-center transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <span>Customize in 3D</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+
+                <button
+                  onClick={() => {
+                    setActiveMegaMenu(null);
+                    onOpenQuoteModal('apparel-swatch');
+                  }}
+                  className="px-3 py-2 rounded-xl bg-white border border-slate-300 hover:border-slate-400 text-slate-800 text-xs font-bold transition-colors"
+                >
+                  Swatch Kit
+                </button>
+              </div>
             </div>
 
           </div>
         </div>
       )}
 
-      {/* --- MEGA MENU 2: WORKWEAR & SAFETY (Klothon Inspired) --- */}
+      {/* --- MEGA MENU 2: WORKWEAR & SAFETY --- */}
       {activeMegaMenu === 'workwear' && (
         <div 
-          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 animate-in fade-in slide-in-from-top-2 duration-150"
+          className="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] max-w-[1360px] bg-white/98 backdrop-blur-2xl rounded-3xl border border-slate-200/90 shadow-2xl p-6 lg:p-8 mt-2 animate-in fade-in slide-in-from-top-2 duration-150 z-50"
           onMouseEnter={() => handleMouseEnter('workwear')}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
             
-            {/* Col 1: Oil & Gas / Heavy Industrial */}
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 block font-mono flex items-center gap-1.5">
-                <Flame className="w-3.5 h-3.5 text-amber-600" />
-                <span>Oil, Gas & Energy (Certified FR)</span>
-              </span>
-              <ul className="space-y-2 text-xs">
-                <li>
-                  <a href="#industries" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>NFPA 2112 Cotton FR Coveralls</span>
-                    <span className="text-[10px] text-amber-600 font-mono">240/300 GSM</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">EN ISO 11612 compliant with 3M Scotchlite FR tape.</p>
-                </li>
-                <li>
-                  <a href="#industries" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>High-Visibility Safety Cargo Trousers</span>
-                    <span className="text-[10px] text-slate-400">Class 2</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">6-pocket reinforced tactical knees and utility loops.</p>
-                </li>
-                <li>
-                  <a href="#industries" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Electrical Arc Flash Protection Suits</span>
-                    <span className="text-[10px] text-slate-400">CAT 4</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">40 cal/cm² rated complete hooded systems.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 2: Hospitality & Healthcare */}
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 block font-mono flex items-center gap-1.5">
-                <HeartPulse className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Healthcare & Hospitality</span>
-              </span>
-              <ul className="space-y-2 text-xs">
-                <li>
-                  <a href="#industries" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>4-Way Stretch Antimicrobial Scrubs</span>
-                    <span className="text-[10px] text-emerald-600 font-mono">Fluid Barrier</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Silver-ion infused fabric for 14-hour hospital shifts.</p>
-                </li>
-                <li>
-                  <a href="#industries" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>5-Star Chef Coats & Canvas Aprons</span>
-                    <span className="text-[10px] text-slate-400">Cross-Back</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Heat-resistant underarm mesh with brass hardware.</p>
-                </li>
-                <li>
-                  <a href="#industries" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Housekeeping & Spa Uniforms</span>
-                    <span className="text-[10px] text-slate-400">Tunics</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Stain-resistant poly-cotton with colorfast piping.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 3: Aviation, Security & Schools */}
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 block font-mono flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-sky-600" />
-                <span>Aviation, Security & Education</span>
-              </span>
-              <ul className="space-y-2 text-xs">
-                <li>
-                  <a href="#industries" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Security Officer Tactical Uniforms</span>
-                    <span className="text-[10px] text-slate-400">Ripstop</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Heavy-duty epaulets, badge tabs & utility pockets.</p>
-                </li>
-                <li>
-                  <a href="#industries" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Aviation Ground Handling Uniforms</span>
-                    <span className="text-[10px] text-slate-400">Tarmac</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Weatherproof high-visibility reflective parkas.</p>
-                </li>
-                <li>
-                  <a href="#industries" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>K-12 School Uniforms & PE Kits</span>
-                    <span className="text-[10px] text-slate-400">Year-Round</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Exact Pantone consistency across academic terms.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 4: Enterprise Tender RFQ */}
-            <div className="bg-slate-900 text-white rounded-2xl p-5 flex flex-col justify-between">
-              <div>
-                <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-amber-400 text-slate-950 uppercase tracking-wider">
-                  Enterprise Tender Desk
+            {/* Col 1: Oil & Gas / Heavy Industrial (4 cols) */}
+            <div className="md:col-span-4 space-y-4">
+              <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                <Flame className="w-4 h-4 text-orange-500" />
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                  Oil, Gas & Heavy Industry (FR)
                 </span>
-                <h4 className="text-sm font-bold text-white mt-2">
-                  Large Scale Corporate & Government Tenders
+              </div>
+
+              <div className="space-y-1.5">
+                <a href="#industries" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    FR
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">NFPA 2112 Cotton FR Coverall</span>
+                      <span className="text-[10px] font-mono text-orange-600">Certified</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">240/300 GSM heavy twill with 3M Scotchlite FR reflective.</p>
+                  </div>
+                </a>
+
+                <a href="#industries" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-lime-50 text-lime-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    VIS
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">High-Vis Class 2 Safety Vests & Pants</span>
+                      <span className="text-[10px] font-mono text-slate-400">ANSI 107</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Fluorescent breathable mesh with radio clips & ID pocket.</p>
+                  </div>
+                </a>
+
+                <a href="#industries" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    ARC
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Arc Flash Electrical Suits</span>
+                      <span className="text-[10px] font-mono text-purple-600">40 Cal</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Complete hooded switchgear suits for high-voltage utilities.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Col 2: Healthcare & Hospitality (4 cols) */}
+            <div className="md:col-span-4 space-y-4">
+              <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                <HeartPulse className="w-4 h-4 text-emerald-500" />
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                  Healthcare & Hospitality
+                </span>
+              </div>
+
+              <div className="space-y-1.5">
+                <a href="#industries" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    MED
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Antimicrobial 4-Way Stretch Scrubs</span>
+                      <span className="text-[10px] font-mono text-emerald-600">Fluid Barrier</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Silver-ion infused fabrics designed for 14-hour hospital shifts.</p>
+                  </div>
+                </a>
+
+                <a href="#industries" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    CHEF
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">5-Star Chef Coats & Canvas Aprons</span>
+                      <span className="text-[10px] font-mono text-slate-400">Luxury F&B</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Breathable underarm mesh with real brass rivets and aglets.</p>
+                  </div>
+                </a>
+
+                <a href="#industries" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    SUIT
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Corporate Tropical Poly-Viscose Suits</span>
+                      <span className="text-[10px] font-mono text-slate-400">GCC Climate</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Wrinkle-free tropical weave for front desk & concierge teams.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Col 3: Visual Specimen Spotlight (4 cols) */}
+            <div className="md:col-span-4 bg-gradient-to-b from-slate-900 to-slate-950 text-white rounded-2xl p-5 flex flex-col justify-between border border-slate-800">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-400 text-slate-950 uppercase tracking-wider">
+                    NFPA 2112 Certified
+                  </span>
+                  <span className="text-xs font-bold font-mono text-amber-400">from AED 89</span>
+                </div>
+
+                <div className="relative h-36 w-full rounded-xl overflow-hidden bg-slate-800 mb-3 border border-slate-700/60 shadow-inner">
+                  <img
+                    src="/images/products/fr-coverall.jpg"
+                    alt="NFPA 2112 FR Coverall"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-slate-950/80 backdrop-blur-sm text-[10px] text-slate-300 font-mono">
+                    2-Inch 3M Scotchlite Reflective
+                  </div>
+                </div>
+
+                <h4 className="text-xs font-bold text-white">
+                  Government & Energy Contractor Compliant
                 </h4>
                 <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">
-                  Supplying Samsung, Talabat, and ADNOC contractors with full lab test reports, CE certificates, and FTA tax invoices.
+                  Supplied directly with full third-party laboratory test certificates, batch traceability, and FTA tax invoices.
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  setActiveMegaMenu(null);
-                  onOpenQuoteModal('enterprise-tender');
-                }}
-                className="mt-4 w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold transition-all flex items-center justify-center gap-1.5"
-              >
-                <span>Submit Tender Specs</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+
+              <div className="pt-4 border-t border-slate-800 flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    setActiveMegaMenu(null);
+                    onOpenQuoteModal('tender-bid');
+                  }}
+                  className="flex-1 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold text-center transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <span>Submit Tender Specs</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
             </div>
 
           </div>
         </div>
       )}
 
-      {/* --- MEGA MENU 3: CORPORATE GIFTING & SWAG (Corporate Gifts Dubai + Baharnani) --- */}
+      {/* --- MEGA MENU 3: CORPORATE GIFTS & SWAG --- */}
       {activeMegaMenu === 'gifting' && (
         <div 
-          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 animate-in fade-in slide-in-from-top-2 duration-150"
+          className="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] max-w-[1360px] bg-white/98 backdrop-blur-2xl rounded-3xl border border-slate-200/90 shadow-2xl p-6 lg:p-8 mt-2 animate-in fade-in slide-in-from-top-2 duration-150 z-50"
           onMouseEnter={() => handleMouseEnter('gifting')}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
             
-            {/* Col 1: VIP Onboarding Boxes */}
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 block font-mono">
-                01 / Curated Onboarding Boxes
-              </span>
-              <ul className="space-y-2 text-xs">
-                <li>
-                  <a href="#gifting" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>The "Dubai Elite" Executive Box</span>
-                    <span className="text-[10px] text-amber-600 font-mono">Bestseller</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Rigid magnetic box, tumbler, leather diary & MagSafe bank.</p>
-                </li>
-                <li>
-                  <a href="#gifting" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Eco-Forward Sustainable ESG Kit</span>
-                    <span className="text-[10px] text-emerald-600 font-mono">Zero Plastic</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Wheat straw Bluetooth speaker, canvas tote & seed paper.</p>
-                </li>
-                <li>
-                  <a href="#gifting" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Tech Founder Welcome Hamper</span>
-                    <span className="text-[10px] text-slate-400">DIFC Choice</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Anodized aluminum accessories & laser engraved gear.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 2: Drinkware & Electronics */}
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 block font-mono">
-                02 / Drinkware & Smart Tech
-              </span>
-              <ul className="space-y-2 text-xs">
-                <li>
-                  <a href="#gifting" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Smart LED Temperature Tumbler</span>
-                    <span className="text-[10px] text-slate-400">500ml</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Touch LCD lid with 24-hour icy cold insulation.</p>
-                </li>
-                <li>
-                  <a href="#gifting" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Ultra-Slim 10,000mAh MagSafe Bank</span>
-                    <span className="text-[10px] text-slate-400">15W Fast</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Aircraft-grade aluminum with permanent laser monogram.</p>
-                </li>
-                <li>
-                  <a href="#gifting" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Leather RFID Travel Portfolios</span>
-                    <span className="text-[10px] text-slate-400">Executive</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Embossed corporate branding with metal accents.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 3: Trade Shows & Events */}
-            <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 block font-mono">
-                03 / GITEX & Event Activations
-              </span>
-              <ul className="space-y-2 text-xs">
-                <li>
-                  <a href="#gifting" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>GITEX High-Volume Swag Bundles</span>
-                    <span className="text-[10px] text-slate-400">Express 48h</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Branded tees, water bottles, lanyards & drawstrings.</p>
-                </li>
-                <li>
-                  <a href="#gifting" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Custom Satin Lanyards & Badges</span>
-                    <span className="text-[10px] text-slate-400">Safety Buckle</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Sublimated dual-sided photo quality conference lanyards.</p>
-                </li>
-                <li>
-                  <a href="#gifting" className="font-semibold text-slate-800 hover:text-amber-700 flex items-center justify-between group">
-                    <span>Ramadan & UAE National Day Gifts</span>
-                    <span className="text-[10px] text-amber-600 font-mono">Festive</span>
-                  </a>
-                  <p className="text-[11px] text-slate-500">Custom brass Dallah flasks & luxury date boxes.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 4: Prototype Swag Box CTA */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between">
-              <div>
-                <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-slate-900 text-white uppercase tracking-wider">
-                  Custom Prototype
+            {/* Col 1: VIP Onboarding Boxes (4 cols) */}
+            <div className="md:col-span-4 space-y-4">
+              <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                <Gift className="w-4 h-4 text-amber-600" />
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                  Curated VIP Onboarding Boxes
                 </span>
-                <h4 className="text-sm font-bold text-slate-900 mt-2">
+              </div>
+
+              <div className="space-y-1.5">
+                <a href="#gifting" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    🎁
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">The "Dubai Elite" Executive Box</span>
+                      <span className="text-[10px] font-mono text-amber-600">VIP Box</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Rigid magnetic box with EVA foam, tumbler, diary & power bank.</p>
+                  </div>
+                </a>
+
+                <a href="#gifting" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    🌱
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Sustainable Eco-Forward ESG Kit</span>
+                      <span className="text-[10px] font-mono text-emerald-600">Zero Plastic</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Wheat straw tech, organic canvas bag & plantable seed paper.</p>
+                  </div>
+                </a>
+
+                <a href="#gifting" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    🚀
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">GITEX & Conference Swag Bundles</span>
+                      <span className="text-[10px] font-mono text-slate-400">48h Express</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">High-volume branded tees, matte bottles & satin safety lanyards.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Col 2: Individual Drinkware & Tech (4 cols) */}
+            <div className="md:col-span-4 space-y-4">
+              <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                <Sparkles className="w-4 h-4 text-sky-500" />
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                  Executive Drinkware & Tech Gifts
+                </span>
+              </div>
+
+              <div className="space-y-1.5">
+                <a href="#gifting" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    🌡️
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Smart LED Temperature Tumbler</span>
+                      <span className="text-[10px] font-mono text-slate-400">500ml</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Food-grade 304 steel with touch LCD display and 24h cold insulation.</p>
+                  </div>
+                </a>
+
+                <a href="#gifting" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    🔋
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">10,000mAh MagSafe Power Bank</span>
+                      <span className="text-[10px] font-mono text-slate-400">15W Fast</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Anodized aluminum finish with 360° laser rotary engraving.</p>
+                  </div>
+                </a>
+
+                <a href="#gifting" className="group flex items-start gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                    👜
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">14oz Organic Canvas Exhibition Tote</span>
+                      <span className="text-[10px] font-mono text-slate-400">GOTS</span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Reinforced cross-stitch handles with inner mobile zipper pocket.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Col 3: Visual Specimen Spotlight (4 cols) */}
+            <div className="md:col-span-4 bg-gradient-to-b from-slate-50 to-slate-100/60 border border-slate-200/90 rounded-2xl p-5 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-500 text-slate-950 uppercase tracking-wider">
+                    VIP Executive Box
+                  </span>
+                  <span className="text-xs font-bold font-mono text-slate-900">from AED 135</span>
+                </div>
+
+                <div className="relative h-36 w-full rounded-xl overflow-hidden bg-slate-200 mb-3 shadow-inner">
+                  <img
+                    src="/images/products/vip-swag-box.jpg"
+                    alt="VIP Swag Box"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-slate-900/80 backdrop-blur-sm text-[10px] text-white font-mono">
+                    Custom Magnetic Rigid Box
+                  </div>
+                </div>
+
+                <h4 className="text-xs font-bold text-slate-900">
                   Build a Custom Swag Box with Your Logo
                 </h4>
                 <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                  Pick any 4 items and our design studio will build a 3D digital mockup and physical unboxing sample for your board.
+                  Choose any 4 products and our studio will generate a 3D digital mockup within 2 hours.
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  setActiveMegaMenu(null);
-                  onOpenQuoteModal('custom-gift-box');
-                }}
-                className="mt-4 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5"
-              >
-                <span>Customize Swag Box</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+
+              <div className="pt-4 border-t border-slate-200 flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    setActiveMegaMenu(null);
+                    onOpenQuoteModal('custom-gift-box');
+                  }}
+                  className="w-full py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold text-center transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <span>Request Custom Box Sample</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
             </div>
 
           </div>
         </div>
       )}
 
-      {/* --- SUBMENU 4: IN-HOUSE FACTORY & MACHINES (Times Clothing + EFZEE) --- */}
+      {/* --- SUBMENU 4: IN-HOUSE FACTORY & MACHINES --- */}
       {activeMegaMenu === 'factory' && (
         <div 
-          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 animate-in fade-in slide-in-from-top-2 duration-150"
+          className="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] max-w-[1360px] bg-white/98 backdrop-blur-2xl rounded-3xl border border-slate-200/90 shadow-2xl p-6 lg:p-8 mt-2 animate-in fade-in slide-in-from-top-2 duration-150 z-50"
           onMouseEnter={() => handleMouseEnter('factory')}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             
-            <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 font-mono">
-                01 / Machine Fleet
+            <div className="space-y-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-900 block pb-1 border-b border-slate-100 flex items-center gap-1.5">
+                <Scissors className="w-4 h-4 text-amber-600" />
+                <span>01 / Industrial Machinery</span>
               </span>
-              <ul className="space-y-1.5 text-xs text-slate-600">
-                <li className="font-semibold text-slate-800">15-Needle Tajima Industrial Embroidery</li>
-                <li className="text-[11px] text-slate-500">M&R Oval Automatic 12-Color Silkscreen</li>
-                <li className="text-[11px] text-slate-500">Mimaki Japanese Full-Garment Sublimation</li>
-                <li className="text-[11px] text-slate-500">360° Rotary Laser Fiber Etching</li>
+              <ul className="space-y-2 text-xs text-slate-600">
+                <li className="font-semibold text-slate-900">15-Needle Tajima Industrial Embroidery</li>
+                <li>M&R Oval Automatic 12-Color Silkscreen</li>
+                <li>Mimaki Japanese Full-Garment Sublimation</li>
+                <li>360° Rotary Laser Fiber Etching</li>
+                <li>Gerber CAD Precision Fabric Nesting</li>
               </ul>
             </div>
 
-            <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 font-mono">
-                02 / Fabric & Mill Partnerships
+            <div className="space-y-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-900 block pb-1 border-b border-slate-100 flex items-center gap-1.5">
+                <Layers className="w-4 h-4 text-sky-600" />
+                <span>02 / Fabric Mills & Yarns</span>
               </span>
-              <ul className="space-y-1.5 text-xs text-slate-600">
-                <li className="font-semibold text-slate-800">100% GOTS Organic Cotton</li>
-                <li className="text-[11px] text-slate-500">French Terry, Heavyweight Fleece & Pique</li>
-                <li className="text-[11px] text-slate-500">NFPA 2112 Flame-Resistant Twill</li>
-                <li className="text-[11px] text-slate-500">Digital Pantone Color Archive</li>
+              <ul className="space-y-2 text-xs text-slate-600">
+                <li className="font-semibold text-slate-900">100% GOTS Certified Organic Cotton</li>
+                <li>Heavy French Terry, Pique & Winter Fleece</li>
+                <li>Certified NFPA 2112 Flame-Resistant Twill</li>
+                <li>High-Vis Breathable ANSI Fluorescent Meshes</li>
+                <li>Exact Digital Pantone Color Matching</li>
               </ul>
             </div>
 
-            <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 font-mono">
-                03 / Certifications & QA
+            <div className="space-y-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-900 block pb-1 border-b border-slate-100 flex items-center gap-1.5">
+                <Award className="w-4 h-4 text-emerald-600" />
+                <span>03 / Certifications & QA</span>
               </span>
-              <ul className="space-y-1.5 text-xs text-slate-600">
-                <li className="font-semibold text-slate-800">ISO 9001:2015 Quality Management</li>
-                <li className="text-[11px] text-slate-500">ISO 14001 Environmental Standard</li>
-                <li className="text-[11px] text-slate-500">OEKO-TEX Standard 100 Non-Toxic Dyes</li>
-                <li className="text-[11px] text-slate-500">4-Stage Inline Tensile & Wash Inspection</li>
+              <ul className="space-y-2 text-xs text-slate-600">
+                <li className="font-semibold text-slate-900">ISO 9001:2015 Quality Management</li>
+                <li>ISO 14001 Environmental Standard</li>
+                <li>OEKO-TEX Standard 100 Non-Toxic Weaves</li>
+                <li>UAE FTA Tax Compliant VAT Invoicing</li>
+                <li>4-Stage Inline Tensile & Wash Lab Tests</li>
               </ul>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between">
+            <div className="bg-gradient-to-b from-slate-900 to-slate-950 text-white rounded-2xl p-5 flex flex-col justify-between border border-slate-800">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
-                  Book a Factory Tour
+                <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-amber-400 text-slate-950 uppercase tracking-wider">
+                  50,000 Sq Ft Plant
+                </span>
+                <h4 className="text-xs font-bold text-white mt-2">
+                  Book an In-Person Factory Tour
                 </h4>
-                <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                  Tour our 50,000 sq ft production plant in Ajman Industrial Area 1. Meet pattern makers and inspect physical machinery.
+                <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">
+                  Tour our production lines in Ajman Industrial Area 1. Meet master pattern makers and see Tajima embroidery heads in action.
                 </p>
               </div>
               <a
                 href="https://wa.me/971501234567?text=Hi%20Kraftwear%20Dubai,%20I%20would%20like%20to%20schedule%20an%20Ajman%20factory%20tour."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 w-full py-2 rounded-xl bg-slate-900 text-white text-xs font-bold text-center hover:bg-slate-800"
+                className="mt-3 w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold text-center transition-colors flex items-center justify-center gap-1.5"
               >
-                Schedule via WhatsApp
+                <span>Schedule Tour via WhatsApp</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
 
@@ -741,15 +870,15 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 onClick={() => setMobileSubmenu(mobileSubmenu === 'workwear' ? null : 'workwear')}
                 className="w-full flex items-center justify-between py-2 text-sm font-bold text-slate-900"
               >
-                <span>Workwear & FR Safety (Klothon)</span>
+                <span>Workwear & Safety Gear</span>
                 <ChevronDown className={`w-4 h-4 transition-transform ${mobileSubmenu === 'workwear' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
               </button>
               {mobileSubmenu === 'workwear' && (
                 <div className="pl-3 py-2 space-y-2 text-xs text-slate-600">
-                  <a href="#industries" onClick={() => setMobileMenuOpen(false)} className="block py-1">NFPA 2112 Certified FR Coveralls</a>
-                  <a href="#industries" onClick={() => setMobileMenuOpen(false)} className="block py-1">High-Visibility 3M Reflective Vests</a>
-                  <a href="#industries" onClick={() => setMobileMenuOpen(false)} className="block py-1">Hospital Antimicrobial Scrubs</a>
-                  <a href="#industries" onClick={() => setMobileMenuOpen(false)} className="block py-1">Hospitality Chef Coats & Aprons</a>
+                  <a href="#industries" onClick={() => setMobileMenuOpen(false)} className="block py-1">NFPA 2112 FR Cotton Coveralls</a>
+                  <a href="#industries" onClick={() => setMobileMenuOpen(false)} className="block py-1">High-Visibility Safety Vests & Pants</a>
+                  <a href="#industries" onClick={() => setMobileMenuOpen(false)} className="block py-1">Antimicrobial Clinical Scrubs</a>
+                  <a href="#industries" onClick={() => setMobileMenuOpen(false)} className="block py-1">5-Star Chef Coats & Hospitality Aprons</a>
                 </div>
               )}
             </div>
@@ -761,61 +890,64 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 onClick={() => setMobileSubmenu(mobileSubmenu === 'gifting' ? null : 'gifting')}
                 className="w-full flex items-center justify-between py-2 text-sm font-bold text-slate-900"
               >
-                <span>Corporate Gifting & VIP Kits</span>
+                <span>Corporate Gifts & Swag</span>
                 <ChevronDown className={`w-4 h-4 transition-transform ${mobileSubmenu === 'gifting' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
               </button>
               {mobileSubmenu === 'gifting' && (
                 <div className="pl-3 py-2 space-y-2 text-xs text-slate-600">
-                  <a href="#gifting" onClick={() => setMobileMenuOpen(false)} className="block py-1">The "Dubai Elite" Welcome Box</a>
-                  <a href="#gifting" onClick={() => setMobileMenuOpen(false)} className="block py-1">Smart LED Temperature Tumblers</a>
-                  <a href="#gifting" onClick={() => setMobileMenuOpen(false)} className="block py-1">MagSafe Wireless Power Banks</a>
-                  <a href="#gifting" onClick={() => setMobileMenuOpen(false)} className="block py-1">GITEX Event Merchandise Packs</a>
+                  <a href="#gifting" onClick={() => setMobileMenuOpen(false)} className="block py-1">Executive Onboarding Swag Boxes</a>
+                  <a href="#gifting" onClick={() => setMobileMenuOpen(false)} className="block py-1">Smart LED Vacuum Tumblers</a>
+                  <a href="#gifting" onClick={() => setMobileMenuOpen(false)} className="block py-1">Ultra-Slim MagSafe Power Banks</a>
+                  <a href="#gifting" onClick={() => setMobileMenuOpen(false)} className="block py-1">Eco Sustainable ESG Kits</a>
                 </div>
               )}
             </div>
 
-            {/* Direct Links */}
-            <a
-              href="#customizer"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm font-bold text-slate-900"
-            >
-              Interactive 3D Studio
-            </a>
-            <a
-              href="#quote-builder"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm font-bold text-slate-900"
-            >
-              Cost Calculator & Volume Tiers
-            </a>
-            <a
-              href="#manufacturing"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm font-bold text-slate-900"
-            >
-              Ajman Factory Capabilities
-            </a>
+            {/* Mobile Category 4 */}
+            <div className="border-b border-slate-100 pb-2">
+              <a 
+                href="#customizer" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-between py-2 text-sm font-bold text-slate-900"
+              >
+                <span>3D Styling Studio</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">Interactive</span>
+              </a>
+            </div>
+
+            <div className="border-b border-slate-100 pb-2">
+              <a 
+                href="#quote-builder" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-between py-2 text-sm font-bold text-slate-900"
+              >
+                <span>Instant Cost Calculator</span>
+              </a>
+            </div>
+
           </div>
 
-          <div className="pt-4 border-t border-slate-200 space-y-2">
+          {/* Mobile Direct Action Buttons */}
+          <div className="pt-4 space-y-2.5">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenQuoteModal();
               }}
-              className="w-full py-2.5 rounded-full bg-slate-900 text-white font-bold text-xs shadow"
+              className="w-full py-3 rounded-full bg-slate-950 text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow"
             >
-              Request Custom Quotation
+              <Calculator className="w-3.5 h-3.5 text-amber-400" />
+              <span>Launch Instant RFQ Builder</span>
             </button>
+
             <a
-              href="https://wa.me/971501234567"
+              href="https://wa.me/971501234567?text=Hi%20Kraftwear%20Dubai,%20I%20would%20like%20to%20discuss%20a%20bulk%20order."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-2.5 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-full bg-[#25D366] text-slate-950 text-xs font-bold text-center flex items-center justify-center gap-2 shadow"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>Direct WhatsApp Chat</span>
+              <MessageSquare className="w-3.5 h-3.5 fill-slate-950" />
+              <span>Talk to Specialist on WhatsApp</span>
             </a>
           </div>
 
