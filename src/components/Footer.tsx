@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Logo from './Logo';
 import { 
   Building2, 
   MapPin, 
@@ -266,17 +267,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
           
           {/* Brand Info & Fast Contacts (Span 2 on lg) */}
           <div className="col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-white text-slate-950 flex items-center justify-center font-bold text-base shadow-md group-hover:bg-amber-400 transition-colors">
-                KW
-              </div>
-              <div>
-                <span className="font-bold text-lg text-white tracking-tight block">KRAFTWEAR DUBAI</span>
-                <p className="text-[10px] text-slate-400 uppercase tracking-widest font-mono">
-                  Apparel • Uniforms • Swag
-                </p>
-              </div>
-            </Link>
+            <Logo variant="dark" size="md" />
 
             <p className="text-xs text-slate-400 leading-relaxed pr-4">
               Integrated textile manufacturer and certified workwear specialist operating directly from Ajman Industrial Area with showroom facilities in Dubai Design District (d3). Supplying enterprise clients across UAE, Saudi Arabia, and GCC.

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import Logo from './Logo';
 import { Currency } from '@/types';
 import { 
   Phone, 
@@ -108,24 +109,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
         <div className="flex items-center justify-between h-[70px]">
           
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center text-white font-bold text-base tracking-tight shadow-sm group-hover:bg-amber-600 transition-colors">
-              KW
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
-                  KRAFTWEAR
-                </span>
-                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
-                  DUBAI
-                </span>
-              </div>
-              <span className="text-[10px] text-slate-500 font-medium tracking-wider uppercase">
-                Apparel • Uniforms • Merch
-              </span>
-            </div>
-          </Link>
+          <Logo variant="light" size="md" />
 
           {/* Desktop Nav with Mega Menu Triggers */}
           <nav className="hidden lg:flex items-center gap-1 h-full">
