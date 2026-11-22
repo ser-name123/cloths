@@ -78,7 +78,7 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
   const currentColor = currentSpecimen.colors[selectedColorIndex] || currentSpecimen.colors[0];
 
   return (
-    <section className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/60 border-b border-slate-200/80 pt-4 pb-16 lg:pt-6 lg:pb-20 overflow-hidden">
+    <section className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/60 border-b border-slate-200/80 pt-4 pb-10 lg:pt-6 lg:pb-10 overflow-hidden">
       
       {/* Background ambient subtle blurs */}
       <div className="absolute top-0 right-1/4 w-[450px] h-[450px] bg-amber-100/40 rounded-full blur-3xl pointer-events-none -translate-y-1/3"></div>
@@ -327,7 +327,7 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
         </div>
 
         {/* --- BOTTOM STATS BAR --- */}
-        <div className="mt-14 pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="mt-10 pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="space-y-1">
             <p className="text-xl sm:text-2xl font-bold text-slate-900">10M+</p>
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Garments Produced in UAE</p>

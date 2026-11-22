@@ -9,7 +9,7 @@ export default function ClientTrustMarquee() {
   const duplicatedLogos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
 
   return (
-    <section className="py-14 bg-white border-b border-slate-200/80 overflow-hidden">
+    <section className="pt-10 pb-12 bg-white border-b border-slate-200/80 overflow-hidden">
       <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 mb-6 text-center">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">
           Trusted by 450+ GCC Enterprises, Global Brands & Government Contractors
