@@ -66,7 +66,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
       {/* 1. TOP ANNOUNCEMENT TICKER                                      */}
       {/* ============================================================== */}
       <div className="w-full bg-slate-950 text-slate-300 text-[11px] py-2.5 border-b border-slate-800">
-        <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between gap-4">
+        <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-4">
           
           {/* Left: Live Factory Status & Standards */}
           <div className="flex items-center gap-5">
@@ -105,14 +105,16 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
       {/* ============================================================== */}
       {/* 2. MAIN NAVBAR & MEGA MENU TRIGGERS                             */}
       {/* ============================================================== */}
-      <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between h-[70px]">
+      <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="flex items-center justify-between h-[70px] gap-2 lg:gap-4">
           
           {/* Brand Logo */}
-          <Logo variant="light" size="md" />
+          <div className="shrink-0">
+            <Logo variant="light" size="md" />
+          </div>
 
           {/* Desktop Nav with Mega Menu Triggers */}
-          <nav className="hidden lg:flex items-center gap-1 h-full">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 h-full">
             
             {/* Mega Menu 1: Custom Apparel */}
             <div 
@@ -122,12 +124,12 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
             >
               <button 
                 type="button"
-                className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 ${
+                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap ${
                   activeMegaMenu === 'apparel' ? 'text-amber-600 bg-slate-50' : 'text-slate-700 hover:text-slate-900'
                 }`}
               >
                 <span>Custom Apparel</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === 'apparel' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'apparel' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
               </button>
             </div>
 
@@ -139,19 +141,19 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
             >
               <button 
                 type="button"
-                className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 ${
+                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap ${
                   activeMegaMenu === 'workwear' ? 'text-amber-600 bg-slate-50' : 'text-slate-700 hover:text-slate-900'
                 }`}
               >
                 <span>Workwear & Safety</span>
-                <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200 shrink-0">
                   NFPA
                 </span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === 'workwear' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'workwear' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
               </button>
             </div>
 
-            {/* Mega Menu 3: Corporate Gifting & Swag */}
+            {/* Mega Menu 3: Corporate Gifts */}
             <div 
               className="relative h-full flex items-center"
               onMouseEnter={() => handleMouseEnter('gifting')}
@@ -159,12 +161,12 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
             >
               <button 
                 type="button"
-                className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 ${
+                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap ${
                   activeMegaMenu === 'gifting' ? 'text-amber-600 bg-slate-50' : 'text-slate-700 hover:text-slate-900'
                 }`}
               >
-                <span>Corporate Gifting</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === 'gifting' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                <span>Corporate Gifts</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'gifting' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
               </button>
             </div>
 
@@ -176,41 +178,41 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
             >
               <button 
                 type="button"
-                className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 ${
+                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap ${
                   activeMegaMenu === 'factory' ? 'text-amber-600 bg-slate-50' : 'text-slate-700 hover:text-slate-900'
                 }`}
               >
                 <span>In-House Factory</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === 'factory' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${activeMegaMenu === 'factory' ? 'rotate-180 text-amber-600' : 'text-slate-400'}`} />
               </button>
             </div>
 
             {/* Direct Tool Links */}
             <a 
               href="#customizer" 
-              className="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors flex items-center gap-1.5"
+              className="px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors flex items-center gap-1 xl:gap-1.5 whitespace-nowrap"
             >
               <span>3D Studio</span>
-              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200 shrink-0">
                 Live
               </span>
             </a>
 
             <a 
               href="#quote-builder" 
-              className="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors"
+              className="px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors whitespace-nowrap"
             >
               Cost Calculator
             </a>
           </nav>
 
           {/* Desktop Right CTAs */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-2 xl:gap-3 shrink-0">
             <button
               onClick={() => onOpenQuoteModal()}
-              className="px-4 py-2.5 rounded-full border border-slate-300 hover:border-slate-400 text-xs font-bold text-slate-800 transition-colors flex items-center gap-1.5 bg-white shadow-2xs"
+              className="px-3 xl:px-3.5 py-2 rounded-full border border-slate-300 hover:border-slate-400 text-xs font-bold text-slate-800 transition-colors flex items-center gap-1.5 bg-white shadow-2xs whitespace-nowrap"
             >
-              <Calculator className="w-3.5 h-3.5 text-slate-500" />
+              <Calculator className="w-3.5 h-3.5 text-slate-500 shrink-0" />
               <span>Instant RFQ</span>
             </button>
 
@@ -218,10 +220,10 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
               href="https://wa.me/971501234567?text=Hi%20Kraftwear%20UAE,%20I%20would%20like%20to%20discuss%20a%20bulk%20order."
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm hover:shadow flex items-center gap-2 group"
+              className="px-3.5 xl:px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm hover:shadow flex items-center gap-1.5 group whitespace-nowrap"
             >
               <span>Talk to Specialist</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform shrink-0" />
             </a>
           </div>
 

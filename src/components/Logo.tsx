@@ -19,7 +19,7 @@ export default function Logo({
   const isDark = variant === 'dark';
 
   return (
-    <Link href="/" className={`inline-flex items-center gap-3 group select-none ${className}`}>
+    <Link href="/" className={`inline-flex items-center gap-2.5 sm:gap-3 group select-none shrink-0 whitespace-nowrap ${className}`}>
       {/* Precision Geometric Textile Emblem SVG */}
       <div className="relative shrink-0 transition-transform duration-300 group-hover:scale-105">
         <svg 
@@ -136,3 +136,4 @@ export default function Logo({
     </Link>
   );
 }
+
