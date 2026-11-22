@@ -34,7 +34,7 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
         'Heavy Metal Rollerball Pen with Laser Monogram',
         '10,000mAh Ultra-Slim MagSafe Power Bank',
       ],
-      image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80',
+      image: '/images/gifting/onboarding-box.jpg',
     },
     {
       title: 'Eco-Forward Sustainable ESG Kit',
@@ -49,7 +49,7 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
         'Seed Paper Plantable Notebook & Recycled Pens',
         'Kraft Corrugated Custom Branded Mailer Box',
       ],
-      image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+      image: '/images/gifting/eco-kit.jpg',
     },
     {
       title: 'The GITEX & Conference Activation Swag',
@@ -64,7 +64,7 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
         'Soft Enamel Custom 3D Metal Lapel Pin',
         'Custom Drawstring Ripstop Bag with Reflective Trim',
       ],
-      image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80',
+      image: '/images/gifting/activation-swag.jpg',
     },
   ];
 

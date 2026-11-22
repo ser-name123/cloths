@@ -27,7 +27,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
       description: 'Engineered specifically for ADNOC contractors, petrochemical rigs, and heavy construction sites across UAE & Saudi Arabia.',
       keyProducts: ['FR Cotton Coveralls 240/300 GSM', 'Anti-Static High-Vis Jackets', 'Electrical Arc Flash Suits', 'Safety Steel Toe Boots'],
       clients: '30+ Certified Energy Contractors',
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sectors/oil-gas.jpg',
     },
     {
       id: 'hospitality',
@@ -37,7 +37,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
       description: 'Supplying 5-star Dubai hotels and restaurant chains with breathable chef jackets, aprons, housekeeping tunics, and concierge suits.',
       keyProducts: ['Breathable Mesh Chef Coats', 'Heavy Canvas Cross-Back Aprons', 'F&B Server Waistcoats', 'Housekeeping Tunics'],
       clients: '75+ Luxury UAE Resorts & F&B Groups',
-      image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sectors/hospitality.jpg',
     },
     {
       id: 'healthcare',
@@ -47,7 +47,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
       description: '4-way spandex stretch scrubs tailored for physicians, nurses, and dental clinics requiring comfort during long emergency shifts.',
       keyProducts: ['Antimicrobial 4-Way Stretch Scrubs', 'Doctor Embroidered Lab Coats', 'Patient Gowns', 'Surgical Scrub Caps'],
       clients: '120+ Hospitals & Private Clinics in UAE',
-      image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sectors/healthcare.jpg',
     },
     {
       id: 'corporate-tech',
@@ -57,7 +57,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
       description: 'Complete wardrobe programs for DIFC, Dubai Internet City, and multinational headquarters with year-round re-order consistency.',
       keyProducts: ['Pique Corporate Polos', 'Non-Iron Oxford Business Shirts', 'Tailored Blazers', 'Custom Tech Fleece Jackets'],
       clients: '200+ Enterprise Corporates',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sectors/corporate-tech.jpg',
     },
     {
       id: 'education',
@@ -67,7 +67,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
       description: 'Complete uniform programs with exact pantone matching across terms. Moisture-wicking PE kits, blazers, and ties.',
       keyProducts: ['Cotton Rich School Shirts', 'DriFit Sport PE Kits', 'School Crest Blazers', 'Winter Pullover Knits'],
       clients: '40+ International Schools in Dubai & Sharjah',
-      image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sectors/education.jpg',
     },
   ];
 
@@ -166,7 +166,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
               className="w-full h-full object-cover"
               loading="lazy"
               onError={(e) => {
-                e.currentTarget.src = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80';
+                e.currentTarget.src = '/images/sectors/oil-gas.jpg';
               }}
             />
           </div>

@@ -22,7 +22,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['280 GSM Pure Cotton', 'Pre-Shrunk Bio-Washed', 'Tearaway Neck Label', 'Ideal for Puff Print & Screen'],
     colors: ['#0f172a', '#f8fafc', '#78350f', '#064e3b', '#374151'],
     popularPrints: ['3D High-Density Puff', 'Silkscreen Plastisol', 'Direct to Film (DTF)'],
-    image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/heavy-tee.jpg',
   },
   {
     id: 'prod-executive-polo',
@@ -36,7 +36,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['Anti-Pilling Finish', 'Colorfast Dye Tech', 'Reinforced Side Slits', 'Custom Knitted Cuffs'],
     colors: ['#1e293b', '#ffffff', '#1e3a8a', '#991b1b', '#0f766e'],
     popularPrints: ['High-Definition Madeira Embroidery', 'Tone-on-Tone Micro Patch'],
-    image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/executive-polo.jpg',
   },
   {
     id: 'prod-fleece-hoodie',
@@ -51,7 +51,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['380 GSM Heavyweight Fleece', 'Cross-Grain Construction', 'Ribbed Side Panels', 'Deep Double Hood'],
     colors: ['#18181b', '#d4d4d8', '#27272a', '#3f2e1e', '#1e3a5f'],
     popularPrints: ['3D Embroidery', 'Chenille Varsity Patch', 'Screen Print'],
-    image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/fleece-hoodie.jpg',
   },
   {
     id: 'prod-varsity-bomber',
@@ -65,7 +65,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['Custom Wool/Poly Blend', 'Snap-button Closure', 'Diamond Quilted Interior', 'Chenille Embroidery Ready'],
     colors: ['#0f172a', '#1e3a8a', '#14532d', '#7f1d1d'],
     popularPrints: ['Custom Chenille Letters', 'Direct Back Embroidery'],
-    image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/varsity-bomber.jpg',
   },
 
   // --- INDUSTRIAL & SAFETY WORKWEAR (Klothon + EFZEE) ---
@@ -81,7 +81,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['FR Brass YKK 2-Way Zipper', '3M FR Reflective Taping', 'Gas Detector Loop', 'Action Back Pleats'],
     colors: ['#ea580c', '#1d4ed8', '#0e7490', '#b45309'],
     popularPrints: ['Flame Retardant Embroidery', 'FR Heat Seal Emblems'],
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/fr-coverall.jpg',
   },
   {
     id: 'prod-hi-vis-vest',
@@ -95,7 +95,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['High-Vis Fluorescent Mesh', 'Heavy-Duty Zipper', 'Clear ID Badge Pocket', 'Double Reflective Bands'],
     colors: ['#84cc16', '#f97316'],
     popularPrints: ['Screen Print Back Logo', 'Chest Pocket Vinyl Heat Press'],
-    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/hi-vis-vest.jpg',
   },
   {
     id: 'prod-medical-scrub',
@@ -109,7 +109,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['4-Way Spandex Stretch', 'Antimicrobial & Fluid Barrier', '7 Functional Pockets', 'Jogger Fit Pant'],
     colors: ['#0284c7', '#0d9488', '#334155', '#4f46e5', '#15803d'],
     popularPrints: ['Precision Clinic Logo Embroidery'],
-    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/medical-scrub.jpg',
   },
   {
     id: 'prod-corporate-blazer',
@@ -123,7 +123,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['Lightweight Breathable Weave', 'Structured Shoulder Padding', 'Satin Jacquard Lining', 'Customized Fit Options'],
     colors: ['#0f172a', '#1e293b', '#334155', '#3f3f46'],
     popularPrints: ['Subtle Lapel Pin', 'Custom Woven Monogram Crest'],
-    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/corporate-blazer.jpg',
   },
 
   // --- CORPORATE GIFTS & SWAG (Corporate Gifts Dubai + Baharnani) ---
@@ -139,7 +139,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['Custom Soft-Touch Rigid Box', 'Laser Engraved Branding', 'Foil Stamped Welcome Card', 'Multi-item Color Coordination'],
     colors: ['#09090b', '#1e293b', '#18181b'],
     popularPrints: ['Gold/Silver Foil Stamping', 'UV Full Color Print', 'Laser Engraving'],
-    image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/vip-swag-box.jpg',
   },
   {
     id: 'prod-smart-tumbler',
@@ -153,7 +153,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['Real-Time Temperature Display', 'Double Wall Vacuum Insulation', 'Matte Powder Coating', 'BPA Free & Leak Proof'],
     colors: ['#18181b', '#ffffff', '#0f766e', '#1e3a8a', '#b91c1c'],
     popularPrints: ['360° Seamless Laser Rotary Engrave', 'UV High-Gloss Print'],
-    image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/smart-tumbler.jpg',
   },
   {
     id: 'prod-wireless-powerbank',
@@ -167,7 +167,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['Aircraft Grade Aluminum', '15W Wireless + 20W PD Fast Charging', 'Foldable Kickstand', 'Multi-device Protection'],
     colors: ['#334155', '#0f172a', '#e2e8f0'],
     popularPrints: ['High-Precision Fiber Laser Etching'],
-    image: 'https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/wireless-powerbank.jpg',
   },
   {
     id: 'prod-eco-tote',
@@ -182,7 +182,7 @@ export const PRODUCTS_CATALOG: ProductItem[] = [
     features: ['14oz Premium Canvas', 'Inner Mobile Zip Pocket', 'GOTS Certified Organic', 'Holds up to 18kg load'],
     colors: ['#fef3c7', '#18181b', '#064e3b', '#1e3a8a'],
     popularPrints: ['Silkscreen Water-Based Ink', 'Full Color Heat Transfer'],
-    image: 'https://images.unsplash.com/photo-1597484661643-2f5fef640dd1?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/eco-tote.jpg',
   },
 ];
 

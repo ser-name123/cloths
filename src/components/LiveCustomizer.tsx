@@ -28,11 +28,11 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
   const curr = CURRENCY_RATES[currentCurrency];
 
   const garments = [
-    { id: 'tee', name: 'Oversized Streetwear Tee (280 GSM)', basePrice: 38, image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80' },
-    { id: 'hoodie', name: 'Heavyweight Fleece Hoodie (380 GSM)', basePrice: 78, image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80' },
-    { id: 'polo', name: 'Executive Pique Polo', basePrice: 44, image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80' },
-    { id: 'coverall', name: 'FR Industrial Safety Coverall', basePrice: 89, image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
-    { id: 'tumbler', name: 'Smart Temperature Tumbler', basePrice: 29, image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80' },
+    { id: 'tee', name: 'Oversized Streetwear Tee (280 GSM)', basePrice: 38, image: '/images/products/heavy-tee.jpg' },
+    { id: 'hoodie', name: 'Heavyweight Fleece Hoodie (380 GSM)', basePrice: 78, image: '/images/products/fleece-hoodie.jpg' },
+    { id: 'polo', name: 'Executive Pique Polo', basePrice: 44, image: '/images/products/executive-polo.jpg' },
+    { id: 'coverall', name: 'FR Industrial Safety Coverall', basePrice: 89, image: '/images/products/fr-coverall.jpg' },
+    { id: 'tumbler', name: 'Smart Temperature Tumbler', basePrice: 29, image: '/images/products/smart-tumbler.jpg' },
   ] as const;
 
   const currentItem = garments.find(g => g.id === selectedGarment) || garments[0];
@@ -76,7 +76,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                   alt={currentItem.name}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.currentTarget.src = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80';
+                    e.currentTarget.src = '/images/products/fr-coverall.jpg';
                   }}
                 />
                 

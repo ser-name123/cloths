@@ -105,7 +105,7 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                     onError={(e) => {
-                      e.currentTarget.src = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80';
+                      e.currentTarget.src = '/images/products/fr-coverall.jpg';
                     }}
                   />
 

@@ -39,10 +39,10 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
       leadTime: '3-5 Business Days',
       fabric: '100% Combed Compact Cotton, Bio-Washed',
       colors: [
-        { name: 'Onyx Black', hex: '#0f172a', img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80' },
-        { name: 'Pure White', hex: '#f8fafc', img: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80' },
-        { name: 'Desert Camel', hex: '#78350f', img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80' },
-        { name: 'Gulf Navy', hex: '#1e3a8a', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80' },
+        { name: 'Onyx Black', hex: '#0f172a', img: '/images/products/heavy-tee.jpg' },
+        { name: 'Pure White', hex: '#f8fafc', img: '/images/products/executive-polo.jpg' },
+        { name: 'Desert Camel', hex: '#78350f', img: '/images/products/fleece-hoodie.jpg' },
+        { name: 'Gulf Navy', hex: '#1e3a8a', img: '/images/products/corporate-blazer.jpg' },
       ],
       features: ['Drop Shoulder Cut', 'Tearaway Neck Tag', 'Puff & Screen Ready'],
     },
@@ -53,9 +53,9 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
       leadTime: '4-7 Business Days',
       fabric: '240 GSM Heavy Twill with 3M Scotchlite Reflective',
       colors: [
-        { name: 'Safety Orange', hex: '#ea580c', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
-        { name: 'Industrial Navy', hex: '#1d4ed8', img: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80' },
-        { name: 'Petrol Blue', hex: '#0e7490', img: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80' },
+        { name: 'Safety Orange', hex: '#ea580c', img: '/images/products/fr-coverall.jpg' },
+        { name: 'Industrial Navy', hex: '#1d4ed8', img: '/images/products/hi-vis-vest.jpg' },
+        { name: 'Petrol Blue', hex: '#0e7490', img: '/images/products/medical-scrub.jpg' },
       ],
       features: ['YKK 2-Way Brass Zipper', 'Gas Detector Loop', 'Double Stitched Stress Points'],
     },
@@ -66,9 +66,9 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
       leadTime: '2-4 Business Days',
       fabric: 'Custom Rigid Magnetic Box with Velvet EVA Foam',
       colors: [
-        { name: 'Matte Obsidian', hex: '#09090b', img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80' },
-        { name: 'Midnight Blue', hex: '#1e293b', img: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80' },
-        { name: 'Eco Kraft', hex: '#78350f', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80' },
+        { name: 'Matte Obsidian', hex: '#09090b', img: '/images/products/vip-swag-box.jpg' },
+        { name: 'Midnight Blue', hex: '#1e293b', img: '/images/products/smart-tumbler.jpg' },
+        { name: 'Eco Kraft', hex: '#78350f', img: '/images/products/eco-tote.jpg' },
       ],
       features: ['Smart LED Tumbler', 'A5 Leather Journal', '10,000mAh MagSafe Power Bank'],
     },
@@ -253,7 +253,7 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
                   alt={currentSpecimen.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   onError={(e) => {
-                    e.currentTarget.src = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80';
+                    e.currentTarget.src = '/images/products/fr-coverall.jpg';
                   }}
                 />
                 
