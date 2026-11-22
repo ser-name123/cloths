@@ -64,8 +64,8 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
       {/* ============================================================== */}
       {/* 1. TOP ANNOUNCEMENT TICKER                                      */}
       {/* ============================================================== */}
-      <div className="bg-slate-950 text-slate-300 text-[11px] py-2 px-4 sm:px-8 border-b border-slate-800">
-        <div className="max-w-[1560px] mx-auto flex items-center justify-between gap-4">
+      <div className="w-full bg-slate-950 text-slate-300 text-[11px] py-2.5 border-b border-slate-800">
+        <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between gap-4">
           
           {/* Left: Live Factory Status & Standards */}
           <div className="flex items-center gap-5">
@@ -268,11 +268,11 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
       {/* --- MEGA MENU 1: CUSTOM APPAREL (Times Clothing + Merchlist) --- */}
       {activeMegaMenu === 'apparel' && (
         <div 
-          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 px-4 sm:px-8 lg:px-12 animate-in fade-in slide-in-from-top-2 duration-150"
+          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 animate-in fade-in slide-in-from-top-2 duration-150"
           onMouseEnter={() => handleMouseEnter('apparel')}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="max-w-[1560px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
             
             {/* Col 1: Custom Knits & Streetwear */}
             <div className="space-y-3">
@@ -396,11 +396,11 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
       {/* --- MEGA MENU 2: WORKWEAR & SAFETY (Klothon Inspired) --- */}
       {activeMegaMenu === 'workwear' && (
         <div 
-          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 px-4 sm:px-8 lg:px-12 animate-in fade-in slide-in-from-top-2 duration-150"
+          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 animate-in fade-in slide-in-from-top-2 duration-150"
           onMouseEnter={() => handleMouseEnter('workwear')}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="max-w-[1560px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
             
             {/* Col 1: Oil & Gas / Heavy Industrial */}
             <div className="space-y-3">
@@ -527,11 +527,11 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
       {/* --- MEGA MENU 3: CORPORATE GIFTING & SWAG (Corporate Gifts Dubai + Baharnani) --- */}
       {activeMegaMenu === 'gifting' && (
         <div 
-          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 px-4 sm:px-8 lg:px-12 animate-in fade-in slide-in-from-top-2 duration-150"
+          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 animate-in fade-in slide-in-from-top-2 duration-150"
           onMouseEnter={() => handleMouseEnter('gifting')}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="max-w-[1560px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
             
             {/* Col 1: VIP Onboarding Boxes */}
             <div className="space-y-3">
@@ -655,11 +655,11 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
       {/* --- SUBMENU 4: IN-HOUSE FACTORY & MACHINES (Times Clothing + EFZEE) --- */}
       {activeMegaMenu === 'factory' && (
         <div 
-          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 px-4 sm:px-8 lg:px-12 animate-in fade-in slide-in-from-top-2 duration-150"
+          className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-2xl py-8 animate-in fade-in slide-in-from-top-2 duration-150"
           onMouseEnter={() => handleMouseEnter('factory')}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="max-w-[1560px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
             
             <div className="space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 font-mono">
