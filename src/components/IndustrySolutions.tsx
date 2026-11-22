@@ -27,7 +27,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
       description: 'Engineered specifically for ADNOC contractors, petrochemical rigs, and heavy construction sites across UAE & Saudi Arabia.',
       keyProducts: ['FR Cotton Coveralls 240/300 GSM', 'Anti-Static High-Vis Jackets', 'Electrical Arc Flash Suits', 'Safety Steel Toe Boots'],
       clients: '30+ Certified Energy Contractors',
-      image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 'hospitality',
@@ -165,6 +165,9 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
               alt={current.name}
               className="w-full h-full object-cover"
               loading="lazy"
+              onError={(e) => {
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80';
+              }}
             />
           </div>
 

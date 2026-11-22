@@ -53,7 +53,7 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
       leadTime: '4-7 Business Days',
       fabric: '240 GSM Heavy Twill with 3M Scotchlite Reflective',
       colors: [
-        { name: 'Safety Orange', hex: '#ea580c', img: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80' },
+        { name: 'Safety Orange', hex: '#ea580c', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
         { name: 'Industrial Navy', hex: '#1d4ed8', img: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80' },
         { name: 'Petrol Blue', hex: '#0e7490', img: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80' },
       ],
@@ -252,6 +252,9 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
                   src={currentColor.img}
                   alt={currentSpecimen.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80';
+                  }}
                 />
                 
                 {/* Floating Production Tag */}
