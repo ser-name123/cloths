@@ -105,7 +105,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
       {/* 2. MAIN NAVBAR & MEGA MENU TRIGGERS                             */}
       {/* ============================================================== */}
       <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-[70px]">
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">

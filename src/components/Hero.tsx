@@ -78,7 +78,7 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
   const currentColor = currentSpecimen.colors[selectedColorIndex] || currentSpecimen.colors[0];
 
   return (
-    <section className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/60 border-b border-slate-200/80 pt-10 pb-20 lg:pt-16 lg:pb-24 overflow-hidden">
+    <section className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/60 border-b border-slate-200/80 pt-4 pb-16 lg:pt-6 lg:pb-20 overflow-hidden">
       
       {/* Background ambient subtle blurs */}
       <div className="absolute top-0 right-1/4 w-[450px] h-[450px] bg-amber-100/40 rounded-full blur-3xl pointer-events-none -translate-y-1/3"></div>
@@ -97,7 +97,7 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
         </div>
 
         {/* Hero Grid: Left Content, Right Photorealistic Card */}
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+        <div className="mt-4 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
           {/* Left Column (7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
