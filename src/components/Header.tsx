@@ -24,9 +24,6 @@ interface HeaderProps {
 
 export default function Header({ currentCurrency, onCurrencyChange, onOpenQuoteModal }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false);
-
-  const currencies: Currency[] = ['AED', 'SAR', 'USD', 'EUR'];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-200/80 shadow-xs">
@@ -50,7 +47,7 @@ export default function Header({ currentCurrency, onCurrencyChange, onOpenQuoteM
             </span>
           </div>
 
-          {/* Right: Contact & Currency Selector */}
+          {/* Right: Contact Hotline */}
           <div className="flex items-center gap-4">
             <a
               href="https://wa.me/971501234567?text=Hi%20Kraftwear%20Dubai,%20I%20would%20like%20to%20inquire%20about%20custom%20apparel."
@@ -59,42 +56,8 @@ export default function Header({ currentCurrency, onCurrencyChange, onOpenQuoteM
               className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors font-medium text-[11px]"
             >
               <MessageSquare className="w-3 h-3" />
-              <span>+971 50 123 4567</span>
+              <span>WhatsApp: +971 50 123 4567</span>
             </a>
-
-            <span className="text-slate-700">|</span>
-
-            {/* Currency Selector */}
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => setCurrencyDropdownOpen(!currencyDropdownOpen)}
-                className="inline-flex items-center gap-1 text-slate-300 hover:text-white font-semibold transition-colors"
-              >
-                <span>{currentCurrency}</span>
-                <ChevronDown className="w-3 h-3 text-slate-400" />
-              </button>
-
-              {currencyDropdownOpen && (
-                <div className="absolute right-0 top-full mt-1.5 w-24 bg-slate-900 border border-slate-700 rounded-lg shadow-xl py-1 z-50">
-                  {currencies.map((c) => (
-                    <button
-                      key={c}
-                      onClick={() => {
-                        onCurrencyChange(c);
-                        setCurrencyDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-3 py-1 text-xs font-medium transition-colors ${
-                        currentCurrency === c ? 'text-amber-400 font-bold bg-slate-800' : 'text-slate-300 hover:bg-slate-800'
-                      }`}
-                    >
-                      {c}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
           </div>
 
         </div>
