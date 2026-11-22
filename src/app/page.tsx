@@ -91,7 +91,7 @@ export default function Home() {
       </main>
 
       {/* Global Footer */}
-      <Footer />
+      <Footer onOpenQuoteModal={handleOpenQuoteModal} />
 
       {/* Persistent Floating WhatsApp Help Trigger */}
       <WhatsAppFloatingButton />
