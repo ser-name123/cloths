@@ -11,8 +11,7 @@ import {
   CheckCircle2, 
   MessageSquare, 
   ShieldCheck, 
-  Clock, 
-  AlertCircle 
+  Clock 
 } from 'lucide-react';
 
 interface RFQModalProps {
@@ -64,12 +63,11 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
       setSubmitted(true);
       setStatusMessage(res.message);
 
-      // Trigger Confetti Celebration
       confetti({
         particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#f59e0b', '#10b981', '#38bdf8', '#fbbf24'],
+        colors: ['#0f172a', '#10b981', '#f59e0b', '#0284c7'],
       });
     } catch (err: any) {
       setLoading(false);
@@ -85,122 +83,122 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl text-white my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
+      <div className="relative w-full max-w-xl bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl text-slate-900 my-8">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-colors"
+          className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-900 transition-colors"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         {!submitted ? (
           <div>
-            {/* Modal Header */}
-            <div className="space-y-2 pr-8">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/10 text-amber-400 border border-amber-400/20 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5" />
+            {/* Header */}
+            <div className="space-y-1.5 pr-8">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
                 <span>OFFICIAL RFQ & SAMPLE REQUEST</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black">
-                Request a Custom <span className="text-amber-400">Wholesale Quotation.</span>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
+                Request a Custom Wholesale Quote
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500">
                 Direct in-house pricing, free digital mockups, and pre-production proof samples within 24 hours.
               </p>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="mt-6 space-y-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-300">Full Name *</label>
+                  <label className="text-xs font-semibold text-slate-700">Full Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     placeholder="e.g. Tariq Al-Mansoor"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-300">Business Email *</label>
+                  <label className="text-xs font-semibold text-slate-700">Business Email *</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="e.g. procurement@company.ae"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400"
+                    placeholder="procurement@company.ae"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-300">UAE / GCC Phone or WhatsApp *</label>
+                  <label className="text-xs font-semibold text-slate-700">UAE / GCC Phone *</label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+971 50 000 0000"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-300">Company / Organization *</label>
+                  <label className="text-xs font-semibold text-slate-700">Company Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    placeholder="e.g. Dubai Logistics Group"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400"
+                    placeholder="Dubai Logistics Group"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-300">Product / Category</label>
+                  <label className="text-xs font-semibold text-slate-700">Product / Category</label>
                   <input
                     type="text"
                     value={formData.productTitle || formData.category}
                     onChange={(e) => setFormData({ ...formData, productTitle: e.target.value })}
-                    placeholder="e.g. Heavyweight 280 GSM Tee"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400"
+                    placeholder="e.g. Heavyweight Tee"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-300">Estimated Quantity (Units)</label>
+                  <label className="text-xs font-semibold text-slate-700">Estimated Quantity (Units)</label>
                   <input
                     type="number"
                     min="1"
                     value={formData.estimatedQuantity}
                     onChange={(e) => setFormData({ ...formData, estimatedQuantity: Number(e.target.value) })}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400 font-mono"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-900 font-mono focus:outline-none focus:border-slate-400"
                   />
                 </div>
 
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-300">Preferred Embellishment / Branding</label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <label className="text-xs font-semibold text-slate-700">Branding Technique</label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
                   {['Tajima Embroidery', 'Silkscreen Print', '3D Puff Print', 'Laser Engraving'].map((meth) => (
                     <button
                       key={meth}
                       type="button"
                       onClick={() => setFormData({ ...formData, customizationType: meth })}
-                      className={`p-2 rounded-xl text-[11px] font-semibold border transition-all ${
+                      className={`p-2 rounded-xl text-xs font-medium border transition-all ${
                         formData.customizationType === meth
-                          ? 'border-amber-400 bg-amber-400/10 text-white'
-                          : 'border-slate-800 bg-slate-900 text-slate-400 hover:text-white'
+                          ? 'border-slate-900 bg-slate-900 text-white font-semibold'
+                          : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'
                       }`}
                     >
                       {meth}
@@ -210,76 +208,70 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-300">Specific Requirements or Target Delivery Date</label>
+                <label className="text-xs font-semibold text-slate-700">Specific Requirements or Deadline</label>
                 <textarea
-                  rows={3}
+                  rows={2}
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   placeholder="Mention color preferences, sizes, GSM, or event deadlines (e.g. GITEX or Ramadan)..."
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
                 ></textarea>
               </div>
 
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+              {/* CTAs */}
+              <div className="pt-2 flex flex-col sm:flex-row items-center gap-2.5">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full sm:flex-1 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-extrabold text-sm shadow-xl shadow-amber-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full sm:flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-3.5 h-3.5" />
                   <span>{loading ? 'Submitting to Supabase...' : 'Submit Official RFQ'}</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={handleWhatsAppDirect}
-                  className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow"
+                  className="w-full sm:w-auto px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all"
                 >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Send via WhatsApp</span>
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span>Send to WhatsApp</span>
                 </button>
               </div>
 
-              <div className="flex items-center justify-center gap-4 pt-2 text-[11px] text-slate-500">
+              <div className="flex items-center justify-center gap-3 pt-1 text-[11px] text-slate-400">
                 <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  NDA & Privacy Protected
+                  <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                  Confidential RFQ
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-sky-400" />
+                  <Clock className="w-3 h-3 text-slate-500" />
                   Avg Response: Under 2 Hours
                 </span>
               </div>
             </form>
           </div>
         ) : (
-          <div className="text-center py-10 space-y-5">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto shadow-xl">
-              <CheckCircle2 className="w-8 h-8" />
+          <div className="text-center py-8 space-y-4">
+            <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
+              <CheckCircle2 className="w-7 h-7" />
             </div>
 
-            <h3 className="text-2xl font-black text-white">
+            <h3 className="text-xl font-bold text-slate-900">
               Quotation Request Received!
             </h3>
 
-            <p className="text-xs text-slate-300 max-w-md mx-auto leading-relaxed">
-              {statusMessage || 'Your inquiry has been logged in our central database. Our Dubai apparel & workwear specialist will review your specs and email your official proforma within 2 hours.'}
+            <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed">
+              {statusMessage || 'Your RFQ has been logged into our central database. Our team will email your proforma invoice within 2 hours.'}
             </p>
 
-            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 max-w-sm mx-auto text-left text-xs space-y-1">
-              <p className="text-slate-400">Order Specs Logged:</p>
-              <p className="font-bold text-white">{formData.productTitle || formData.category} ({formData.estimatedQuantity} pcs)</p>
-              <p className="text-amber-400">{formData.customizationType} • {formData.companyName}</p>
-            </div>
-
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2">
               <button
                 onClick={handleWhatsAppDirect}
-                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1.5"
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-3.5 h-3.5" />
                 <span>Expedite on WhatsApp</span>
               </button>
 
@@ -288,9 +280,9 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
                   setSubmitted(false);
                   onClose();
                 }}
-                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs hover:text-white"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs hover:bg-slate-200"
               >
-                Close Window
+                Close
               </button>
             </div>
           </div>
@@ -300,4 +292,3 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
     </div>
   );
 }
-

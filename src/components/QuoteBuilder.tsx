@@ -5,13 +5,12 @@ import { Currency } from '@/types';
 import { CURRENCY_RATES } from '@/data/mockData';
 import { 
   Calculator, 
-  Sparkles, 
-  Layers, 
-  Check, 
   Send, 
+  TrendingDown, 
+  Info, 
+  Check, 
   ArrowRight,
-  TrendingDown,
-  Info
+  ShieldCheck
 } from 'lucide-react';
 
 interface QuoteBuilderProps {
@@ -24,7 +23,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
   const [basePrice, setBasePrice] = useState(38);
   const [quantity, setQuantity] = useState(100);
   const [brandingMethod, setBrandingMethod] = useState<'screen' | 'embroidery' | 'puff' | 'sublimation'>('embroidery');
-  const [printPositions, setPrintPositions] = useState<string[]>(['Front Chest']);
+  const [printPositions, setPrintPositions] = useState<string[]>(['Front Left Chest']);
 
   const curr = CURRENCY_RATES[currentCurrency];
 
@@ -38,7 +37,6 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
     { name: 'Smart Vacuum Tumbler (500ml)', price: 29, category: 'Gifting' },
   ];
 
-  // Dynamic Volume Discount Calculation (Merchlist / Klothon model)
   const getDiscountPercentage = (qty: number) => {
     if (qty >= 1000) return 40;
     if (qty >= 500) return 30;
@@ -76,48 +74,43 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
 
   const handleWhatsAppInstant = () => {
     const text = encodeURIComponent(
-      `Hello Kraftwear Dubai!\nI used your Online Quote Calculator:\n- Product: ${selectedProduct}\n- Quantity: ${quantity} pcs\n- Branding: ${brandingMethod} (${printPositions.join(', ')})\n- Estimated Unit Price: ${formatPrice(discountedUnitPrice)}\n- Total Est: ${formatPrice(totalCostAED)}\n\nPlease provide official proforma invoice and sample lead time.`
+      `Hello Kraftwear Dubai!\nI used your Online Cost Calculator:\n- Product: ${selectedProduct}\n- Quantity: ${quantity} pcs\n- Branding: ${brandingMethod} (${printPositions.join(', ')})\n- Estimated Unit Price: ${formatPrice(discountedUnitPrice)}\n- Total Est: ${formatPrice(totalCostAED)}\n\nPlease provide official proforma invoice and sample lead time.`
     );
     window.open(`https://wa.me/971501234567?text=${text}`, '_blank');
   };
 
   return (
-    <section id="quote-builder" className="py-20 bg-slate-900 text-white relative overflow-hidden border-b border-slate-800">
-      
-      {/* Decorative gradient blur */}
-      <div className="absolute -top-40 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="quote-builder" className="py-20 bg-slate-50 border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-semibold">
-            <Calculator className="w-3.5 h-3.5" />
-            <span>INSTANT B2B COST CALCULATOR</span>
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs">
+            <Calculator className="w-3.5 h-3.5 text-slate-500" />
+            <span>TRANSPARENT B2B PRICING</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-            Transparent Pricing.{' '}
-            <span className="text-amber-400">Zero Hidden Surcharges.</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Instant Cost Calculator & Volume Tiers
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
+          <p className="text-slate-600 text-sm sm:text-base">
             Configure your order specs, scale your quantity, and unlock wholesale volume tier discounts in real-time.
           </p>
         </div>
 
         {/* Calculator Main Box */}
-        <div className="mt-12 bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+        <div className="mt-12 bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/50">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* Left Steps (8 Columns) */}
-            <div className="lg:col-span-7 space-y-8">
+            {/* Left Steps (7 cols) */}
+            <div className="lg:col-span-7 space-y-7">
               
               {/* Step 1: Product Selection */}
-              <div className="space-y-3">
-                <label className="text-sm font-bold text-slate-200 flex items-center justify-between">
-                  <span>1. Select Core Product or Workwear</span>
-                  <span className="text-xs text-amber-400 font-mono">150+ options available</span>
+              <div className="space-y-2.5">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center justify-between">
+                  <span>1. Select Core Product or Uniform</span>
+                  <span className="text-[11px] text-amber-700 font-mono">150+ options available</span>
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {productOptions.map((opt) => (
                     <button
                       key={opt.name}
@@ -128,15 +121,17 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                       }}
                       className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between ${
                         selectedProduct === opt.name
-                          ? 'border-amber-400 bg-amber-400/10 text-white shadow'
-                          : 'border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700'
+                          ? 'border-slate-900 bg-slate-900 text-white shadow-sm'
+                          : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
                       }`}
                     >
                       <div>
                         <p className="text-xs font-bold leading-tight">{opt.name}</p>
-                        <p className="text-[10px] text-slate-400 font-mono mt-0.5">{opt.category}</p>
+                        <p className={`text-[10px] mt-0.5 ${selectedProduct === opt.name ? 'text-slate-300' : 'text-slate-400'}`}>
+                          {opt.category}
+                        </p>
                       </div>
-                      <span className="text-xs font-bold font-mono text-amber-400">
+                      <span className={`text-xs font-bold font-mono ${selectedProduct === opt.name ? 'text-amber-400' : 'text-slate-900'}`}>
                         {formatPrice(opt.price)}
                       </span>
                     </button>
@@ -144,14 +139,14 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                 </div>
               </div>
 
-              {/* Step 2: Quantity Slider & Bulk Tier */}
-              <div className="space-y-3">
+              {/* Step 2: Quantity Slider */}
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm font-bold text-slate-200">
-                    2. Order Quantity: <span className="text-amber-400 font-mono text-base">{quantity} units</span>
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                    2. Order Quantity: <span className="text-slate-900 font-mono text-sm">{quantity} units</span>
                   </label>
                   {discount > 0 && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
                       <TrendingDown className="w-3.5 h-3.5" />
                       {discount}% Bulk Discount Applied!
                     </span>
@@ -165,18 +160,17 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                   step="10"
                   value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
-                  className="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
                 />
 
-                {/* Quick preset buttons */}
-                <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
+                <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
                   {[25, 50, 100, 250, 500, 1000].map((preset) => (
                     <button
                       key={preset}
                       type="button"
                       onClick={() => setQuantity(preset)}
-                      className={`px-2.5 py-1 rounded-md font-mono transition-all ${
-                        quantity === preset ? 'bg-amber-400 text-slate-950 font-bold' : 'hover:bg-slate-800'
+                      className={`px-2 py-0.5 rounded-md font-mono transition-all ${
+                        quantity === preset ? 'bg-slate-900 text-white font-bold' : 'hover:bg-slate-100'
                       }`}
                     >
                       {preset} pcs
@@ -185,42 +179,44 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                 </div>
               </div>
 
-              {/* Step 3: Branding & Embellishment */}
-              <div className="space-y-3">
-                <label className="text-sm font-bold text-slate-200">
+              {/* Step 3: Branding Technique */}
+              <div className="space-y-2.5">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
                   3. In-House Branding Technique
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
-                    { id: 'embroidery', label: 'Tajima Embroidery', sub: 'German Thread', tag: '+7' },
-                    { id: 'screen', label: 'Silkscreen Print', sub: 'Plastisol / Water', tag: '+4' },
-                    { id: 'puff', label: '3D High Puff', sub: 'Raised Streetwear', tag: '+9' },
-                    { id: 'sublimation', label: 'Sublimation / DTF', sub: 'Full Color Photo', tag: '+6' },
+                    { id: 'embroidery', label: 'Tajima Embroidery', sub: 'German Thread' },
+                    { id: 'screen', label: 'Silkscreen Print', sub: 'Water / Plastisol' },
+                    { id: 'puff', label: '3D High Puff', sub: 'Raised Cut' },
+                    { id: 'sublimation', label: 'Sublimation / DTF', sub: 'Full Color' },
                   ].map((tech) => (
                     <button
                       key={tech.id}
                       type="button"
                       onClick={() => setBrandingMethod(tech.id as any)}
-                      className={`p-3 rounded-xl border text-center transition-all ${
+                      className={`p-2.5 rounded-xl border text-center transition-all ${
                         brandingMethod === tech.id
-                          ? 'border-amber-400 bg-amber-400/10 text-white'
-                          : 'border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700'
+                          ? 'border-slate-900 bg-slate-900 text-white'
+                          : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
                       }`}
                     >
                       <p className="text-xs font-bold">{tech.label}</p>
-                      <p className="text-[10px] text-slate-400 mt-0.5">{tech.sub}</p>
+                      <p className={`text-[10px] mt-0.5 ${brandingMethod === tech.id ? 'text-slate-300' : 'text-slate-400'}`}>
+                        {tech.sub}
+                      </p>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Step 4: Placement Positions */}
-              <div className="space-y-3">
-                <label className="text-sm font-bold text-slate-200">
-                  4. Artwork Placement
+              {/* Step 4: Artwork Placement */}
+              <div className="space-y-2.5">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                  4. Placement Positions
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {['Front Left Chest', 'Center Chest', 'Large Back Print', 'Sleeve Emblem', 'Custom Neck Tag'].map((pos) => {
+                  {['Front Left Chest', 'Center Chest', 'Large Back Print', 'Sleeve Badge', 'Custom Neck Tag'].map((pos) => {
                     const active = printPositions.includes(pos);
                     return (
                       <button
@@ -229,11 +225,11 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                         onClick={() => togglePosition(pos)}
                         className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all flex items-center gap-1.5 ${
                           active
-                            ? 'bg-slate-800 border-amber-400 text-amber-400 font-bold'
-                            : 'border-slate-800 bg-slate-900 text-slate-400 hover:text-white'
+                            ? 'bg-slate-900 border-slate-900 text-white font-semibold'
+                            : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
                         }`}
                       >
-                        {active && <Check className="w-3.5 h-3.5" />}
+                        {active && <Check className="w-3.5 h-3.5 text-amber-400" />}
                         <span>{pos}</span>
                       </button>
                     );
@@ -243,72 +239,72 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
 
             </div>
 
-            {/* Right Summary Card (5 Columns) */}
-            <div className="lg:col-span-5 bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+            {/* Right Summary Card (5 cols) */}
+            <div className="lg:col-span-5 bg-slate-900 text-white rounded-2xl p-6 sm:p-7 space-y-5 shadow-lg">
               
-              <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-                <span className="text-xs font-mono uppercase text-slate-400">Live Quote Summary</span>
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                <span className="text-xs font-mono uppercase text-slate-400">Order Estimate</span>
                 <span className="text-[10px] font-bold px-2 py-0.5 bg-emerald-500/20 text-emerald-400 rounded">
                   ESTIMATE READY
                 </span>
               </div>
 
-              {/* Specs overview */}
-              <div className="space-y-2.5 text-xs">
+              {/* Specs List */}
+              <div className="space-y-2 text-xs">
                 <div className="flex justify-between text-slate-300">
-                  <span className="text-slate-400">Item:</span>
-                  <span className="font-bold text-white text-right">{selectedProduct}</span>
+                  <span className="text-slate-400">Product:</span>
+                  <span className="font-semibold text-white text-right">{selectedProduct}</span>
                 </div>
                 <div className="flex justify-between text-slate-300">
                   <span className="text-slate-400">Volume:</span>
-                  <span className="font-bold text-white">{quantity} units</span>
+                  <span className="font-semibold text-white">{quantity} units</span>
                 </div>
                 <div className="flex justify-between text-slate-300">
                   <span className="text-slate-400">Technique:</span>
-                  <span className="font-bold text-amber-400 capitalize">{brandingMethod}</span>
+                  <span className="font-semibold text-amber-400 capitalize">{brandingMethod}</span>
                 </div>
                 <div className="flex justify-between text-slate-300">
-                  <span className="text-slate-400">Placements:</span>
-                  <span className="font-bold text-white">{printPositions.join(', ')}</span>
+                  <span className="text-slate-400">Positions:</span>
+                  <span className="font-semibold text-white">{printPositions.join(', ')}</span>
                 </div>
                 {discount > 0 && (
-                  <div className="flex justify-between text-emerald-400 font-semibold">
-                    <span>Volume Tier Saving:</span>
+                  <div className="flex justify-between text-emerald-400 font-semibold pt-1 border-t border-slate-800">
+                    <span>Volume Discount:</span>
                     <span>-{discount}% ({formatPrice(rawUnitPrice * (discount / 100) * quantity)})</span>
                   </div>
                 )}
               </div>
 
-              {/* Price Callout */}
-              <div className="pt-4 border-t border-slate-800 space-y-1">
-                <p className="text-xs text-slate-400">Estimated Unit Price:</p>
+              {/* Pricing Callout */}
+              <div className="pt-3 border-t border-slate-800 space-y-1">
+                <p className="text-[11px] text-slate-400">Unit Price:</p>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-black text-amber-400">
+                  <span className="text-2xl font-extrabold text-amber-400 font-mono">
                     {formatPrice(discountedUnitPrice)}
                   </span>
                   {discount > 0 && (
-                    <span className="text-sm line-through text-slate-500 font-mono">
+                    <span className="text-xs line-through text-slate-500 font-mono">
                       {formatPrice(rawUnitPrice)}
                     </span>
                   )}
                   <span className="text-xs text-slate-400">/ pc</span>
                 </div>
 
-                <div className="pt-3">
-                  <p className="text-xs text-slate-400">Total Order Estimate ({currentCurrency}):</p>
-                  <p className="text-2xl font-black text-white">
+                <div className="pt-2">
+                  <p className="text-[11px] text-slate-400">Total Order ({currentCurrency}):</p>
+                  <p className="text-xl font-extrabold text-white font-mono">
                     {formatPrice(totalCostAED)}
                   </p>
                 </div>
               </div>
 
-              {/* CTAs */}
-              <div className="space-y-3 pt-2">
+              {/* Action Buttons */}
+              <div className="space-y-2 pt-2">
                 <button
                   onClick={handleWhatsAppInstant}
-                  className="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-2 shadow"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-3.5 h-3.5" />
                   <span>Send Estimate to WhatsApp</span>
                 </button>
 
@@ -320,18 +316,15 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                     unitPrice: discountedUnitPrice,
                     total: totalCostAED,
                   })}
-                  className="w-full py-3.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-white font-bold text-sm transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2"
                 >
                   <span>Submit Formal RFQ (Supabase)</span>
                 </button>
               </div>
 
-              {/* Notice */}
-              <div className="flex items-start gap-2 pt-2 text-[11px] text-slate-500">
-                <Info className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
-                <span>
-                  Final proforma includes free digital CAD mockup & pre-production proof sample. Turnaround time: 3–6 business days in Dubai.
-                </span>
+              <div className="flex items-start gap-1.5 pt-1 text-[11px] text-slate-400">
+                <Info className="w-3.5 h-3.5 shrink-0 mt-0.5 text-slate-400" />
+                <span>Includes free digital CAD proof and pre-production sample. Turnaround 3–5 days.</span>
               </div>
 
             </div>
@@ -343,4 +336,3 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
     </section>
   );
 }
-

@@ -4,15 +4,13 @@ import React, { useState } from 'react';
 import { Currency } from '@/types';
 import { CURRENCY_RATES } from '@/data/mockData';
 import { 
-  Sparkles, 
-  Layers, 
-  Palette, 
-  Upload, 
   Eye, 
-  RotateCw, 
-  ShieldCheck, 
-  CheckCircle,
-  HelpCircle
+  Sparkles, 
+  Palette, 
+  Layers, 
+  Check, 
+  ShieldCheck,
+  ArrowRight
 } from 'lucide-react';
 
 interface LiveCustomizerProps {
@@ -25,19 +23,19 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
   const [selectedColor, setSelectedColor] = useState('#0f172a');
   const [logoPosition, setLogoPosition] = useState<'chest' | 'center' | 'back'>('chest');
   const [technique, setTechnique] = useState<'embroidery' | 'puff' | 'screen' | 'laser'>('embroidery');
-  const [demoBrandName, setDemoBrandName] = useState('YOUR LOGO HERE');
+  const [brandText, setBrandText] = useState('YOUR LOGO HERE');
 
   const curr = CURRENCY_RATES[currentCurrency];
 
   const garments = [
-    { id: 'tee', name: 'Oversized Tee 280 GSM', basePrice: 38 },
-    { id: 'hoodie', name: 'Heritage Hoodie 380 GSM', basePrice: 78 },
-    { id: 'polo', name: 'Executive Pique Polo', basePrice: 44 },
-    { id: 'coverall', name: 'FR Safety Coverall', basePrice: 89 },
-    { id: 'tumbler', name: 'Smart Vacuum Tumbler', basePrice: 29 },
+    { id: 'tee', name: 'Oversized Streetwear Tee (280 GSM)', basePrice: 38, image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80' },
+    { id: 'hoodie', name: 'Heavyweight Fleece Hoodie (380 GSM)', basePrice: 78, image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80' },
+    { id: 'polo', name: 'Executive Pique Polo', basePrice: 44, image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80' },
+    { id: 'coverall', name: 'FR Industrial Safety Coverall', basePrice: 89, image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80' },
+    { id: 'tumbler', name: 'Smart Temperature Tumbler', basePrice: 29, image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80' },
   ] as const;
 
-  const currentGarmentData = garments.find(g => g.id === selectedGarment) || garments[0];
+  const currentItem = garments.find(g => g.id === selectedGarment) || garments[0];
 
   const colors = [
     { hex: '#0f172a', name: 'Phantom Black' },
@@ -49,277 +47,174 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
   ];
 
   return (
-    <section id="customizer" className="py-24 bg-slate-900 text-white relative border-b border-slate-800">
+    <section id="customizer" className="py-20 bg-slate-50 border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold">
-            <Eye className="w-3.5 h-3.5" />
-            <span>THE MERCHLIST-INSPIRED LIVE STUDIO</span>
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs">
+            <Eye className="w-3.5 h-3.5 text-slate-500" />
+            <span>THE MERCHLIST-INSPIRED STUDIO</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-            Design & Visualize{' '}
-            <span className="text-amber-400">Before You Commit.</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Interactive 3D Styling Studio
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
-            Interact with our virtual styling canvas. Test fabrics, placements, and embellishments with live photorealistic simulation.
+          <p className="text-slate-600 text-sm">
+            Visualize your brand logo and select embroidery vs printing before placing a bulk production order.
           </p>
         </div>
 
-        {/* Studio Workspace */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
-          
-          {/* Left Canvas (Interactive Visual Display) - 7 cols */}
-          <div className="lg:col-span-7 flex flex-col items-center justify-center">
-            <div 
-              className="relative w-full max-w-lg h-96 sm:h-[420px] rounded-2xl flex items-center justify-center transition-colors duration-500 border border-slate-800 shadow-2xl overflow-hidden"
-              style={{ backgroundColor: selectedColor }}
-            >
-              {/* Grid texture overlay */}
-              <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
-
-              {/* Garment Mockup SVG Representation */}
-              <div className="relative z-10 w-64 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
-                
-                {selectedGarment === 'tee' && (
-                  <div className="relative w-full h-full flex flex-col items-center justify-center">
-                    {/* Visual Tee Shape */}
-                    <div className="w-64 h-72 rounded-t-[50px] border-2 border-white/30 bg-white/5 relative flex flex-col items-center justify-center shadow-2xl backdrop-blur-[2px]">
-                      {/* Collar */}
-                      <div className="w-24 h-10 rounded-b-full border-b-2 border-white/40 bg-black/30 absolute -top-1"></div>
-                      {/* Sleeves */}
-                      <div className="absolute -left-8 top-6 w-12 h-24 bg-white/5 border-l-2 border-y-2 border-white/20 rounded-l-2xl -rotate-12"></div>
-                      <div className="absolute -right-8 top-6 w-12 h-24 bg-white/5 border-r-2 border-y-2 border-white/20 rounded-r-2xl rotate-12"></div>
-                      
-                      {/* Interactive Logo Stamp */}
-                      <div className={`absolute p-3 rounded-lg border border-amber-400/40 bg-black/40 backdrop-blur-md shadow-lg transition-all ${
-                        logoPosition === 'chest' ? 'top-16 left-12' : logoPosition === 'center' ? 'top-24' : 'top-12 scale-125'
-                      }`}>
-                        <p className="text-xs font-black tracking-widest text-amber-400 uppercase text-center">
-                          {demoBrandName || 'BRAND LOGO'}
-                        </p>
-                        <p className="text-[8px] font-mono text-slate-300 text-center uppercase mt-0.5">
-                          {technique}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {selectedGarment === 'hoodie' && (
-                  <div className="relative w-full h-full flex flex-col items-center justify-center">
-                    <div className="w-64 h-72 rounded-t-[40px] border-2 border-white/30 bg-white/5 relative flex flex-col items-center justify-center shadow-2xl">
-                      {/* Big Hood */}
-                      <div className="w-32 h-14 rounded-full border-2 border-white/40 bg-black/40 absolute -top-6"></div>
-                      {/* Kangaroo Pouch */}
-                      <div className="w-40 h-16 rounded-t-xl border-t-2 border-x-2 border-white/20 bg-black/20 absolute bottom-3"></div>
-                      
-                      {/* Logo Stamp */}
-                      <div className={`absolute p-3 rounded-lg border border-amber-400/40 bg-black/50 backdrop-blur-md shadow-lg transition-all ${
-                        logoPosition === 'chest' ? 'top-16 left-12' : logoPosition === 'center' ? 'top-20' : 'top-12 scale-125'
-                      }`}>
-                        <p className="text-xs font-black tracking-widest text-amber-400 uppercase text-center">
-                          {demoBrandName || 'HOODIE LOGO'}
-                        </p>
-                        <p className="text-[8px] font-mono text-slate-300 text-center uppercase mt-0.5">
-                          {technique}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {selectedGarment === 'polo' && (
-                  <div className="relative w-full h-full flex flex-col items-center justify-center">
-                    <div className="w-64 h-72 rounded-t-[40px] border-2 border-white/30 bg-white/5 relative flex flex-col items-center justify-center shadow-2xl">
-                      {/* Polo Collar & Placket */}
-                      <div className="w-20 h-10 border-b-2 border-white/40 bg-black/30 absolute -top-1"></div>
-                      <div className="w-6 h-14 border-x border-b border-white/30 bg-black/20 absolute top-7 flex flex-col items-center justify-around py-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/80"></span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/80"></span>
-                      </div>
-                      
-                      {/* Chest Embroidered Emblem */}
-                      <div className="absolute top-16 left-12 p-2 rounded border border-amber-400/50 bg-black/50 backdrop-blur-md">
-                        <span className="text-[9px] font-bold text-amber-400 tracking-wider">
-                          {demoBrandName}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {selectedGarment === 'coverall' && (
-                  <div className="relative w-full h-full flex flex-col items-center justify-center">
-                    <div className="w-60 h-72 rounded-xl border-2 border-white/30 bg-white/5 relative flex flex-col items-center justify-center shadow-2xl p-4">
-                      {/* High-Vis reflective strip */}
-                      <div className="w-full h-6 bg-yellow-400 border-y border-black flex items-center justify-center my-2 shadow">
-                        <span className="text-[8px] text-black font-mono font-black">3M FR REFLECTIVE</span>
-                      </div>
-                      <div className="p-2 bg-black/50 border border-white/20 rounded mt-4">
-                        <span className="text-[10px] text-white font-bold tracking-wider">
-                          {demoBrandName}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {selectedGarment === 'tumbler' && (
-                  <div className="relative w-full h-full flex flex-col items-center justify-center">
-                    <div className="w-32 h-64 rounded-2xl border-2 border-white/30 bg-gradient-to-b from-white/10 to-black/60 relative flex flex-col items-center justify-between p-4 shadow-2xl">
-                      <div className="w-20 h-4 bg-slate-800 rounded-full border border-white/30 flex items-center justify-center">
-                        <span className="text-[6px] text-emerald-400 font-mono">24°C</span>
-                      </div>
-                      <div className="p-2 bg-black/50 border border-amber-400/40 rounded text-center">
-                        <span className="text-[9px] font-mono text-amber-400 font-bold block">
-                          LASER ETCHED
-                        </span>
-                        <span className="text-[8px] text-white font-semibold">
-                          {demoBrandName}
-                        </span>
-                      </div>
-                      <div className="w-24 h-2 bg-slate-800 rounded-full"></div>
-                    </div>
-                  </div>
-                )}
-
-              </div>
-
-              {/* Status pill on canvas */}
-              <div className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md border border-slate-700 px-3 py-1.5 rounded-lg flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span className="text-[10px] font-mono font-bold text-slate-300 uppercase">
-                  Real-time Render Engine
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Controls Panel - 5 cols */}
-          <div className="lg:col-span-5 space-y-6">
+        {/* Studio Box */}
+        <div className="mt-12 bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/50">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            {/* 1. Pick Garment */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                1. Select Specimen
-              </label>
-              <div className="grid grid-cols-2 gap-2">
-                {garments.map((g) => (
-                  <button
-                    key={g.id}
-                    onClick={() => setSelectedGarment(g.id)}
-                    className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all text-left ${
-                      selectedGarment === g.id
-                        ? 'border-amber-400 bg-amber-400/10 text-white'
-                        : 'border-slate-800 bg-slate-900 text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <p className="font-bold">{g.name}</p>
-                    <p className="text-[10px] text-amber-400 font-mono mt-0.5">from {curr.symbol} {(g.basePrice * curr.rate).toFixed(0)}</p>
-                  </button>
-                ))}
+            {/* Visual Canvas (7 cols) */}
+            <div className="lg:col-span-7 flex flex-col items-center justify-center">
+              <div className="relative w-full max-w-md h-80 sm:h-96 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center shadow-inner group">
+                <img
+                  src={currentItem.image}
+                  alt={currentItem.name}
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Visual Stamp Simulation */}
+                <div className={`absolute p-3 rounded-lg bg-white/90 backdrop-blur-md border border-slate-300 shadow-lg text-center transition-all ${
+                  logoPosition === 'chest' ? 'top-12 left-10' : logoPosition === 'center' ? 'top-20' : 'top-8 scale-110'
+                }`}>
+                  <p className="text-xs font-bold text-slate-900 tracking-wider uppercase">
+                    {brandText || 'YOUR LOGO'}
+                  </p>
+                  <p className="text-[9px] font-mono text-slate-500 uppercase mt-0.5">
+                    {technique === 'embroidery' ? '🧵 Tajima Embroidery' : technique === 'puff' ? '💨 3D High Puff' : '🎨 Silkscreen Print'}
+                  </p>
+                </div>
+
+                {/* Corner Status Pill */}
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-slate-200 text-[10px] font-semibold text-slate-700 shadow-2xs">
+                  Active Specimen: {currentItem.name}
+                </div>
               </div>
             </div>
 
-            {/* 2. Fabric Palette */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center justify-between">
-                <span>2. Fabric Color</span>
-                <span className="text-[10px] text-amber-400 font-mono">Reactive Wash</span>
-              </label>
-              <div className="flex items-center gap-2">
-                {colors.map((c) => (
-                  <button
-                    key={c.hex}
-                    onClick={() => setSelectedColor(c.hex)}
-                    title={c.name}
-                    style={{ backgroundColor: c.hex }}
-                    className={`w-8 h-8 rounded-full border-2 transition-transform ${
-                      selectedColor === c.hex ? 'border-amber-400 scale-125 shadow-lg' : 'border-slate-700 hover:scale-110'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* 3. Custom Text / Brand Logo Input */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                3. Brand / Monogram Text
-              </label>
-              <input
-                type="text"
-                maxLength={24}
-                value={demoBrandName}
-                onChange={(e) => setDemoBrandName(e.target.value)}
-                placeholder="Type your company name..."
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400"
-              />
-            </div>
-
-            {/* 4. Placement & Technique */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* Controls (5 cols) */}
+            <div className="lg:col-span-5 space-y-5">
+              
+              {/* Garment Selector */}
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                  Placement
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                  1. Choose Garment
                 </label>
-                <div className="flex flex-col gap-1">
-                  {(['chest', 'center', 'back'] as const).map((pos) => (
+                <div className="grid grid-cols-2 gap-1.5">
+                  {garments.map((g) => (
                     <button
-                      key={pos}
-                      onClick={() => setLogoPosition(pos)}
-                      className={`px-2.5 py-1.5 rounded-lg text-xs font-medium capitalize text-left transition-all ${
-                        logoPosition === pos ? 'bg-amber-400 text-slate-950 font-bold' : 'bg-slate-900 text-slate-400'
+                      key={g.id}
+                      onClick={() => setSelectedGarment(g.id)}
+                      className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all text-left ${
+                        selectedGarment === g.id
+                          ? 'border-slate-900 bg-slate-900 text-white shadow-xs'
+                          : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
                       }`}
                     >
-                      {pos} Placement
+                      <p className="truncate">{g.name}</p>
+                      <p className={`text-[10px] font-mono mt-0.5 ${selectedGarment === g.id ? 'text-amber-400' : 'text-slate-500'}`}>
+                        from {curr.symbol} {(g.basePrice * curr.rate).toFixed(0)}
+                      </p>
                     </button>
                   ))}
                 </div>
               </div>
 
+              {/* Color Selector */}
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                  Technique
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                  2. Garment Colorway
                 </label>
-                <div className="flex flex-col gap-1">
-                  {(['embroidery', 'puff', 'screen', 'laser'] as const).map((t) => (
+                <div className="flex items-center gap-2">
+                  {colors.map((c) => (
                     <button
-                      key={t}
-                      onClick={() => setTechnique(t)}
-                      className={`px-2.5 py-1.5 rounded-lg text-xs font-medium capitalize text-left transition-all ${
-                        technique === t ? 'bg-amber-400 text-slate-950 font-bold' : 'bg-slate-900 text-slate-400'
+                      key={c.hex}
+                      onClick={() => setSelectedColor(c.hex)}
+                      title={c.name}
+                      style={{ backgroundColor: c.hex }}
+                      className={`w-7 h-7 rounded-full border-2 transition-all ${
+                        selectedColor === c.hex ? 'border-slate-900 scale-125 shadow-sm' : 'border-slate-300 hover:scale-110'
                       }`}
-                    >
-                      {t}
-                    </button>
+                    />
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* CTA */}
-            <button
-              onClick={() => onOpenQuoteModal('studio-customizer', {
-                garment: currentGarmentData.name,
-                color: selectedColor,
-                technique: technique,
-                logo: demoBrandName,
-              })}
-              className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-extrabold text-sm shadow-xl shadow-amber-500/20 transition-all flex items-center justify-center gap-2"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>Request Physical Sample of this Specimen</span>
-            </button>
+              {/* Brand Text Input */}
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                  3. Brand Name / Monogram
+                </label>
+                <input
+                  type="text"
+                  maxLength={24}
+                  value={brandText}
+                  onChange={(e) => setBrandText(e.target.value)}
+                  placeholder="Type company name..."
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
+                />
+              </div>
+
+              {/* Technique & Placement */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                    Placement
+                  </label>
+                  <div className="flex flex-col gap-1">
+                    {(['chest', 'center', 'back'] as const).map((pos) => (
+                      <button
+                        key={pos}
+                        onClick={() => setLogoPosition(pos)}
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-medium capitalize text-left transition-all ${
+                          logoPosition === pos ? 'bg-slate-900 text-white font-semibold' : 'bg-slate-100 text-slate-600'
+                        }`}
+                      >
+                        {pos}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                    Technique
+                  </label>
+                  <div className="flex flex-col gap-1">
+                    {(['embroidery', 'puff', 'screen'] as const).map((t) => (
+                      <button
+                        key={t}
+                        onClick={() => setTechnique(t)}
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-medium capitalize text-left transition-all ${
+                          technique === t ? 'bg-slate-900 text-white font-semibold' : 'bg-slate-100 text-slate-600'
+                        }`}
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <button
+                onClick={() => onOpenQuoteModal('studio-sample', { garment: currentItem.name, color: selectedColor, technique })}
+                className="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span>Request Physical Pre-Production Sample</span>
+              </button>
+
+            </div>
 
           </div>
-
         </div>
 
       </div>
     </section>
   );
 }
-

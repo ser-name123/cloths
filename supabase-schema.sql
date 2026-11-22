@@ -38,3 +38,4 @@ USING (true);
 -- Create indexes for quick query filtering
 CREATE INDEX IF NOT EXISTS idx_rfq_leads_created_at ON public.rfq_leads (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_rfq_leads_status ON public.rfq_leads (status);
+

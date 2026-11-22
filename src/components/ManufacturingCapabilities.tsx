@@ -9,120 +9,113 @@ import {
   Sparkles, 
   ShieldCheck, 
   Truck, 
-  CheckCircle2,
-  Clock,
-  Award
+  CheckCircle2 
 } from 'lucide-react';
 
 export default function ManufacturingCapabilities() {
   const iconMap: Record<string, React.ReactNode> = {
-    Layers: <Layers className="w-6 h-6 text-amber-400" />,
-    Scissors: <Scissors className="w-6 h-6 text-amber-400" />,
-    Sparkles: <Sparkles className="w-6 h-6 text-amber-400" />,
-    ShieldCheck: <ShieldCheck className="w-6 h-6 text-amber-400" />,
-    Truck: <Truck className="w-6 h-6 text-amber-400" />,
+    Layers: <Layers className="w-5 h-5 text-amber-700" />,
+    Scissors: <Scissors className="w-5 h-5 text-amber-700" />,
+    Sparkles: <Sparkles className="w-5 h-5 text-amber-700" />,
+    ShieldCheck: <ShieldCheck className="w-5 h-5 text-amber-700" />,
+    Truck: <Truck className="w-5 h-5 text-amber-700" />,
   };
 
   return (
-    <section id="manufacturing" className="py-24 bg-slate-950 text-white relative border-b border-slate-800 overflow-hidden">
-      
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-amber-500/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="manufacturing" className="py-20 bg-white border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-slate-800">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-semibold">
-              <Factory className="w-3.5 h-3.5" />
-              <span>IN-HOUSE MANUFACTURING (AJMAN INDUSTRIAL HUB)</span>
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-slate-200/80">
+          <div className="space-y-2 max-w-xl">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs font-semibold text-slate-700">
+              <Factory className="w-3.5 h-3.5 text-slate-500" />
+              <span>AJMAN INDUSTRIAL HUB FACILITY</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-              Direct from Factory.{' '}
-              <span className="text-amber-400">Zero Middlemen.</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Direct In-House Manufacturing Capabilities
             </h2>
-            <p className="text-slate-400 text-base">
-              Unlike ordinary trading brokers, Times & Klothon-level infrastructure allows us to control the entire manufacturing pipeline: from raw fiber spinning to Tajima embroidery and 4-point inspection.
+            <p className="text-slate-600 text-sm">
+              We own and operate our production lines — eliminating third-party trading middlemen and ensuring strict quality control from raw yarn to final packaging.
             </p>
           </div>
 
-          <div className="flex items-center gap-4 flex-wrap">
-            <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center min-w-[120px]">
-              <span className="block text-2xl font-black text-amber-400 font-mono">50,000+</span>
-              <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Weekly Units</span>
+          <div className="flex items-center gap-4">
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center min-w-[120px]">
+              <span className="block text-2xl font-extrabold text-slate-900 font-mono">50,000+</span>
+              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Weekly Units</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center min-w-[120px]">
-              <span className="block text-2xl font-black text-emerald-400 font-mono">100%</span>
-              <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">In-House QA</span>
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center min-w-[120px]">
+              <span className="block text-2xl font-extrabold text-emerald-600 font-mono">100%</span>
+              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">QA Pass Rate</span>
             </div>
           </div>
         </div>
 
-        {/* 5-Step Process Pipeline */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {/* 5-Step Pipeline */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {MANUFACTURING_STEPS.map((step) => (
             <div
               key={step.step}
-              className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-amber-400/40 hover:bg-slate-900 transition-all duration-300 group"
+              className="bg-slate-50 border border-slate-200/90 rounded-2xl p-5 relative flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all duration-300"
             >
               <div>
-                <div className="flex items-center justify-between pb-4">
-                  <div className="p-3 rounded-xl bg-slate-800/80 group-hover:bg-amber-400/10 transition-colors">
+                <div className="flex items-center justify-between pb-3">
+                  <div className="p-2.5 rounded-xl bg-white border border-slate-200 shadow-2xs">
                     {iconMap[step.icon]}
                   </div>
-                  <span className="text-3xl font-black text-slate-800 group-hover:text-amber-400/20 font-mono transition-colors">
+                  <span className="text-2xl font-black text-slate-300 font-mono">
                     {step.step}
                   </span>
                 </div>
 
-                <h3 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors pt-2">
+                <h3 className="text-sm font-bold text-slate-900 pt-1">
                   {step.title}
                 </h3>
 
-                <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                <p className="text-xs text-slate-500 mt-2 leading-relaxed">
                   {step.description}
                 </p>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-slate-800/60 flex items-center gap-1 text-[11px] text-amber-400 font-medium">
-                <CheckCircle2 className="w-3.5 h-3.5" />
+              <div className="pt-3 mt-3 border-t border-slate-200 flex items-center gap-1 text-[11px] text-emerald-700 font-semibold">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Audited Standard</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Technical Capabilities Matrix */}
-        <div className="mt-16 bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-10">
-          <div className="text-center max-w-xl mx-auto space-y-2 mb-8">
-            <h3 className="text-2xl font-bold text-white">Advanced Industrial Embellishment</h3>
-            <p className="text-xs text-slate-400">Our heavy-duty machinery lineup engineered for high output and extreme wash cycles.</p>
+        {/* Technical Fleet Grid */}
+        <div className="mt-14 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8">
+          <div className="max-w-xl space-y-1 mb-6">
+            <h3 className="text-lg font-bold text-slate-900">Advanced Industrial Machinery Fleet</h3>
+            <p className="text-xs text-slate-500">Heavy-duty Japanese & German machinery engineered for extreme UAE wash cycles.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
-              <span className="text-amber-400 font-mono text-xs font-bold block">01 / TAJIMA EMBROIDERY</span>
-              <p className="text-sm font-bold text-white">15-Color High Density</p>
-              <p className="text-xs text-slate-400">German Madeira colorfast threads resistant to industrial bleach and 90°C hospital washing.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-1.5 shadow-2xs">
+              <span className="text-slate-500 font-mono text-[10px] font-bold block uppercase">01 / Tajima Embroidery</span>
+              <p className="text-xs font-bold text-slate-900">15-Needle Multi-Head Units</p>
+              <p className="text-[11px] text-slate-500">German Madeira colorfast threads resistant to 90°C industrial laundry.</p>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
-              <span className="text-amber-400 font-mono text-xs font-bold block">02 / AUTOMATIC SILKSCREEN</span>
-              <p className="text-sm font-bold text-white">M&R Oval 12-Color Stations</p>
-              <p className="text-xs text-slate-400">Eco-friendly water-based, plastisol, reflective, high-density 3D puff, and foil stamping.</p>
+            <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-1.5 shadow-2xs">
+              <span className="text-slate-500 font-mono text-[10px] font-bold block uppercase">02 / Automatic Silkscreen</span>
+              <p className="text-xs font-bold text-slate-900">M&R Oval 12-Color Stations</p>
+              <p className="text-[11px] text-slate-500">Eco water-based inks, high-density puff print, and metallic foils.</p>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
-              <span className="text-amber-400 font-mono text-xs font-bold block">03 / DIGITAL SUBLIMATION</span>
-              <p className="text-sm font-bold text-white">Mimaki Japanese Printers</p>
-              <p className="text-xs text-slate-400">Full garment photo-realistic prints with zero color fading, ideal for jerseys and activewear.</p>
+            <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-1.5 shadow-2xs">
+              <span className="text-slate-500 font-mono text-[10px] font-bold block uppercase">03 / Digital Sublimation</span>
+              <p className="text-xs font-bold text-slate-900">Mimaki Japanese Printers</p>
+              <p className="text-[11px] text-slate-500">Full garment zero-fade printing ideal for activewear, sportswear & PE kits.</p>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
-              <span className="text-amber-400 font-mono text-xs font-bold block">04 / FIBER LASER ETCHING</span>
-              <p className="text-sm font-bold text-white">360° Rotary Engraving</p>
-              <p className="text-xs text-slate-400">Micron-level laser marking on stainless steel tumblers, power banks, leather, and wood.</p>
+            <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-1.5 shadow-2xs">
+              <span className="text-slate-500 font-mono text-[10px] font-bold block uppercase">04 / Rotary Fiber Laser</span>
+              <p className="text-xs font-bold text-slate-900">360° Seamless Etching</p>
+              <p className="text-[11px] text-slate-500">Permanent micron-level marking on stainless steel tumblers & electronics.</p>
             </div>
           </div>
         </div>
@@ -131,4 +124,3 @@ export default function ManufacturingCapabilities() {
     </section>
   );
 }
-

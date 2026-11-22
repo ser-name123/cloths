@@ -1,10 +1,18 @@
 import type { Metadata } from 'next';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-jakarta',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'KRAFTWEAR DUBAI | Premier Custom Apparel, Workwear & Corporate Gifting UAE',
+  title: 'KRAFTWEAR DUBAI | Custom Apparel, Uniforms & Corporate Merchandise UAE',
   description:
-    'Direct in-house manufacturer of custom t-shirts, hoodies, corporate polos, NFPA certified flame-resistant uniforms, and VIP corporate swag boxes across Dubai, Abu Dhabi, and GCC.',
+    'UAE’s premier integrated custom clothing manufacturer, industrial workwear specialist & corporate gifting house. Direct factory in Ajman and showroom in Dubai.',
   keywords: [
     'custom clothing Dubai',
     'uniform manufacturer UAE',
@@ -12,17 +20,10 @@ export const metadata: Metadata = {
     'workwear Ajman',
     'print on demand UAE',
     'flame resistant coveralls',
-    'embroidery Dubai',
     'the merchlist',
     'times clothing',
     'klothon',
   ],
-  openGraph: {
-    title: 'KRAFTWEAR DUBAI | Custom Apparel, Workwear & Gifting Hub',
-    description: 'Direct factory apparel manufacturing and corporate merchandise in Dubai & GCC.',
-    locale: 'en_AE',
-    type: 'website',
-  },
 };
 
 export default function RootLayout({
@@ -31,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="min-h-screen bg-slate-950 text-slate-100 antialiased font-sans">
+    <html lang="en" className={`${jakarta.variable} scroll-smooth`}>
+      <body className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
         {children}
       </body>
     </html>
