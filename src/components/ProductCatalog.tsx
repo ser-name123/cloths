@@ -3,12 +3,14 @@
 import React, { useState } from 'react';
 import { Currency } from '@/types';
 import { PRODUCTS_CATALOG, CURRENCY_RATES } from '@/data/mockData';
+import { useCart } from '@/context/CartContext';
 import { 
   Tag, 
   Check, 
   ArrowRight, 
   Search, 
-  SlidersHorizontal 
+  SlidersHorizontal,
+  ShoppingBag
 } from 'lucide-react';
 
 interface ProductCatalogProps {
@@ -17,8 +19,28 @@ interface ProductCatalogProps {
 }
 
 export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: ProductCatalogProps) {
+  const { addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [addedMap, setAddedMap] = useState<Record<string, boolean>>({});
+
+  const handleAddSample = (prod: any) => {
+    addToCart({
+      productId: prod.id,
+      title: prod.title,
+      category: prod.category,
+      priceAED: prod.basePriceAED,
+      quantity: 1,
+      color: 'Standard Sample Color',
+      size: 'Sample Size',
+      image: prod.image,
+      isSample: true,
+    });
+    setAddedMap(prev => ({ ...prev, [prod.id]: true }));
+    setTimeout(() => {
+      setAddedMap(prev => ({ ...prev, [prod.id]: false }));
+    }, 2000);
+  };
 
   const curr = CURRENCY_RATES[currentCurrency];
   const formatPrice = (aed: number) => {
@@ -41,14 +63,14 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
   });
 
   return (
-    <section id="catalog" className="py-20 bg-white border-b border-slate-200/80">
+    <section id="catalog" className="scroll-mt-24 sm:scroll-mt-28 py-20 bg-white border-b border-slate-200/80">
       <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200/80">
+        <div className="reveal-on-scroll flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200/80">
           <div className="space-y-2 max-w-xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs font-semibold text-slate-700">
-              <Tag className="w-3.5 h-3.5 text-slate-500" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider shadow-2xs">
+              <Tag className="w-3.5 h-3.5 text-amber-600" />
               <span>WHOLESALE & ON-DEMAND CATALOG</span>
             </div>
             <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
@@ -67,21 +89,21 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
               placeholder="Search apparel, coveralls..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-200 rounded-full pl-10 pr-4 py-2.5 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-slate-400 transition-colors"
+              className="w-full bg-slate-50 border border-slate-200 rounded-full pl-10 pr-4 py-2.5 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-amber-400 transition-colors"
             />
           </div>
         </div>
 
         {/* Category Filter Pills */}
-        <div className="flex items-center gap-2 py-6 overflow-x-auto no-scrollbar">
+        <div className="reveal-on-scroll stagger-1 flex items-center gap-2 py-6 overflow-x-auto no-scrollbar">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 cursor-pointer transition-all chip-hover ${
                 selectedCategory === cat.id
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
+                  ? 'bg-slate-900 text-white shadow-xs border border-slate-900'
+                  : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200/80'
               }`}
             >
               {cat.label}
@@ -91,18 +113,18 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-4">
-          {filteredProducts.map((prod) => (
+          {filteredProducts.map((prod, idx) => (
             <div
               key={prod.id}
-              className="group bg-white border border-slate-200/90 rounded-2xl overflow-hidden hover:border-slate-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+              className={`group bg-[#fcfcfd] border border-slate-200/90 rounded-2xl overflow-hidden hover:border-amber-400/80 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between interactive-card spotlight-card card-tilt reveal-on-scroll stagger-${(idx % 4) + 1}`}
             >
               <div>
-                {/* Image */}
-                <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+                {/* Image with Advanced Zoom */}
+                <div className="relative h-56 w-full overflow-hidden bg-slate-100 img-zoom-stage">
                   <img
                     src={prod.image}
                     alt={prod.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-650 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.src = '/images/products/fr-coverall.jpg';
@@ -112,12 +134,12 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
                   {/* Badges */}
                   <div className="absolute top-3 left-3 flex flex-col gap-1 items-start">
                     {prod.badge && (
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/95 text-slate-900 shadow-2xs">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/95 text-slate-900 shadow-2xs badge-interactive">
                         {prod.badge}
                       </span>
                     )}
                     {prod.isNoMoq && (
-                      <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-sky-600 text-white shadow-2xs">
+                      <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-sky-600 text-white shadow-2xs badge-interactive">
                         No Minimum Order
                       </span>
                     )}
@@ -128,7 +150,7 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
                     {prod.colors.slice(0, 4).map((c, i) => (
                       <span
                         key={i}
-                        className="w-3 h-3 rounded-full border border-slate-300"
+                        className="w-3 h-3 rounded-full border border-slate-300 hover:scale-130 transition-transform duration-200 cursor-pointer"
                         style={{ backgroundColor: c }}
                       />
                     ))}
@@ -176,13 +198,39 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
                   </div>
                 </div>
 
-                <button
-                  onClick={() => onOpenQuoteModal(prod.category, { product: prod.title, price: prod.basePriceAED })}
-                  className="w-full py-2 rounded-xl bg-slate-50 hover:bg-slate-900 hover:text-white text-slate-700 text-xs font-semibold border border-slate-200 transition-all flex items-center justify-center gap-1.5"
-                >
-                  <span>Request Custom Quote</span>
-                  <ArrowRight className="w-3 h-3 text-slate-400" />
-                </button>
+                {/* Dual E-Commerce + RFQ Action */}
+                <div className="space-y-1.5">
+                  <button
+                    type="button"
+                    onClick={() => handleAddSample(prod)}
+                    className={`w-full py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-2xs btn-luxury-dark ${
+                      addedMap[prod.id]
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-slate-950 hover:bg-slate-800 text-white'
+                    }`}
+                  >
+                    {addedMap[prod.id] ? (
+                      <>
+                        <Check className="w-3.5 h-3.5" />
+                        <span>Sample Added to Cart</span>
+                      </>
+                    ) : (
+                      <>
+                        <ShoppingBag className="w-3.5 h-3.5 text-amber-400 icon-hover-bounce" />
+                        <span>Order 1 Sample ({formatPrice(prod.basePriceAED)})</span>
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => onOpenQuoteModal(prod.category, { product: prod.title, price: prod.basePriceAED })}
+                    className="btn-luxury w-full py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-semibold border border-slate-200 transition-all flex items-center justify-center gap-1 group/quote"
+                  >
+                    <span>Request Bulk Wholesale Quote</span>
+                    <ArrowRight className="w-3 h-3 text-slate-400 hover-arrow group-hover/quote:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
 
             </div>

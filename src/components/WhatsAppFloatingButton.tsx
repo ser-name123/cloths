@@ -6,30 +6,27 @@ export default function WhatsAppFloatingButton() {
   const whatsappUrl = "https://wa.me/971501234567?text=Hi%20Kraftwear%20Dubai!%20I%20want%20to%20inquire%20about%20custom%20clothing/uniforms%20manufacturing.";
 
   return (
-    <aside aria-label="WhatsApp Support" className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
+    <aside aria-label="WhatsApp Support" className="fixed bottom-5 right-5 z-50 flex items-center gap-2.5 group animate-float-bounce">
       {/* Interactive Tooltip Card on Hover */}
-      <div className="hidden sm:flex items-center gap-2.5 bg-white text-slate-800 text-xs px-3.5 py-2 rounded-2xl shadow-xl border border-slate-200/90 transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
+      <div className="hidden sm:flex items-center gap-2 bg-white text-slate-800 text-[11px] px-3.5 py-2 rounded-xl shadow-xl border border-slate-200/90 transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-x-3 group-hover:translate-x-0 pointer-events-none hover-elevate">
         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
         <div className="flex flex-col text-left">
           <span className="font-bold text-slate-900 leading-tight">Instant B2B Quote</span>
-          <span className="text-[10px] text-slate-500">Dubai team replies in &lt; 5 mins</span>
+          <span className="text-[10px] text-slate-500 font-medium">Replies in &lt; 5 mins</span>
         </div>
       </div>
 
-      {/* Authentic WhatsApp Floating Button */}
+      {/* Authentic WhatsApp Floating Button with Dual Radar Wave */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Kraftwear Dubai on WhatsApp"
-        className="relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-xl shadow-emerald-500/30 transition-all duration-300 transform hover:scale-110 active:scale-95"
+        className="btn-luxury relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-xl shadow-emerald-500/40 transition-all duration-300 transform hover:scale-110 active:scale-95 radar-beacon cursor-pointer"
       >
-        {/* Subtle Ping Wave */}
-        <span className="absolute inset-0 rounded-full bg-[#25D366]/40 animate-ping -z-10"></span>
-
         {/* Official WhatsApp SVG Logo */}
         <svg
-          className="w-7 h-7 sm:w-8 sm:h-8 fill-current"
+          className="w-5 h-5 sm:w-5.5 sm:h-5.5 fill-current"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

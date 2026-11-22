@@ -21,6 +21,19 @@ export interface ProductItem {
   image: string;
 }
 
+export interface CartItem {
+  id: string;
+  productId: string;
+  title: string;
+  category: string;
+  priceAED: number;
+  quantity: number;
+  color: string;
+  size?: string;
+  image: string;
+  isSample?: boolean;
+}
+
 export interface RFQFormPayload {
   fullName: string;
   email: string;

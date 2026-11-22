@@ -83,8 +83,8 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
-      <div className="relative w-full max-w-xl bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl text-slate-900 my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
+      <div className="relative w-full max-w-xl bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-2xl text-slate-900 my-auto max-h-[92vh] overflow-y-auto">
         
         {/* Close Button */}
         <button
@@ -99,7 +99,7 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
           <div>
             {/* Header */}
             <div className="space-y-1.5 pr-8">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider">
                 <Sparkles className="w-3.5 h-3.5 text-amber-600" />
                 <span>OFFICIAL RFQ & SAMPLE REQUEST</span>
               </div>
@@ -223,7 +223,7 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full sm:flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="btn-luxury-dark w-full sm:flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>{loading ? 'Submitting to Supabase...' : 'Submit Official RFQ'}</span>
@@ -232,7 +232,7 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
                 <button
                   type="button"
                   onClick={handleWhatsAppDirect}
-                  className="w-full sm:w-auto px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all"
+                  className="btn-luxury w-full sm:w-auto px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer"
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   <span>Send to WhatsApp</span>

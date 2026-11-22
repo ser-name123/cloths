@@ -1,351 +1,382 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Currency } from '@/types';
-import { CURRENCY_RATES } from '@/data/mockData';
 import { 
-  ArrowRight, 
-  Sparkles, 
+  ArrowUpRight, 
+  ArrowRight,
   ShieldCheck, 
+  Sparkles, 
   CheckCircle2, 
-  Layers, 
-  Palette, 
   Flame, 
-  Award, 
-  Clock,
-  ChevronRight
+  Scissors, 
+  Gift, 
+  Shirt, 
+  Clock, 
+  ChevronRight,
+  Pause,
+  Play
 } from 'lucide-react';
 
 interface HeroProps {
   currentCurrency: Currency;
-  onOpenQuoteModal: (category?: string) => void;
+  onOpenQuoteModal: (category?: string, details?: any) => void;
+}
+
+interface SlideItem {
+  id: string;
+  number: string;
+  category: string;
+  verticalTitle: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  badge: string;
+  tint: string;
+  categoryKey: string;
+  highlights: string[];
+  link: string;
 }
 
 export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
-  const [activeTab, setActiveTab] = useState<'apparel' | 'workwear' | 'gifting'>('apparel');
-  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+  const hoverTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const curr = CURRENCY_RATES[currentCurrency];
-  const formatPrice = (aed: number) => {
-    const val = (aed * curr.rate).toFixed(0);
-    return `${curr.symbol} ${val}`;
+  const slides: SlideItem[] = [
+    {
+      id: 'apparel',
+      number: '01',
+      category: 'CUSTOM APPAREL',
+      verticalTitle: 'Custom Apparel',
+      title: 'Bespoke Knits, Executive Polos & Luxury Streetwear',
+      subtitle: 'Direct In-House UAE Mill',
+      description: '100% Combed French Terry Cotton (280–380 GSM), brushed fleece hoodies, executive pique polos, and varsity bombers with Tajima embroidery and 48-hour UAE fulfillment.',
+      image: '/images/products/heavy-tee.jpg',
+      badge: 'No MOQ / Bulk Tiers',
+      tint: 'bg-[#121620]/80',
+      categoryKey: 'apparel',
+      highlights: ['280–380 GSM Knits', 'Bio-Washed & Pre-Shrunk', '3D Puff & Screen Ready'],
+      link: '#catalog',
+    },
+    {
+      id: 'workwear',
+      number: '02',
+      category: 'SAFETY & INDUSTRIAL',
+      verticalTitle: 'Safety & Workwear',
+      title: 'NFPA 2112 & EN ISO Certified Flame-Resistant Workwear',
+      subtitle: 'Engineered for Heavy GCC Industry',
+      description: 'Certified 240/300 GSM heavy twill FR coveralls, anti-static high-vis vests, arc-flash protection, and clinical scrubs engineered specifically for ADNOC contractors and heavy industrial sites.',
+      image: '/images/sectors/oil-gas.jpg',
+      badge: 'ISO 9001 & NFPA 2112',
+      tint: 'bg-[#2b170c]/80',
+      categoryKey: 'workwear',
+      highlights: ['NFPA 2112 Compliant', '3M Scotchlite Reflective', '4-Way Stretch Scrubs'],
+      link: '#industries',
+    },
+    {
+      id: 'factory',
+      number: '03',
+      category: 'IN-HOUSE FACTORY',
+      verticalTitle: 'In-House Factory',
+      title: 'Ajman 50,000 Sq Ft Precision Manufacturing Plant',
+      subtitle: 'Zero Trading Middlemen',
+      description: 'Integrated textile cutting and stitching with 15-needle Tajima embroidery machines, computerized Gerber CAD fabric nesting, M&R screen printing, and in-line QA wash-testing labs.',
+      image: '/images/products/fr-coverall.jpg',
+      badge: '50,000 Sq Ft Facility',
+      tint: 'bg-[#10221c]/80',
+      categoryKey: 'factory',
+      highlights: ['15-Needle Tajima Heads', 'Gerber CAD Fabric Cutting', '48-72h Doorstep Dispatch'],
+      link: '#factory',
+    },
+    {
+      id: 'gifting',
+      number: '04',
+      category: 'CORPORATE GIFTS',
+      verticalTitle: 'Corporate Gifts',
+      title: 'Curated Executive Swag Boxes & VIP Client Hampers',
+      subtitle: 'VIP Unboxing Experience',
+      description: 'Smart LED temperature tumblers, MagSafe power banks, luxury rigid magnetic boxes, and zero-plastic sustainable ESG kits with bespoke monogramming and express GCC freight dispatch.',
+      image: '/images/products/vip-swag-box.jpg',
+      badge: 'VIP Onboarding Sets',
+      tint: 'bg-[#1f1622]/80',
+      categoryKey: 'gifting',
+      highlights: ['Rigid Magnetic Boxes', 'Smart LED Tumblers', 'Precision Laser Etching'],
+      link: '#gifting',
+    },
+  ];
+
+  // Auto-advance slider every 5.5s, pause cleanly when hovered
+  useEffect(() => {
+    if (isPaused) {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+      return;
+    }
+
+    autoPlayRef.current = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    }, 5500);
+
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [isPaused, slides.length]);
+
+  // Clean hover-intent activation (prevents accordion flicker/oscillation)
+  const handleSlideEnter = (idx: number) => {
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+    if (activeSlide === idx) return;
+
+    hoverTimerRef.current = setTimeout(() => {
+      setActiveSlide(idx);
+    }, 75);
   };
 
-  const specimenData = {
-    apparel: {
-      name: 'Heavyweight Streetwear Tee (280 GSM)',
-      badge: 'Streetwear & Corporate',
-      basePrice: 38,
-      leadTime: '3-5 Business Days',
-      fabric: '100% Combed Compact Cotton, Bio-Washed',
-      colors: [
-        { name: 'Onyx Black', hex: '#0f172a', img: '/images/products/heavy-tee.jpg' },
-        { name: 'Pure White', hex: '#f8fafc', img: '/images/products/executive-polo.jpg' },
-        { name: 'Desert Camel', hex: '#78350f', img: '/images/products/fleece-hoodie.jpg' },
-        { name: 'Gulf Navy', hex: '#1e3a8a', img: '/images/products/corporate-blazer.jpg' },
-      ],
-      features: ['Drop Shoulder Cut', 'Tearaway Neck Tag', 'Puff & Screen Ready'],
-    },
-    workwear: {
-      name: 'Flame Resistant (FR) Coverall',
-      badge: 'NFPA 2112 Certified',
-      basePrice: 89,
-      leadTime: '4-7 Business Days',
-      fabric: '240 GSM Heavy Twill with 3M Scotchlite Reflective',
-      colors: [
-        { name: 'Safety Orange', hex: '#ea580c', img: '/images/products/fr-coverall.jpg' },
-        { name: 'Industrial Navy', hex: '#1d4ed8', img: '/images/products/hi-vis-vest.jpg' },
-        { name: 'Petrol Blue', hex: '#0e7490', img: '/images/products/medical-scrub.jpg' },
-      ],
-      features: ['YKK 2-Way Brass Zipper', 'Gas Detector Loop', 'Double Stitched Stress Points'],
-    },
-    gifting: {
-      name: 'The "Dubai Elite" Executive Swag Box',
-      badge: 'VIP Onboarding Kit',
-      basePrice: 135,
-      leadTime: '2-4 Business Days',
-      fabric: 'Custom Rigid Magnetic Box with Velvet EVA Foam',
-      colors: [
-        { name: 'Matte Obsidian', hex: '#09090b', img: '/images/products/vip-swag-box.jpg' },
-        { name: 'Midnight Blue', hex: '#1e293b', img: '/images/products/smart-tumbler.jpg' },
-        { name: 'Eco Kraft', hex: '#78350f', img: '/images/products/eco-tote.jpg' },
-      ],
-      features: ['Smart LED Tumbler', 'A5 Leather Journal', '10,000mAh MagSafe Power Bank'],
-    },
+  const handleSlideLeave = () => {
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
   };
 
-  const currentSpecimen = specimenData[activeTab];
-  const currentColor = currentSpecimen.colors[selectedColorIndex] || currentSpecimen.colors[0];
+  const handleSlideClick = (idx: number) => {
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+    setActiveSlide(idx);
+  };
+
+  // Cleanup hover timer on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+    };
+  }, []);
+
+  const current = slides[activeSlide];
 
   return (
-    <section className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/60 border-b border-slate-200/80 pt-4 pb-10 lg:pt-6 lg:pb-10 overflow-hidden">
+    <section className="relative bg-[#0d0f14] text-white border-b border-slate-800/90 pt-4 pb-10 lg:pt-6 lg:pb-12 overflow-hidden">
       
-      {/* Background ambient subtle blurs */}
-      <div className="absolute top-0 right-1/4 w-[450px] h-[450px] bg-amber-100/40 rounded-full blur-3xl pointer-events-none -translate-y-1/3"></div>
-      <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-slate-100 rounded-full blur-3xl pointer-events-none translate-y-1/3"></div>
+      {/* Background ambient lighting */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none animate-float-slow" />
+      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none animate-float-slow" style={{ animationDelay: '-6s' }} />
 
-      <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Tagline Pill */}
-        <div className="flex items-center justify-center lg:justify-start">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 text-xs font-semibold text-slate-700 shadow-2xs">
-            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-            <span>Direct In-House Apparel & Uniform Manufacturer in UAE</span>
-            <span className="text-slate-300">|</span>
-            <span className="text-slate-500 font-normal">Dubai • Ajman Factory</span>
-          </div>
-        </div>
+        {/* ============================================================== */}
+        {/* BAHARNANI-STYLE EXPANDING HORIZONTAL ACCORDION SLIDER           */}
+        {/* ============================================================== */}
+        <div 
+          className="relative w-full h-[480px] sm:h-[560px] lg:h-[620px] flex gap-1.5 sm:gap-3.5 lg:gap-4 select-none"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => {
+            setIsPaused(false);
+            handleSlideLeave();
+          }}
+        >
+          {slides.map((slide, idx) => {
+            const isActive = activeSlide === idx;
 
-        {/* Hero Grid: Left Content, Right Photorealistic Card */}
-        <div className="mt-4 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          
-          {/* Left Column (7 cols) */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            
-            {/* Elegant Heading with Balanced Scale */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-slate-900 tracking-[-0.02em] leading-[1.3]">
-              Bespoke Apparel, Certified Workwear & Corporate Swag,{' '}
-              <span className="text-amber-600 font-bold">Engineered in Dubai.</span>
-            </h1>
+            return (
+              <div
+                key={slide.id}
+                onMouseEnter={() => handleSlideEnter(idx)}
+                onMouseLeave={handleSlideLeave}
+                onClick={() => handleSlideClick(idx)}
+                className={`relative rounded-2xl sm:rounded-3xl overflow-hidden transition-[flex,width,max-width] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                  isActive
+                    ? 'flex-[4] sm:flex-[4] lg:flex-[5] shadow-2xl ring-1 ring-white/10'
+                    : 'w-10 sm:w-16 md:w-20 lg:w-28 flex-shrink-0 cursor-pointer hover:brightness-110 border border-white/5 shadow-md'
+                }`}
+              >
+                {/* Background Image */}
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 pointer-events-none ${
+                    isActive 
+                      ? 'scale-105 filter brightness-90' 
+                      : 'filter brightness-[0.4] grayscale-[0.2]'
+                  }`}
+                  loading="eager"
+                />
 
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-              Combining end-to-end textile cutting & stitching, certified flame-resistant industrial uniforms, and luxury corporate merchandise. Direct factory wholesale with Tajima embroidery and 48-hour UAE fulfillment.
-            </p>
-
-            {/* Segmented Category Filter */}
-            <div className="inline-flex p-1 bg-slate-100/90 rounded-2xl border border-slate-200/80 max-w-full overflow-x-auto no-scrollbar">
-              {[
-                { id: 'apparel', label: 'Custom Apparel', tag: 'No MOQ / Bulk' },
-                { id: 'workwear', label: 'Safety & Workwear', tag: 'ISO & NFPA' },
-                { id: 'gifting', label: 'VIP Corporate Gifts', tag: 'Custom Boxes' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id as any);
-                    setSelectedColorIndex(0);
-                  }}
-                  className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-2 ${
-                    activeTab === tab.id
-                      ? 'bg-white text-slate-900 shadow-sm'
-                      : 'text-slate-600 hover:text-slate-900'
+                {/* Inactive State: Semi-transparent Colored Tint + Vertical Title + Outline Number */}
+                <div 
+                  className={`absolute inset-0 ${slide.tint} backdrop-blur-[1px] flex flex-col justify-between items-center py-4 sm:py-6 px-0.5 sm:px-1 transition-opacity duration-300 pointer-events-none ${
+                    isActive ? 'opacity-0' : 'opacity-100'
                   }`}
                 >
-                  <span>{tab.label}</span>
-                  <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
-                    activeTab === tab.id ? 'bg-amber-50 text-amber-700' : 'text-slate-400'
-                  }`}>
-                    {tab.tag}
-                  </span>
-                </button>
-              ))}
-            </div>
+                  {/* Top Accent Dot */}
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white/40" />
 
-            {/* Spec Highlights Matrix */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-left">
-              {activeTab === 'apparel' && (
-                <>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <p className="text-xs font-bold text-slate-900">280–380 GSM Knits</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Combed French Terry, bio-washed & pre-shrunk.</p>
+                  {/* Centered Rotated Vertical Title */}
+                  <div className="flex-1 flex items-center justify-center my-auto">
+                    <span className="writing-mode-vertical text-white/95 font-semibold text-[10px] sm:text-xs md:text-sm lg:text-[15px] tracking-wider sm:tracking-[0.2em] uppercase whitespace-nowrap drop-shadow-sm">
+                      {slide.verticalTitle}
+                    </span>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <p className="text-xs font-bold text-slate-900">No MOQ & Volume Tiers</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Order 1 sample or scale to 50,000+ units.</p>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <p className="text-xs font-bold text-slate-900">3D Puff & Tajima Stitch</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">German Madeira colorfast industrial threads.</p>
-                  </div>
-                </>
-              )}
 
-              {activeTab === 'workwear' && (
-                <>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <p className="text-xs font-bold text-slate-900">NFPA 2112 & EN ISO</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Oil, Gas & Energy flame resistant cotton twill.</p>
+                  {/* Bottom Hollow Outline Number (Baharnani Stencil Style) */}
+                  <div className="select-none pointer-events-none">
+                    <span className="stroke-number text-lg sm:text-2xl md:text-3xl lg:text-4xl tracking-tighter">
+                      {slide.number}
+                    </span>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <p className="text-xs font-bold text-slate-900">3M Scotchlite High-Vis</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Certified reflective bands for 24/7 site safety.</p>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <p className="text-xs font-bold text-slate-900">Bespoke Fit Programs</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Tailored cuts for hospitals, aviation & security.</p>
-                  </div>
-                </>
-              )}
-
-              {activeTab === 'gifting' && (
-                <>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <p className="text-xs font-bold text-slate-900">Rigid Magnetic Boxes</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Custom velvet foam inserts & gold hot foil stamping.</p>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <p className="text-xs font-bold text-slate-900">Laser Rotary Etch</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Permanent engraving on tumblers & power banks.</p>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-                    <p className="text-xs font-bold text-slate-900">VIP Onboarding Kits</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Curated swag packs for new hires & trade shows.</p>
-                  </div>
-                </>
-              )}
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center gap-3.5 pt-3 justify-center lg:justify-start">
-              <button
-                onClick={() => onOpenQuoteModal(activeTab)}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm shadow-md shadow-slate-900/15 transition-all flex items-center justify-center gap-2 group"
-              >
-                <span>Launch Instant Quote Builder</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </button>
-
-              <a
-                href="#catalog"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-full border border-slate-300 hover:border-slate-400 bg-white text-slate-800 font-semibold text-sm transition-all shadow-2xs flex items-center justify-center gap-1.5"
-              >
-                <span>Explore 1,000+ Products</span>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
-              </a>
-            </div>
-
-            {/* Micro Guarantees */}
-            <div className="flex items-center gap-5 pt-2 text-xs text-slate-500 justify-center lg:justify-start flex-wrap">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Free Digital Mockups in 2h
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Pre-Production Proof Samples
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Pantone Match Guarantee
-              </span>
-            </div>
-
-          </div>
-
-          {/* Right Column: High-End Photorealistic Specimen Card (5 cols) */}
-          <div className="lg:col-span-5">
-            <div className="relative bg-white border border-slate-200/90 rounded-3xl p-6 shadow-xl shadow-slate-200/60">
-              
-              {/* Card Header Strip */}
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <span className="text-xs font-semibold text-slate-800">
-                    Live Specimen Preview
-                  </span>
-                </div>
-                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-                  {currentSpecimen.badge}
-                </span>
-              </div>
-
-              {/* Real Product Image Showcase */}
-              <div className="relative my-4 h-72 sm:h-80 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/60 group">
-                <img
-                  src={currentColor.img}
-                  alt={currentSpecimen.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  onError={(e) => {
-                    e.currentTarget.src = '/images/products/fr-coverall.jpg';
-                  }}
-                />
-                
-                {/* Floating Production Tag */}
-                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-200/80 shadow-xs flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
-                  <span className="text-[11px] font-bold text-slate-800">
-                    {currentColor.name}
-                  </span>
                 </div>
 
-                {/* Floating Price Pill */}
-                <div className="absolute bottom-3 right-3 bg-slate-900/95 backdrop-blur-md px-3.5 py-2 rounded-xl text-right shadow-lg text-white">
-                  <span className="text-[10px] text-slate-400 block font-mono">Wholesale from</span>
-                  <span className="text-base font-bold text-amber-400 font-mono">
-                    {formatPrice(currentSpecimen.basePrice)}
-                  </span>
-                  <span className="text-[10px] text-slate-300"> / unit</span>
-                </div>
-              </div>
-
-              {/* Fabric Color Swatches & Details */}
-              <div className="space-y-3 pt-1">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
-                    <Palette className="w-3.5 h-3.5 text-slate-500" />
-                    <span>Select Colorway:</span>
-                  </span>
-                  <span className="text-[11px] font-medium text-slate-500">
-                    {currentColor.name}
-                  </span>
-                </div>
-
-                {/* Color Buttons */}
-                <div className="flex items-center gap-2">
-                  {currentSpecimen.colors.map((c, idx) => (
-                    <button
-                      key={c.name}
-                      onClick={() => setSelectedColorIndex(idx)}
-                      title={c.name}
-                      style={{ backgroundColor: c.hex }}
-                      className={`w-7 h-7 rounded-full border-2 transition-all ${
-                        selectedColorIndex === idx
-                          ? 'border-slate-900 scale-125 shadow'
-                          : 'border-slate-300 hover:scale-110'
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                  <span className="text-slate-500">Fast GCC Turnaround:</span>
-                  <span className="font-semibold text-slate-800 flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-emerald-600" />
-                    {currentSpecimen.leadTime}
-                  </span>
-                </div>
-              </div>
-
-              {/* Action Button inside Specimen Card */}
-              <div className="mt-4 pt-3 border-t border-slate-100">
-                <button
-                  onClick={() => onOpenQuoteModal(activeTab, { product: currentSpecimen.name, color: currentColor.name })}
-                  className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-800 text-xs font-bold transition-all flex items-center justify-center gap-2 group/btn"
+                {/* Active State: Rich Content, Gradient, Tags, Title, Description, Round Arrow Button (Smooth Continuous Cross-fade) */}
+                <div 
+                  className={`absolute inset-0 w-full h-full bg-gradient-to-t from-black/95 via-black/55 to-black/15 p-4 sm:p-6 lg:p-12 flex flex-col justify-between transition-all duration-400 ease-out ${
+                    isActive 
+                      ? 'opacity-100 pointer-events-auto scale-100 z-10' 
+                      : 'opacity-0 pointer-events-none scale-[0.98] z-0'
+                  }`}
                 >
-                  <span>Request Sample in this Color</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover/btn:text-white transition-colors" />
-                </button>
+                  {/* Top Row: Category Badge & Slide Progress Controls (Overlaid on Image) */}
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-semibold text-white shadow-xs">
+                      <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
+                      <span className="truncate max-w-[85px] sm:max-w-none">{slide.badge}</span>
+                    </div>
+
+                    {/* Integrated Slide Progress Controls Overlaid directly on Image */}
+                    <div className="flex items-center gap-1.5 sm:gap-2.5 bg-black/40 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/15 shadow-sm">
+                      <div className="flex items-center gap-1 sm:gap-1.5">
+                        {slides.map((s, sIdx) => (
+                          <button
+                            key={s.id}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSlideClick(sIdx);
+                            }}
+                            className={`h-1.5 rounded-full transition-all duration-300 ${
+                              activeSlide === sIdx 
+                                ? 'w-4 sm:w-6 bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]' 
+                                : 'w-1.5 sm:w-2 bg-white/40 hover:bg-white/80'
+                            }`}
+                            aria-label={`Go to slide ${s.number}`}
+                          />
+                        ))}
+                      </div>
+
+                      <span className="text-[9px] sm:text-[10px] font-mono text-white/80 font-bold ml-0.5">
+                        {slide.number} / 04
+                      </span>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsPaused(!isPaused);
+                        }}
+                        title={isPaused ? 'Resume auto-play' : 'Pause auto-play'}
+                        className="p-0.5 sm:p-1 rounded-full text-white/80 hover:text-white transition-colors"
+                      >
+                        {isPaused ? <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> : <Pause className="w-2.5 h-2.5 sm:w-3 sm:h-3" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Bottom Content Area */}
+                  <div className="space-y-2 sm:space-y-3.5 max-w-2xl">
+                    
+                    {/* Category Tag with Amber Accent Line */}
+                    <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-amber-400">
+                      <span className="w-5 sm:w-7 h-[2px] bg-amber-400 shrink-0" />
+                      <span>{slide.category}</span>
+                    </div>
+
+                    {/* Main Title (Consistent with Global Typography) */}
+                    <h2 className="text-base sm:text-2xl lg:text-4xl font-semibold text-white tracking-tight leading-snug sm:leading-tight line-clamp-2 sm:line-clamp-none">
+                      {slide.title}
+                    </h2>
+
+                    {/* Descriptive Summary */}
+                    <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal line-clamp-2 sm:line-clamp-none">
+                      {slide.description}
+                    </p>
+
+                    {/* Feature Highlights Pills */}
+                    <div className="hidden sm:flex items-center gap-2 pt-1 flex-wrap">
+                      {slide.highlights.map((item, hIdx) => (
+                        <div 
+                          key={hIdx}
+                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-medium text-slate-200 chip-hover"
+                        >
+                          <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Action Triggers (Baharnani Circle Arrow Button + Quote Trigger) */}
+                    <div className="pt-1.5 sm:pt-3 flex items-center gap-2 sm:gap-4">
+                      
+                      {/* Circular Arrow Button (Exact Baharnani Feature) */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onOpenQuoteModal(slide.categoryKey, { title: slide.title });
+                        }}
+                        aria-label={`Inquire about ${slide.title}`}
+                        className="btn-luxury w-9 h-9 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border border-white/40 hover:border-amber-400 bg-white/5 hover:bg-white text-white hover:text-slate-950 flex items-center justify-center transition-all duration-300 shadow-xl group/btn shrink-0 cursor-pointer"
+                      >
+                        <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                      </button>
+
+                      {/* Primary RFQ CTA Button */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onOpenQuoteModal(slide.categoryKey, { title: slide.title });
+                        }}
+                        className="btn-shimmer btn-luxury flex-1 sm:flex-initial px-3.5 sm:px-5 lg:px-6 py-2.5 sm:py-3 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 text-[11px] sm:text-xs lg:text-sm font-bold transition-all shadow-lg flex items-center justify-center gap-1.5 sm:gap-2 group/cta cursor-pointer"
+                      >
+                        <span>Request Quote</span>
+                        <ArrowRight className="w-3.5 h-3.5 hover-arrow group-hover/cta:translate-x-1 transition-transform" />
+                      </button>
+
+                      {/* Secondary Anchor Link */}
+                      <a
+                        href={slide.link}
+                        onClick={(e) => e.stopPropagation()}
+                        className="hidden md:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors py-2 px-3 rounded-full hover:bg-white/10 link-glide"
+                      >
+                        <span>Explore Specs</span>
+                        <ChevronRight className="w-3.5 h-3.5 hover-arrow" />
+                      </a>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
               </div>
-
-            </div>
-          </div>
-
+            );
+          })}
         </div>
 
-        {/* --- BOTTOM STATS BAR --- */}
-        <div className="mt-10 pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div className="space-y-1">
-            <p className="text-xl sm:text-2xl font-bold text-slate-900">10M+</p>
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Garments Produced in UAE</p>
+        {/* ============================================================== */}
+        {/* BOTTOM STATS MATRIX (Clean, High-Contrast Trust Anchors)        */}
+        {/* ============================================================== */}
+        <div className="mt-8 pt-7 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
+          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-1">
+            <p className="text-xl sm:text-2xl font-bold text-white font-mono">10M+</p>
+            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Garments Produced in UAE</p>
           </div>
-          <div className="space-y-1">
-            <p className="text-xl sm:text-2xl font-bold text-slate-900">450+</p>
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">GCC Enterprise Clients</p>
+          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-1">
+            <p className="text-xl sm:text-2xl font-bold text-white font-mono">450+</p>
+            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">GCC Enterprise Clients</p>
           </div>
-          <div className="space-y-1">
-            <p className="text-xl sm:text-2xl font-bold text-slate-900">48-72h</p>
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Express Delivery Speed</p>
+          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-1">
+            <p className="text-xl sm:text-2xl font-bold text-amber-400 font-mono">48-72h</p>
+            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Express Delivery Speed</p>
           </div>
-          <div className="space-y-1">
-            <p className="text-xl sm:text-2xl font-bold text-slate-900">ISO 9001</p>
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Certified Quality Standard</p>
+          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-1">
+            <p className="text-xl sm:text-2xl font-bold text-emerald-400 font-mono">ISO 9001</p>
+            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Certified Quality Standard</p>
           </div>
         </div>
 

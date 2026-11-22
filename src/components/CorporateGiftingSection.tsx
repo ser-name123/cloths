@@ -69,14 +69,14 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
   ];
 
   return (
-    <section id="gifting" className="py-20 bg-white border-b border-slate-200/80">
+    <section id="gifting" className="scroll-mt-24 sm:scroll-mt-28 py-20 bg-white border-b border-slate-200/80">
       <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-slate-200/80">
+        <div className="reveal-on-scroll flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-slate-200/80">
           <div className="space-y-2 max-w-xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs font-semibold text-slate-700">
-              <Gift className="w-3.5 h-3.5 text-slate-500" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider shadow-2xs">
+              <Gift className="w-3.5 h-3.5 text-amber-600" />
               <span>CORPORATE GIFTS DUBAI & BAHARNANI EXPERTISE</span>
             </div>
             <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
@@ -89,9 +89,10 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
 
           <button
             onClick={() => onOpenQuoteModal('custom-gift-box')}
-            className="px-5 py-2.5 rounded-full border border-slate-300 hover:border-slate-400 bg-white text-slate-800 font-semibold text-xs transition-colors shadow-2xs whitespace-nowrap"
+            className="btn-shimmer btn-luxury w-full sm:w-auto px-5 py-2.5 rounded-full border border-slate-300 hover:border-amber-400 bg-white hover:bg-slate-50 text-slate-900 font-semibold text-xs transition-colors shadow-2xs whitespace-nowrap cursor-pointer text-center group/btn"
           >
-            Build Bespoke Swag Box →
+            <span>Build Bespoke Swag Box</span>
+            <span className="hover-arrow inline-block ml-1 group-hover/btn:translate-x-1 transition-transform">→</span>
           </button>
         </div>
 
@@ -100,24 +101,24 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
           {giftPacks.map((pack, idx) => (
             <div
               key={idx}
-              className="bg-white border border-slate-200/90 rounded-3xl overflow-hidden hover:border-slate-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+              className={`group bg-[#fcfcfd] border border-slate-200/90 rounded-3xl overflow-hidden hover:border-amber-400/80 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between interactive-card spotlight-card card-tilt reveal-on-scroll stagger-${idx + 1}`}
             >
               <div>
-                <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+                <div className="relative h-56 w-full overflow-hidden bg-slate-100 img-zoom-stage">
                   <img
                     src={pack.image}
                     alt={pack.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-650 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     loading="lazy"
                   />
-                  <span className="absolute top-3 left-3 px-3 py-0.5 rounded-full text-[10px] font-bold bg-white/95 text-slate-900 shadow-2xs">
+                  <span className="absolute top-3 left-3 px-3 py-0.5 rounded-full text-[10px] font-bold bg-white/95 text-slate-900 shadow-2xs badge-interactive">
                     {pack.badge}
                   </span>
                 </div>
 
                 <div className="p-5 space-y-3">
                   <div>
-                    <h3 className="text-base font-bold text-slate-900">
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
                       {pack.title}
                     </h3>
                     <p className="text-xs text-slate-500 font-mono mt-0.5">
@@ -131,7 +132,7 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
                     </p>
                     <ul className="space-y-1">
                       {pack.items.map((item, i) => (
-                        <li key={i} className="flex items-start gap-1.5 text-xs text-slate-600">
+                        <li key={i} className="flex items-start gap-1.5 text-xs text-slate-600 hover:text-slate-900 transition-colors">
                           <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
                           <span>{item}</span>
                         </li>
@@ -158,10 +159,10 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
 
                 <button
                   onClick={() => onOpenQuoteModal('gifting-box', { kit: pack.title, price: pack.priceAED })}
-                  className="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs shadow transition-all flex items-center justify-center gap-1.5"
+                  className="btn-luxury-dark w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs shadow transition-all flex items-center justify-center gap-1.5 group/btn"
                 >
                   <span>Request Prototype Box</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 hover-arrow group-hover/btn:translate-x-1 transition-transform" />
                 </button>
               </div>
 

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
+import { CartProvider } from '@/context/CartContext';
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -37,7 +38,9 @@ export default function RootLayout({
         suppressHydrationWarning 
         className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900"
       >
-        {children}
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

@@ -80,13 +80,13 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
   };
 
   return (
-    <section id="quote-builder" className="py-20 bg-slate-50 border-b border-slate-200/80">
+    <section id="quote-builder" className="scroll-mt-24 sm:scroll-mt-28 py-20 bg-[#f8f9fb] border-b border-slate-200/80">
       <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs">
-            <Calculator className="w-3.5 h-3.5 text-slate-500" />
+        <div className="reveal-on-scroll text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider shadow-2xs">
+            <Calculator className="w-3.5 h-3.5 text-amber-600" />
             <span>TRANSPARENT B2B PRICING</span>
           </div>
           <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
@@ -98,7 +98,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
         </div>
 
         {/* Calculator Main Box */}
-        <div className="mt-12 bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/50">
+        <div className="reveal-on-scroll stagger-1 mt-12 bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/50">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left Steps (7 cols) */}
@@ -119,7 +119,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                         setSelectedProduct(opt.name);
                         setBasePrice(opt.price);
                       }}
-                      className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between ${
+                      className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between preset-box-hover ${
                         selectedProduct === opt.name
                           ? 'border-slate-900 bg-slate-900 text-white shadow-sm'
                           : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
@@ -146,7 +146,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                     2. Order Quantity: <span className="text-slate-900 font-mono text-sm">{quantity} units</span>
                   </label>
                   {discount > 0 && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold badge-interactive">
                       <TrendingDown className="w-3.5 h-3.5" />
                       {discount}% Bulk Discount Applied!
                     </span>
@@ -163,14 +163,14 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                   className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
                 />
 
-                <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
+                <div className="flex flex-wrap items-center justify-between gap-1 text-xs text-slate-500 pt-1">
                   {[25, 50, 100, 250, 500, 1000].map((preset) => (
                     <button
                       key={preset}
                       type="button"
                       onClick={() => setQuantity(preset)}
-                      className={`px-2 py-0.5 rounded-md font-mono transition-all ${
-                        quantity === preset ? 'bg-slate-900 text-white font-bold' : 'hover:bg-slate-100'
+                      className={`px-2 py-0.5 rounded-md font-mono text-[11px] sm:text-xs transition-all shrink-0 chip-hover ${
+                        quantity === preset ? 'bg-slate-900 text-white font-bold border border-slate-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                       }`}
                     >
                       {preset} pcs
@@ -195,7 +195,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                       key={tech.id}
                       type="button"
                       onClick={() => setBrandingMethod(tech.id as any)}
-                      className={`p-2.5 rounded-xl border text-center transition-all ${
+                      className={`p-2.5 rounded-xl border text-center transition-all preset-box-hover ${
                         brandingMethod === tech.id
                           ? 'border-slate-900 bg-slate-900 text-white'
                           : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
@@ -223,7 +223,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                         key={pos}
                         type="button"
                         onClick={() => togglePosition(pos)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all flex items-center gap-1.5 ${
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all flex items-center gap-1.5 chip-hover ${
                           active
                             ? 'bg-slate-900 border-slate-900 text-white font-semibold'
                             : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
@@ -240,7 +240,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
             </div>
 
             {/* Right Summary Card (5 cols) */}
-            <div className="lg:col-span-5 bg-slate-900 text-white rounded-2xl p-6 sm:p-7 space-y-5 shadow-lg">
+            <div className="lg:col-span-5 bg-slate-900 text-white rounded-2xl p-6 sm:p-7 space-y-5 shadow-lg interactive-card-dark">
               
               <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                 <span className="text-xs font-mono uppercase text-slate-400">Order Estimate</span>
@@ -302,9 +302,9 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
               <div className="space-y-2 pt-2">
                 <button
                   onClick={handleWhatsAppInstant}
-                  className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-2 shadow"
+                  className="btn-shimmer btn-luxury w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-2 shadow cursor-pointer"
                 >
-                  <Send className="w-3.5 h-3.5" />
+                  <Send className="w-3.5 h-3.5 hover-arrow" />
                   <span>Send Estimate to WhatsApp</span>
                 </button>
 
@@ -316,7 +316,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
                     unitPrice: discountedUnitPrice,
                     total: totalCostAED,
                   })}
-                  className="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2"
+                  className="btn-luxury-dark w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer border border-slate-700"
                 >
                   <span>Submit Formal RFQ (Supabase)</span>
                 </button>
