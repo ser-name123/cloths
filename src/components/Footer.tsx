@@ -18,7 +18,7 @@ export default function Footer() {
       
       {/* Top CTA Strip */}
       <div className="border-b border-slate-800 bg-slate-950 py-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
+        <div className="max-w-[1560px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center lg:text-left">
             <span className="text-amber-400 font-mono text-[10px] font-bold uppercase tracking-widest">
               SCHEDULE A FACTORY OR SHOWROOM VISIT
@@ -53,7 +53,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           
           {/* Brand Info (2 cols) */}

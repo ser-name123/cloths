@@ -7,7 +7,7 @@ import { ShieldCheck, Truck, Clock } from 'lucide-react';
 export default function ClientTrustMarquee() {
   return (
     <section className="py-14 bg-white border-b border-slate-200/80 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
+      <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 mb-6 text-center">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">
           Trusted by 450+ GCC Enterprises, Global Brands & Government Contractors
         </p>
@@ -30,7 +30,7 @@ export default function ClientTrustMarquee() {
       </div>
 
       {/* Express Shipping Strip */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-3">
           <Truck className="w-6 h-6 text-amber-600 shrink-0" />
           <div>

@@ -84,7 +84,7 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
       <div className="absolute top-0 right-1/4 w-[450px] h-[450px] bg-amber-100/40 rounded-full blur-3xl pointer-events-none -translate-y-1/3"></div>
       <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-slate-100 rounded-full blur-3xl pointer-events-none translate-y-1/3"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Top Tagline Pill */}
         <div className="flex items-center justify-center lg:justify-start">

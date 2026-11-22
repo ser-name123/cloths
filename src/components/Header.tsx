@@ -29,7 +29,7 @@ export default function Header({ currentCurrency, onCurrencyChange, onOpenQuoteM
     <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-200/80 shadow-xs">
       {/* --- SLIM LUXURY ANNOUNCEMENT TICKER --- */}
       <div className="bg-slate-900 text-slate-300 text-[11px] py-2 px-4 sm:px-8 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div className="max-w-[1560px] mx-auto flex items-center justify-between gap-4">
           
           {/* Left: Production Status & Trust */}
           <div className="flex items-center gap-5">
@@ -64,7 +64,7 @@ export default function Header({ currentCurrency, onCurrencyChange, onOpenQuoteM
       </div>
 
       {/* --- MAIN NAVIGATION --- */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-20">
           
           {/* Brand Logo */}
