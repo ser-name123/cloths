@@ -32,8 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jakarta.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
+    <html lang="en" className={`${jakarta.variable} scroll-smooth`} suppressHydrationWarning>
+      <body 
+        suppressHydrationWarning 
+        className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900"
+      >
         {children}
       </body>
     </html>
