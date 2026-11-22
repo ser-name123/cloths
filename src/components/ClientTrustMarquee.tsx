@@ -5,6 +5,9 @@ import { CLIENT_LOGOS } from '@/data/mockData';
 import { ShieldCheck, Truck, Clock } from 'lucide-react';
 
 export default function ClientTrustMarquee() {
+  // Multiply logos to create an unbroken seamless infinite loop
+  const duplicatedLogos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
+
   return (
     <section className="py-14 bg-white border-b border-slate-200/80 overflow-hidden">
       <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 mb-6 text-center">
@@ -13,19 +16,36 @@ export default function ClientTrustMarquee() {
         </p>
       </div>
 
-      {/* Infinite scrolling ticker */}
-      <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]">
-        <div className="flex gap-4 w-max">
-          {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, idx) => (
-            <div
-              key={idx}
-              className="px-5 py-2.5 rounded-full bg-slate-50 border border-slate-200/70 flex items-center gap-2.5 shadow-2xs"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
-              <span className="text-xs font-bold text-slate-800 whitespace-nowrap">{logo.name}</span>
-              <span className="text-[10px] text-slate-400 font-mono">({logo.category})</span>
-            </div>
-          ))}
+      {/* Seamless Infinite Auto-Scrolling Marquee Track */}
+      <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+        <div className="animate-marquee gap-4 py-1">
+          {/* Track 1 */}
+          <div className="flex gap-4 shrink-0">
+            {duplicatedLogos.map((logo, idx) => (
+              <div
+                key={`track1-${idx}`}
+                className="px-5 py-2.5 rounded-full bg-slate-50 border border-slate-200/80 flex items-center gap-2.5 shadow-2xs hover:border-slate-300 hover:bg-white transition-colors cursor-pointer select-none"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                <span className="text-xs font-bold text-slate-800 whitespace-nowrap">{logo.name}</span>
+                <span className="text-[10px] text-slate-400 font-mono">({logo.category})</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Track 2 (Duplicate for continuous loop) */}
+          <div className="flex gap-4 shrink-0" aria-hidden="true">
+            {duplicatedLogos.map((logo, idx) => (
+              <div
+                key={`track2-${idx}`}
+                className="px-5 py-2.5 rounded-full bg-slate-50 border border-slate-200/80 flex items-center gap-2.5 shadow-2xs hover:border-slate-300 hover:bg-white transition-colors cursor-pointer select-none"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                <span className="text-xs font-bold text-slate-800 whitespace-nowrap">{logo.name}</span>
+                <span className="text-[10px] text-slate-400 font-mono">({logo.category})</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
