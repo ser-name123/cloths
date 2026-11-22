@@ -79,7 +79,7 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
               <Gift className="w-3.5 h-3.5 text-slate-500" />
               <span>CORPORATE GIFTS DUBAI & BAHARNANI EXPERTISE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
               Curated Swag Boxes & VIP Client Hampers
             </h2>
             <p className="text-slate-600 text-sm">
@@ -145,7 +145,7 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
                 <div className="flex items-baseline justify-between py-3">
                   <div>
                     <span className="text-[10px] text-slate-400 block font-mono">Starting At</span>
-                    <span className="text-lg font-extrabold text-slate-900 font-mono">
+                    <span className="text-base font-bold text-slate-900 font-mono">
                       {formatPrice(pack.priceAED)}
                     </span>
                     <span className="text-xs text-slate-500"> / set</span>

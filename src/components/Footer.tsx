@@ -59,11 +59,11 @@ export default function Footer() {
           {/* Brand Info (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-white text-slate-900 flex items-center justify-center font-extrabold text-base">
+              <div className="w-9 h-9 rounded-xl bg-white text-slate-900 flex items-center justify-center font-bold text-base">
                 KW
               </div>
               <div>
-                <span className="font-extrabold text-lg text-white">KRAFTWEAR DUBAI</span>
+                <span className="font-bold text-base text-white">KRAFTWEAR DUBAI</span>
                 <p className="text-[10px] text-slate-400 uppercase tracking-widest">
                   Apparel • Uniforms • Swag
                 </p>

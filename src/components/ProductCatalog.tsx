@@ -51,7 +51,7 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
               <Tag className="w-3.5 h-3.5 text-slate-500" />
               <span>WHOLESALE & ON-DEMAND CATALOG</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
               Curated for Durability & Brand Distinction
             </h2>
             <p className="text-slate-600 text-sm">
@@ -160,7 +160,7 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
                 <div className="flex items-baseline justify-between py-3">
                   <div>
                     <span className="text-[10px] text-slate-400 block font-mono">Wholesale from</span>
-                    <span className="text-base font-extrabold text-slate-900 font-mono">
+                    <span className="text-base font-bold text-slate-900 font-mono">
                       {formatPrice(prod.basePriceAED)}
                     </span>
                     <span className="text-[10px] text-slate-500"> / unit</span>

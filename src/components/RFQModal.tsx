@@ -103,7 +103,7 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
                 <Sparkles className="w-3.5 h-3.5 text-amber-600" />
                 <span>OFFICIAL RFQ & SAMPLE REQUEST</span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
+              <h2 className="text-lg sm:text-xl font-semibold text-slate-900">
                 Request a Custom Wholesale Quote
               </h2>
               <p className="text-xs text-slate-500">

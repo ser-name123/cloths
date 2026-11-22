@@ -89,7 +89,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
             <Calculator className="w-3.5 h-3.5 text-slate-500" />
             <span>TRANSPARENT B2B PRICING</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
             Instant Cost Calculator & Volume Tiers
           </h2>
           <p className="text-slate-600 text-sm sm:text-base">
@@ -279,7 +279,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
               <div className="pt-3 border-t border-slate-800 space-y-1">
                 <p className="text-[11px] text-slate-400">Unit Price:</p>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-extrabold text-amber-400 font-mono">
+                  <span className="text-xl font-bold text-amber-400 font-mono">
                     {formatPrice(discountedUnitPrice)}
                   </span>
                   {discount > 0 && (
@@ -292,7 +292,7 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
 
                 <div className="pt-2">
                   <p className="text-[11px] text-slate-400">Total Order ({currentCurrency}):</p>
-                  <p className="text-xl font-extrabold text-white font-mono">
+                  <p className="text-lg font-bold text-white font-mono">
                     {formatPrice(totalCostAED)}
                   </p>
                 </div>

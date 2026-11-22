@@ -32,7 +32,7 @@ export default function ManufacturingCapabilities() {
               <Factory className="w-3.5 h-3.5 text-slate-500" />
               <span>AJMAN INDUSTRIAL HUB FACILITY</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
               Direct In-House Manufacturing Capabilities
             </h2>
             <p className="text-slate-600 text-sm">
@@ -42,11 +42,11 @@ export default function ManufacturingCapabilities() {
 
           <div className="flex items-center gap-4">
             <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center min-w-[120px]">
-              <span className="block text-2xl font-extrabold text-slate-900 font-mono">50,000+</span>
+              <span className="block text-xl font-bold text-slate-900 font-mono">50,000+</span>
               <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Weekly Units</span>
             </div>
             <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center min-w-[120px]">
-              <span className="block text-2xl font-extrabold text-emerald-600 font-mono">100%</span>
+              <span className="block text-xl font-bold text-emerald-600 font-mono">100%</span>
               <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">QA Pass Rate</span>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function ManufacturingCapabilities() {
                   <div className="p-2.5 rounded-xl bg-white border border-slate-200 shadow-2xs">
                     {iconMap[step.icon]}
                   </div>
-                  <span className="text-2xl font-black text-slate-300 font-mono">
+                  <span className="text-xl font-bold text-slate-300 font-mono">
                     {step.step}
                   </span>
                 </div>

@@ -83,7 +83,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
             <Building2 className="w-3.5 h-3.5 text-slate-500" />
             <span>KLOTHON-STYLE SECTOR SPECIALIZATION</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
             Tailored Industry Workwear Programs
           </h2>
           <p className="text-slate-600 text-sm">

@@ -103,9 +103,9 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             
             {/* Elegant Heading with Balanced Scale */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[48px] font-extrabold text-slate-900 tracking-tight leading-[1.18]">
+            <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-slate-900 tracking-[-0.02em] leading-[1.3]">
               Bespoke Apparel, Certified Workwear & Corporate Swag,{' '}
-              <span className="text-amber-600">Engineered in Dubai.</span>
+              <span className="text-amber-600 font-bold">Engineered in Dubai.</span>
             </h1>
 
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
@@ -265,7 +265,7 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
                 {/* Floating Price Pill */}
                 <div className="absolute bottom-3 right-3 bg-slate-900/95 backdrop-blur-md px-3.5 py-2 rounded-xl text-right shadow-lg text-white">
                   <span className="text-[10px] text-slate-400 block font-mono">Wholesale from</span>
-                  <span className="text-base font-extrabold text-amber-400 font-mono">
+                  <span className="text-base font-bold text-amber-400 font-mono">
                     {formatPrice(currentSpecimen.basePrice)}
                   </span>
                   <span className="text-[10px] text-slate-300"> / unit</span>
@@ -327,21 +327,21 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
         </div>
 
         {/* --- BOTTOM STATS BAR --- */}
-        <div className="mt-16 pt-10 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="mt-14 pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="space-y-1">
-            <p className="text-2xl sm:text-3xl font-extrabold text-slate-900">10M+</p>
+            <p className="text-xl sm:text-2xl font-bold text-slate-900">10M+</p>
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Garments Produced in UAE</p>
           </div>
           <div className="space-y-1">
-            <p className="text-2xl sm:text-3xl font-extrabold text-slate-900">450+</p>
+            <p className="text-xl sm:text-2xl font-bold text-slate-900">450+</p>
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">GCC Enterprise Clients</p>
           </div>
           <div className="space-y-1">
-            <p className="text-2xl sm:text-3xl font-extrabold text-slate-900">48-72h</p>
+            <p className="text-xl sm:text-2xl font-bold text-slate-900">48-72h</p>
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Express Delivery Speed</p>
           </div>
           <div className="space-y-1">
-            <p className="text-2xl sm:text-3xl font-extrabold text-slate-900">ISO 9001</p>
+            <p className="text-xl sm:text-2xl font-bold text-slate-900">ISO 9001</p>
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Certified Quality Standard</p>
           </div>
         </div>

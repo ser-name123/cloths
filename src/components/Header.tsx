@@ -109,12 +109,12 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-2xl bg-slate-950 flex items-center justify-center text-white font-extrabold text-lg tracking-tight shadow-md group-hover:bg-amber-600 transition-colors">
+            <div className="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center text-white font-bold text-base tracking-tight shadow-sm group-hover:bg-amber-600 transition-colors">
               KW
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="text-xl font-extrabold tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
+                <span className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
                   KRAFTWEAR
                 </span>
                 <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
