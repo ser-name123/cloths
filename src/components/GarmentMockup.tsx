@@ -1,23 +1,33 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 
 export type GarmentShape = 'polo' | 'blazer' | 'jacket' | 'hospitality' | 'scrub' | 'coverall' | 'jersey';
 export type ViewSide = 'front' | 'back';
 export type PlacementKey = 'chest' | 'center' | 'sleeve' | 'back';
 export type TechniqueKey = 'embroidery' | '3d-print' | 'rubberized' | 'dtf' | 'sublimation';
+export type SleeveLength = 'short' | 'full';
+export type FabricFinish = 'cotton' | 'pique' | 'twill' | 'dryfit';
+export type FontStyleKey = 'sans' | 'bold' | 'serif' | 'mono';
 
 interface GarmentMockupProps {
   shape: GarmentShape;
   view: ViewSide;
   bodyColor: string;
   accentColor: string;
+  sleeveLength: SleeveLength;
+  hasPocket: boolean;
+  fabricFinish: FabricFinish;
   placement: PlacementKey;
   technique: TechniqueKey;
   logoScale: number;
   logoBackdrop: 'patch' | 'transparent';
   uploadedLogo: string | null;
   brandText: string;
+  textColor: string;
+  fontStyle: FontStyleKey;
+  dragOffset: { x: number; y: number };
+  onDragOffsetChange: (offset: { x: number; y: number }) => void;
 }
 
 /** Lightens or darkens a hex color by a signed percentage (-100 to 100) for realistic fabric shading. */
@@ -32,7 +42,7 @@ function shadeColor(hex: string, percent: number): string {
   return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
-/** Returns true if the hex color is light enough to require dark contrast ink. */
+/** Returns true if the hex color is light enough to require dark contrast lines. */
 function isLightColor(hex: string): boolean {
   const clean = hex.replace('#', '');
   if (clean.length !== 6) return false;
@@ -47,38 +57,92 @@ export default function GarmentMockup({
   view,
   bodyColor,
   accentColor,
+  sleeveLength,
+  hasPocket,
+  fabricFinish,
   placement,
   technique,
   logoScale,
   logoBackdrop,
   uploadedLogo,
   brandText,
+  textColor,
+  fontStyle,
+  dragOffset,
+  onDragOffsetChange,
 }: GarmentMockupProps) {
-  const darkShade = shadeColor(bodyColor, -18);
-  const seamColor = isLightColor(bodyColor) ? 'rgba(15,23,42,0.18)' : 'rgba(255,255,255,0.2)';
-  const lightTextOnGarment = !isLightColor(bodyColor);
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const draggingRef = useRef<{ startX: number; startY: number; origX: number; origY: number } | null>(null);
 
-  // Position of the customization print zone in % over the 400x440 SVG viewBox
-  const zoneStyle: React.CSSProperties =
+  const darkShade = shadeColor(bodyColor, -18);
+  const seamColor = isLightColor(bodyColor) ? 'rgba(15,23,42,0.2)' : 'rgba(255,255,255,0.22)';
+
+  const isFullSleeve = sleeveLength === 'full' || shape === 'jacket' || shape === 'blazer' || shape === 'coverall';
+
+  const bodyPath =
+    shape === 'coverall'
+      ? 'M125 58 L72 95 L22 252 L62 266 L108 140 L108 405 L192 405 L196 290 L204 290 L208 405 L292 405 L292 140 L338 266 L378 252 L328 95 L275 58 Q200 78 125 58 Z'
+      : isFullSleeve
+        ? 'M125 60 L66 96 L18 258 L60 272 L110 146 L110 392 Q200 402 290 392 L290 146 L340 272 L382 258 L334 96 L275 60 Q200 84 125 60 Z'
+        : 'M125 60 L66 98 L36 196 L88 212 L110 142 L110 392 Q200 402 290 392 L290 142 L312 212 L364 196 L334 98 L275 60 Q200 84 125 60 Z';
+
+  // Base anchor for logo zone
+  const basePos =
     view === 'back' || placement === 'back'
-      ? { top: '28%', left: '50%', transform: `translate(-50%, -50%) scale(${logoScale / 100})` }
+      ? { top: 28, left: 50 }
       : placement === 'chest'
-        ? { top: '31%', left: '61%', transform: `translate(-50%, -50%) scale(${logoScale / 100})` }
+        ? { top: 31, left: 61 }
         : placement === 'sleeve'
-          ? { top: '34%', left: '20%', transform: `translate(-50%, -50%) scale(${(logoScale * 0.72) / 100})` }
-          : { top: '38%', left: '50%', transform: `translate(-50%, -50%) scale(${logoScale / 100})` };
+          ? { top: 34, left: 20 }
+          : { top: 38, left: 50 };
+
+  const zoneStyle: React.CSSProperties = {
+    top: `calc(${basePos.top}% + ${dragOffset.y}px)`,
+    left: `calc(${basePos.left}% + ${dragOffset.x}px)`,
+    transform: `translate(-50%, -50%) scale(${(placement === 'sleeve' ? logoScale * 0.72 : logoScale) / 100})`,
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.setPointerCapture(e.pointerId);
+    draggingRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      origX: dragOffset.x,
+      origY: dragOffset.y,
+    };
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current) return;
+    const dx = Math.max(-75, Math.min(75, draggingRef.current.origX + (e.clientX - draggingRef.current.startX)));
+    const dy = Math.max(-75, Math.min(75, draggingRef.current.origY + (e.clientY - draggingRef.current.startY)));
+    onDragOffsetChange({ x: dx, y: dy });
+  };
+
+  const handlePointerUp = () => {
+    draggingRef.current = null;
+  };
 
   const techniqueVisualClass =
     technique === '3d-print'
-      ? 'drop-shadow-[0_3px_0_rgba(15,23,42,0.55)]'
+      ? 'drop-shadow-[0_3px_0_rgba(15,23,42,0.6)]'
       : technique === 'embroidery'
         ? 'drop-shadow-[0_1px_1px_rgba(0,0,0,0.45)]'
         : technique === 'rubberized'
           ? 'drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)]'
           : '';
 
+  const fontClass =
+    fontStyle === 'serif'
+      ? 'font-serif tracking-wide'
+      : fontStyle === 'mono'
+        ? 'font-mono tracking-widest'
+        : fontStyle === 'bold'
+          ? 'font-black tracking-tight'
+          : 'font-bold tracking-wider';
+
   return (
-    <div className="relative w-full h-full flex items-center justify-center select-none">
+    <div ref={stageRef} className="relative w-full h-full flex items-center justify-center select-none">
       {/* Subtle studio floor shadow */}
       <div className="absolute bottom-6 w-56 h-6 bg-slate-900/15 blur-xl rounded-full pointer-events-none" />
 
@@ -95,7 +159,15 @@ export default function GarmentMockup({
             <stop offset="100%" stopColor="#000000" stopOpacity="0.18" />
           </linearGradient>
 
-          {/* Subtle Sublimation Diagonal Pattern */}
+          <pattern id="piqueMesh" width="6" height="6" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="0.8" fill="#000000" fillOpacity="0.08" />
+            <circle cx="5" cy="5" r="0.8" fill="#ffffff" fillOpacity="0.08" />
+          </pattern>
+
+          <pattern id="twillWeave" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="8" stroke="#000000" strokeOpacity="0.08" strokeWidth="2" />
+          </pattern>
+
           <pattern id="sublimationPattern" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
             <rect width="12" height="24" fill={accentColor} fillOpacity="0.14" />
           </pattern>
@@ -103,27 +175,30 @@ export default function GarmentMockup({
 
         {/* Main Garment Silhouette */}
         <path
-          d={
-            shape === 'coverall'
-              ? 'M125 58 L72 95 L42 185 L88 198 L108 135 L108 405 L192 405 L196 290 L204 290 L208 405 L292 405 L292 135 L312 198 L358 185 L328 95 L275 58 Q200 78 125 58 Z'
-              : 'M125 60 L66 98 L36 196 L88 212 L110 142 L110 392 Q200 402 290 392 L290 142 L312 212 L364 196 L334 98 L275 60 Q200 84 125 60 Z'
-          }
+          d={bodyPath}
           fill={bodyColor}
           stroke={darkShade}
           strokeWidth="2.5"
           strokeLinejoin="round"
         />
 
-        {/* Fabric Lighting & Folds Overlay */}
+        {/* Fabric Texture & Lighting Overlay */}
         <path
-          d={
-            shape === 'coverall'
-              ? 'M125 58 L72 95 L42 185 L88 198 L108 135 L108 405 L192 405 L196 290 L204 290 L208 405 L292 405 L292 135 L312 198 L358 185 L328 95 L275 58 Q200 78 125 58 Z'
-              : 'M125 60 L66 98 L36 196 L88 212 L110 142 L110 392 Q200 402 290 392 L290 142 L312 212 L364 196 L334 98 L275 60 Q200 84 125 60 Z'
+          d={bodyPath}
+          fill={
+            technique === 'sublimation'
+              ? 'url(#sublimationPattern)'
+              : fabricFinish === 'pique'
+                ? 'url(#piqueMesh)'
+                : fabricFinish === 'twill'
+                  ? 'url(#twillWeave)'
+                  : 'url(#fabricSheen)'
           }
-          fill={technique === 'sublimation' ? 'url(#sublimationPattern)' : 'url(#fabricSheen)'}
           pointerEvents="none"
         />
+        {(technique === 'sublimation' || fabricFinish !== 'cotton') && (
+          <path d={bodyPath} fill="url(#fabricSheen)" pointerEvents="none" />
+        )}
 
         {/* Sleeve & Side Seam Lines */}
         <path
@@ -135,63 +210,64 @@ export default function GarmentMockup({
         />
 
         {/* Accent Sleeve Cuffs */}
-        {shape !== 'coverall' && (
+        {isFullSleeve ? (
           <>
-            <path d="M38 190 L90 206 L86 216 L34 200 Z" fill={accentColor} opacity="0.9" />
-            <path d="M362 190 L310 206 L314 216 L366 200 Z" fill={accentColor} opacity="0.9" />
+            <path d="M20 250 L62 264 L59 274 L17 260 Z" fill={accentColor} opacity="0.92" />
+            <path d="M380 250 L338 264 L341 274 L383 260 Z" fill={accentColor} opacity="0.92" />
           </>
+        ) : (
+          <>
+            <path d="M38 190 L90 206 L86 216 L34 200 Z" fill={accentColor} opacity="0.92" />
+            <path d="M362 190 L310 206 L314 216 L366 200 Z" fill={accentColor} opacity="0.92" />
+          </>
+        )}
+
+        {/* Optional Chest Pocket (Left Chest) */}
+        {hasPocket && view === 'front' && (
+          <g>
+            <path
+              d="M222 126 L268 126 L268 168 Q245 178 222 168 Z"
+              fill={darkShade}
+              fillOpacity="0.35"
+              stroke={seamColor}
+              strokeWidth="1.5"
+            />
+            <line x1="222" y1="132" x2="268" y2="132" stroke={accentColor} strokeWidth="2.2" />
+          </g>
         )}
 
         {/* Collar & Neckline */}
         {view === 'front' ? (
           shape === 'polo' || shape === 'coverall' || shape === 'hospitality' ? (
             <g>
-              {/* Folded Collar */}
-              <path
-                d="M125 60 L160 52 L200 88 L158 106 Z"
-                fill={accentColor}
-                stroke={darkShade}
-                strokeWidth="1.5"
-              />
-              <path
-                d="M275 60 L240 52 L200 88 L242 106 Z"
-                fill={accentColor}
-                stroke={darkShade}
-                strokeWidth="1.5"
-              />
-              {/* Placket / Zip */}
+              <path d="M125 60 L160 52 L200 88 L158 106 Z" fill={accentColor} stroke={darkShade} strokeWidth="1.5" />
+              <path d="M275 60 L240 52 L200 88 L242 106 Z" fill={accentColor} stroke={darkShade} strokeWidth="1.5" />
               <rect x="193" y="88" width="14" height="68" rx="3" fill={darkShade} opacity="0.85" />
               <circle cx="200" cy="108" r="2.8" fill={accentColor} />
               <circle cx="200" cy="132" r="2.8" fill={accentColor} />
             </g>
           ) : shape === 'blazer' ? (
             <g>
-              {/* Tailored Notched Lapels */}
               <path d="M135 60 L175 60 L200 185 L165 135 Z" fill={darkShade} stroke={seamColor} strokeWidth="1.5" />
               <path d="M265 60 L225 60 L200 185 L235 135 Z" fill={darkShade} stroke={seamColor} strokeWidth="1.5" />
-              {/* Inner Shirt V */}
               <path d="M175 60 L225 60 L200 175 Z" fill="#f8fafc" />
               <circle cx="200" cy="215" r="4" fill={accentColor} />
               <circle cx="200" cy="255" r="4" fill={accentColor} />
             </g>
           ) : shape === 'jacket' ? (
             <g>
-              {/* Stand Collar & Full Front Zipper */}
               <path d="M132 62 Q200 86 268 62 L262 44 Q200 64 138 44 Z" fill={accentColor} stroke={darkShade} strokeWidth="1.5" />
               <line x1="200" y1="68" x2="200" y2="394" stroke={accentColor} strokeWidth="3.5" />
-              {/* Side Zip Pockets */}
               <line x1="132" y1="255" x2="148" y2="315" stroke={accentColor} strokeWidth="3" strokeLinecap="round" />
               <line x1="268" y1="255" x2="252" y2="315" stroke={accentColor} strokeWidth="3" strokeLinecap="round" />
             </g>
           ) : (
-            /* Scrub / Jersey V-Neck or Crew Neck */
             <path
               d={shape === 'scrub' ? 'M140 60 L200 112 L260 60 L246 56 L200 96 L154 56 Z' : 'M135 60 Q200 105 265 60 L256 52 Q200 90 144 52 Z'}
               fill={accentColor}
             />
           )
         ) : (
-          /* Back View Neckline */
           <path d="M135 60 Q200 78 265 60 L258 50 Q200 66 142 50 Z" fill={accentColor} />
         )}
 
@@ -227,9 +303,13 @@ export default function GarmentMockup({
         />
       </svg>
 
-      {/* Live Custom Logo / Text Overlay Directly on Fabric */}
+      {/* Draggable Live Custom Logo / Text Overlay Directly on Fabric */}
       <div
-        className={`absolute transition-all duration-300 z-10 pointer-events-none ${techniqueVisualClass}`}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        title="Drag to fine-tune logo position"
+        className={`absolute transition-shadow duration-200 z-10 cursor-grab active:cursor-grabbing ${techniqueVisualClass}`}
         style={zoneStyle}
       >
         {uploadedLogo ? (
@@ -243,20 +323,19 @@ export default function GarmentMockup({
             <img
               src={uploadedLogo}
               alt="Custom Logo Preview"
-              className="max-h-12 sm:max-h-14 max-w-[96px] w-auto object-contain"
+              className="max-h-12 sm:max-h-14 max-w-[96px] w-auto object-contain pointer-events-none"
             />
           </div>
         ) : (
           <div
-            className={`px-2.5 py-1.5 rounded-lg text-center max-w-[130px] transition-all ${
+            className={`px-2.5 py-1.5 rounded-lg text-center max-w-[140px] transition-all ${
               logoBackdrop === 'patch'
-                ? 'bg-white/95 border border-slate-300 shadow-md text-slate-900'
-                : lightTextOnGarment
-                  ? 'text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.75)]'
-                  : 'text-slate-900 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]'
+                ? 'bg-white/95 border border-slate-300 shadow-md'
+                : 'drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]'
             }`}
+            style={{ color: logoBackdrop === 'patch' ? '#0f172a' : textColor }}
           >
-            <p className="text-[10px] sm:text-xs font-extrabold tracking-wider uppercase truncate">
+            <p className={`text-[10px] sm:text-xs uppercase truncate ${fontClass}`}>
               {brandText || 'YOUR LOGO'}
             </p>
             {logoBackdrop === 'patch' && (
