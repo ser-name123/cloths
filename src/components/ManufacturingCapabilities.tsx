@@ -31,28 +31,28 @@ export default function ManufacturingCapabilities() {
           <div className="space-y-2 max-w-xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider shadow-2xs">
               <Factory className="w-3.5 h-3.5 text-amber-600" />
-              <span>AJMAN INDUSTRIAL HUB FACILITY</span>
+              <span>EFZEE FASHION • AJMAN &amp; DUBAI</span>
             </div>
             <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
-              Direct In-House Manufacturing Capabilities
+              Why Choose Uniform Studio 81?
             </h2>
             <p className="text-slate-600 text-sm">
-              We own and operate our production lines — eliminating third-party trading middlemen and ensuring strict quality control from raw yarn to final packaging.
+              More than just a uniform supplier — we are your trusted partner in creating professional, functional, and brand-focused uniforms with 35+ years of industry experience.
             </p>
           </div>
 
           <div className="flex items-center gap-2.5 sm:gap-4 w-full sm:w-auto">
             <div className="flex-1 sm:flex-initial p-3 sm:p-3.5 rounded-2xl bg-[#fafbfc] border border-slate-200 text-center min-w-[100px] sm:min-w-[120px] shadow-2xs">
               <span className="block text-lg sm:text-xl font-bold text-slate-900 font-mono">
-                <AnimatedCounter target={50000} suffix="+" />
+                <AnimatedCounter target={30000} suffix="+" />
               </span>
-              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Weekly Units</span>
+              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Monthly Garments</span>
             </div>
             <div className="flex-1 sm:flex-initial p-3 sm:p-3.5 rounded-2xl bg-[#fafbfc] border border-slate-200 text-center min-w-[100px] sm:min-w-[120px] shadow-2xs">
               <span className="block text-lg sm:text-xl font-bold text-emerald-600 font-mono">
-                <AnimatedCounter target={100} suffix="%" />
+                <AnimatedCounter target={35} suffix="+" />
               </span>
-              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">QA Pass Rate</span>
+              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Years Experience</span>
             </div>
           </div>
         </div>

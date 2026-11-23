@@ -3,7 +3,7 @@
 import React from 'react';
 
 export default function WhatsAppFloatingButton() {
-  const whatsappUrl = "https://wa.me/971501234567?text=Hi%20Kraftwear%20Dubai!%20I%20want%20to%20inquire%20about%20custom%20clothing/uniforms%20manufacturing.";
+  const whatsappUrl = "https://wa.me/971522954810?text=Hi%20Uniform%20Studio%2081%20(EFZEE%20Fashion)!%20I%20want%20to%20inquire%20about%20custom%20uniforms%20or%20corporate%20gifts.";
 
   return (
     <aside aria-label="WhatsApp Support" className="fixed bottom-5 right-5 z-50 flex items-center gap-2.5 group animate-float-bounce">
@@ -21,7 +21,7 @@ export default function WhatsAppFloatingButton() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat with Kraftwear Dubai on WhatsApp"
+        aria-label="Chat with Uniform Studio 81 on WhatsApp"
         className="btn-luxury relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-xl shadow-emerald-500/40 transition-all duration-300 transform hover:scale-110 active:scale-95 radar-beacon cursor-pointer"
       >
         {/* Official WhatsApp SVG Logo */}

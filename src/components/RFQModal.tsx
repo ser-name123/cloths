@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
@@ -67,7 +67,7 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
         particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#0f172a', '#10b981', '#f59e0b', '#0284c7'],
+        colors: ['#0f172a', '#10b981', '#E2B027', '#0284c7'],
       });
     } catch (err: any) {
       setLoading(false);
@@ -77,9 +77,9 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
 
   const handleWhatsAppDirect = () => {
     const text = encodeURIComponent(
-      `Hello Kraftwear Dubai!\nI would like a fast quotation:\n- Name: ${formData.fullName}\n- Company: ${formData.companyName}\n- Product/Category: ${formData.productTitle || formData.category}\n- Est. Quantity: ${formData.estimatedQuantity} pcs\n- Customization: ${formData.customizationType}\n- Notes: ${formData.notes || 'None'}\n\nPlease share official pricing and sample schedule.`
+      `Hello Uniform Studio 81 (EFZEE Fashion)!\nI would like a fast quotation:\n- Name: ${formData.fullName}\n- Company: ${formData.companyName}\n- Product/Category: ${formData.productTitle || formData.category}\n- Est. Quantity: ${formData.estimatedQuantity} pcs\n- Customization: ${formData.customizationType}\n- Notes: ${formData.notes || 'None'}\n\nPlease share official pricing and sample schedule.`
     );
-    window.open(`https://wa.me/971501234567?text=${text}`, '_blank');
+    window.open(`https://wa.me/971522954810?text=${text}`, '_blank');
   };
 
   return (
@@ -134,7 +134,7 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="procurement@company.ae"
+                    placeholder="admin@efzeefashion.com"
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
                   />
                 </div>
@@ -244,7 +244,7 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
                   <ShieldCheck className="w-3 h-3 text-emerald-600" />
                   Confidential RFQ
                 </span>
-                <span>•</span>
+                <span>â€¢</span>
                 <span className="flex items-center gap-1">
                   <Clock className="w-3 h-3 text-slate-500" />
                   Avg Response: Under 2 Hours
@@ -292,3 +292,4 @@ export default function RFQModal({ isOpen, onClose, initialCategory, initialDeta
     </div>
   );
 }
+

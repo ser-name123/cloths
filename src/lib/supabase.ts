@@ -60,9 +60,9 @@ export async function submitRFQToSupabase(payload: RFQFormPayload): Promise<{ su
 function saveToLocalFallback(payload: RFQFormPayload) {
   if (typeof window !== 'undefined') {
     try {
-      const existing = JSON.parse(localStorage.getItem('kraftwear_rfq_leads') || '[]');
+      const existing = JSON.parse(localStorage.getItem('us81_rfq_leads') || '[]');
       existing.unshift({ ...payload, timestamp: new Date().toISOString() });
-      localStorage.setItem('kraftwear_rfq_leads', JSON.stringify(existing));
+      localStorage.setItem('us81_rfq_leads', JSON.stringify(existing));
     } catch (e) {
       console.warn('Could not save to localStorage', e);
     }

@@ -24,50 +24,50 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
       name: 'Oil & Gas / Heavy Industry',
       icon: <Flame className="w-4 h-4" />,
       tagline: 'NFPA 2112 & EN ISO Certified Flame-Resistant Workwear',
-      description: 'Engineered specifically for ADNOC contractors, petrochemical rigs, and heavy construction sites across UAE & Saudi Arabia.',
+      description: 'Engineered specifically for industrial plants, logistics fleets, security services, and construction sites across UAE, Kuwait & Qatar.',
       keyProducts: ['FR Cotton Coveralls 240/300 GSM', 'Anti-Static High-Vis Jackets', 'Electrical Arc Flash Suits', 'Safety Steel Toe Boots'],
-      clients: '30+ Certified Energy Contractors',
-      image: '/images/sectors/oil-gas.jpg',
+      clients: '30+ Certified Energy & Industrial Contractors',
+      image: '/images/efzee/industrial-1.png',
     },
     {
       id: 'hospitality',
-      name: 'Hospitality & Luxury Dining',
+      name: 'Hospitality, Delivery & F&B',
       icon: <UtensilsCrossed className="w-4 h-4" />,
       tagline: 'High-Performance Front & Back of House Uniform Collections',
-      description: 'Supplying 5-star Dubai hotels and restaurant chains with breathable chef jackets, aprons, housekeeping tunics, and concierge suits.',
-      keyProducts: ['Breathable Mesh Chef Coats', 'Heavy Canvas Cross-Back Aprons', 'F&B Server Waistcoats', 'Housekeeping Tunics'],
-      clients: '75+ Luxury UAE Resorts & F&B Groups',
-      image: '/images/sectors/hospitality.jpg',
+      description: 'Supplying UAE hotels, restaurants, and delivery fleets with breathable chef jackets, aprons, housekeeping tunics, and F&B server uniforms.',
+      keyProducts: ['Breathable Mesh Chef Coats', 'Heavy Canvas Cross-Back Aprons', 'F&B Server Waistcoats', 'Delivery & Logistics Polos'],
+      clients: '75+ UAE Hospitality & F&B Groups',
+      image: '/images/efzee/hospitality-1.png',
     },
     {
       id: 'healthcare',
       name: 'Healthcare & Clinical Teams',
       icon: <HeartPulse className="w-4 h-4" />,
       tagline: 'Antimicrobial & Fluid-Repellent Medical Scrubs & Lab Coats',
-      description: '4-way spandex stretch scrubs tailored for physicians, nurses, and dental clinics requiring comfort during long emergency shifts.',
+      description: '4-way spandex stretch scrubs tailored for physicians, nurses, and dental clinics requiring comfort during long shifts.',
       keyProducts: ['Antimicrobial 4-Way Stretch Scrubs', 'Doctor Embroidered Lab Coats', 'Patient Gowns', 'Surgical Scrub Caps'],
       clients: '120+ Hospitals & Private Clinics in UAE',
-      image: '/images/sectors/healthcare.jpg',
+      image: '/images/efzee/health-1.png',
     },
     {
       id: 'corporate-tech',
-      name: 'Corporate Offices & Tech Hubs',
+      name: 'Corporate Wear & Winter Jackets',
       icon: <Building2 className="w-4 h-4" />,
-      tagline: 'Smart-Casual Polos, Oxford Shirts & Modern Tech Swag',
-      description: 'Complete wardrobe programs for DIFC, Dubai Internet City, and multinational headquarters with year-round re-order consistency.',
-      keyProducts: ['Pique Corporate Polos', 'Non-Iron Oxford Business Shirts', 'Tailored Blazers', 'Custom Tech Fleece Jackets'],
+      tagline: 'Tailored Blazers, Personalized Polos & Premium Winter Jackets',
+      description: 'Complete wardrobe programs including fleece, bomber, and waterproof winter jackets, oxford shirts, and blazers customizable with your company logo.',
+      keyProducts: ['Pique Corporate Polos', 'Non-Iron Oxford Business Shirts', 'Tailored Blazers', 'Fleece, Bomber & Waterproof Jackets'],
       clients: '200+ Enterprise Corporates',
-      image: '/images/sectors/corporate-tech.jpg',
+      image: '/images/efzee/hero-1.jpg',
     },
     {
       id: 'education',
-      name: 'Schools & Academic Uniforms',
+      name: 'School Uniforms & Sportswear',
       icon: <GraduationCap className="w-4 h-4" />,
-      tagline: 'Durable, Kid-Friendly Fabric Programs for Year-Round Supply',
-      description: 'Complete uniform programs with exact pantone matching across terms. Moisture-wicking PE kits, blazers, and ties.',
-      keyProducts: ['Cotton Rich School Shirts', 'DriFit Sport PE Kits', 'School Crest Blazers', 'Winter Pullover Knits'],
-      clients: '40+ International Schools in Dubai & Sharjah',
-      image: '/images/sectors/education.jpg',
+      tagline: 'Durable, Kid-Friendly Fabric Programs & Sublimation PE Kits',
+      description: 'Complete school uniform programs with exact Pantone matching across terms — cotton-rich shirts, blazers, ties, and full-color sublimation sportswear.',
+      keyProducts: ['Cotton Rich School Shirts', 'Sublimation Sport PE Kits', 'School Crest Blazers', 'Winter Pullover Knits'],
+      clients: '40+ International Schools in UAE',
+      image: '/images/efzee/school-pupils.jpg',
     },
   ];
 
@@ -79,15 +79,15 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
         
         {/* Header */}
         <div className="reveal-on-scroll text-center max-w-2xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider shadow-2xs">
             <Building2 className="w-3.5 h-3.5 text-amber-600" />
-            <span>KLOTHON-STYLE SECTOR SPECIALIZATION</span>
+            <span>UNIFORM STUDIO 81 • SECTOR SPECIALIZATION</span>
           </div>
           <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
-            Tailored Industry Workwear Programs
+            Customized Company Uniforms to Tell Your Brand Story
           </h2>
           <p className="text-slate-600 text-sm">
-            Regulatory compliant uniforms engineered for hazardous environments, luxury hotels, and hospitals.
+            Uniforms crafted for logistics, hospitality, delivery &amp; F&amp;B, healthcare, industrial workwear, schools, and sportswear.
           </p>
         </div>
 
@@ -149,7 +149,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
               </button>
 
               <a
-                href="https://wa.me/971501234567"
+                href="https://wa.me/971522954810"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs text-slate-500 hover:text-emerald-600 font-medium transition-colors link-glide"
@@ -166,7 +166,7 @@ export default function IndustrySolutions({ onOpenQuoteModal }: IndustrySolution
               className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
               loading="lazy"
               onError={(e) => {
-                e.currentTarget.src = '/images/sectors/oil-gas.jpg';
+                e.currentTarget.src = '/images/efzee/showroom-team.jpg';
               }}
             />
           </div>

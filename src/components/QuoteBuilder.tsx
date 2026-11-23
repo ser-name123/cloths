@@ -74,9 +74,9 @@ export default function QuoteBuilder({ currentCurrency, onOpenQuoteModal }: Quot
 
   const handleWhatsAppInstant = () => {
     const text = encodeURIComponent(
-      `Hello Kraftwear Dubai!\nI used your Online Cost Calculator:\n- Product: ${selectedProduct}\n- Quantity: ${quantity} pcs\n- Branding: ${brandingMethod} (${printPositions.join(', ')})\n- Estimated Unit Price: ${formatPrice(discountedUnitPrice)}\n- Total Est: ${formatPrice(totalCostAED)}\n\nPlease provide official proforma invoice and sample lead time.`
+      `Hello Uniform Studio 81 (EFZEE Fashion)!\nI used your Online Cost Calculator:\n- Product: ${selectedProduct}\n- Quantity: ${quantity} pcs\n- Branding: ${brandingMethod} (${printPositions.join(', ')})\n- Estimated Unit Price: ${formatPrice(discountedUnitPrice)}\n- Total Est: ${formatPrice(totalCostAED)}\n\nPlease provide official proforma invoice and sample lead time.`
     );
-    window.open(`https://wa.me/971501234567?text=${text}`, '_blank');
+    window.open(`https://wa.me/971522954810?text=${text}`, '_blank');
   };
 
   return (

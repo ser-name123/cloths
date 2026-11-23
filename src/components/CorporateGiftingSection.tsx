@@ -34,7 +34,7 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
         'Heavy Metal Rollerball Pen with Laser Monogram',
         '10,000mAh Ultra-Slim MagSafe Power Bank',
       ],
-      image: '/images/gifting/onboarding-box.jpg',
+      image: '/images/efzee/hero-2.jpg',
     },
     {
       title: 'Eco-Forward Sustainable ESG Kit',
@@ -49,10 +49,10 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
         'Seed Paper Plantable Notebook & Recycled Pens',
         'Kraft Corrugated Custom Branded Mailer Box',
       ],
-      image: '/images/gifting/eco-kit.jpg',
+      image: '/images/efzee/feature-2.png',
     },
     {
-      title: 'The GITEX & Conference Activation Swag',
+      title: 'Corporate Events & Conference Activation Swag',
       subtitle: 'High-Volume Exhibition & Booth Giveaways',
       priceAED: 39,
       moq: 50,
@@ -64,7 +64,7 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
         'Soft Enamel Custom 3D Metal Lapel Pin',
         'Custom Drawstring Ripstop Bag with Reflective Trim',
       ],
-      image: '/images/gifting/activation-swag.jpg',
+      image: '/images/efzee/sublimation-1.png',
     },
   ];
 
@@ -77,13 +77,13 @@ export default function CorporateGiftingSection({ currentCurrency, onOpenQuoteMo
           <div className="space-y-2 max-w-xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider shadow-2xs">
               <Gift className="w-3.5 h-3.5 text-amber-600" />
-              <span>CORPORATE GIFTS DUBAI & BAHARNANI EXPERTISE</span>
+              <span>UNIFORM STUDIO 81 • CORPORATE &amp; PROMOTIONAL GIFTS</span>
             </div>
             <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
-              Curated Swag Boxes & VIP Client Hampers
+              Curated Corporate Gifts &amp; Promotional Hampers
             </h2>
             <p className="text-slate-600 text-sm">
-              Turn merchandise into an unforgettable unboxing experience with custom rigid boxes, EVA foam cutouts, and precision laser engraving.
+              Elevate your brand with custom-branded corporate gifts, eco-friendly kits, and promotional merchandise designed by EFZEE Fashion.
             </p>
           </div>
 

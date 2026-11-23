@@ -3,12 +3,12 @@
 import React, { useState, useRef } from 'react';
 import { Currency } from '@/types';
 import { CURRENCY_RATES } from '@/data/mockData';
-import { 
-  Eye, 
-  Sparkles, 
-  Palette, 
-  Layers, 
-  Check, 
+import {
+  Eye,
+  Sparkles,
+  Palette,
+  Layers,
+  Check,
   ShieldCheck,
   ArrowRight,
   Upload,
@@ -38,11 +38,11 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
   const curr = CURRENCY_RATES[currentCurrency];
 
   const garments = [
-    { id: 'tee', name: 'Oversized Streetwear Tee (280 GSM)', basePrice: 38, image: '/images/products/heavy-tee.jpg' },
-    { id: 'hoodie', name: 'Heavyweight Fleece Hoodie (380 GSM)', basePrice: 78, image: '/images/products/fleece-hoodie.jpg' },
-    { id: 'polo', name: 'Executive Pique Polo', basePrice: 44, image: '/images/products/executive-polo.jpg' },
-    { id: 'coverall', name: 'FR Industrial Safety Coverall', basePrice: 89, image: '/images/products/fr-coverall.jpg' },
-    { id: 'tumbler', name: 'Smart Temperature Tumbler', basePrice: 29, image: '/images/products/smart-tumbler.jpg' },
+    { id: 'tee', name: 'Personalized Corporate Polo (240 GSM)', basePrice: 44, image: '/images/efzee/hero-1.jpg' },
+    { id: 'hoodie', name: 'Premium Winter Jacket (Fleece / Bomber)', basePrice: 125, image: '/images/efzee/feature-1.png' },
+    { id: 'polo', name: 'Sublimation Sports & Event Jersey', basePrice: 49, image: '/images/efzee/sportswear-1.png' },
+    { id: 'coverall', name: 'Industrial Safety Coverall', basePrice: 89, image: '/images/efzee/industrial-1.png' },
+    { id: 'tumbler', name: 'Hospitality & F&B Chef Apron Set', basePrice: 65, image: '/images/efzee/hospitality-1.png' },
   ] as const;
 
   const currentItem = garments.find(g => g.id === selectedGarment) || garments[0];
@@ -84,20 +84,20 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
   };
 
   return (
-    <section 
-      id="customizer" 
+    <section
+      id="customizer"
       className="scroll-mt-24 sm:scroll-mt-32 pt-20 pb-20 sm:pt-28 sm:pb-28 lg:pt-36 lg:pb-32 bg-[#f8f9fb] border-b border-slate-200/80"
     >
       <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12">
-        
+
         {/* Section Header with Generous Breathing Space */}
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider shadow-2xs">
             <Eye className="w-3.5 h-3.5 text-amber-600" />
-            <span>THE MERCHLIST-INSPIRED STUDIO</span>
+            <span>UNIFORM STUDIO 81 • BRANDING PREVIEW</span>
           </div>
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-slate-900 tracking-tight">
-            Interactive 3D Styling Studio
+            Interactive Uniform &amp; Logo Customizer
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm">
             Upload your vector or PNG brand logo, test garment colorways, and visualize embroidery vs high-definition printing before confirming bulk production.
@@ -107,7 +107,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
         {/* Studio Box */}
         <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-xl shadow-slate-200/50">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
+
             {/* Visual Canvas (7 cols) */}
             <div className="lg:col-span-7 flex flex-col items-center justify-center">
               <div className="relative w-full max-w-lg h-84 sm:h-[420px] rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 flex items-center justify-center shadow-inner group">
@@ -121,25 +121,24 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                 />
 
                 {/* Subtle garment color tint layer */}
-                <div 
-                  className="absolute inset-0 mix-blend-color opacity-30 pointer-events-none transition-colors duration-500" 
-                  style={{ backgroundColor: selectedColor }} 
+                <div
+                  className="absolute inset-0 mix-blend-color opacity-30 pointer-events-none transition-colors duration-500"
+                  style={{ backgroundColor: selectedColor }}
                 />
-                
+
                 {/* Visual Stamp / Logo Simulation */}
-                <div className={`absolute transition-all duration-300 z-10 ${
-                  logoPosition === 'chest' 
-                    ? 'top-14 left-10 sm:top-18 sm:left-14' 
-                    : logoPosition === 'center' 
-                    ? 'top-24 sm:top-32 left-1/2 -translate-x-1/2' 
-                    : 'top-12 sm:top-16 left-1/2 -translate-x-1/2 scale-110'
-                }`}>
+                <div className={`absolute transition-all duration-300 z-10 ${logoPosition === 'chest'
+                    ? 'top-14 left-10 sm:top-18 sm:left-14'
+                    : logoPosition === 'center'
+                      ? 'top-24 sm:top-32 left-1/2 -translate-x-1/2'
+                      : 'top-12 sm:top-16 left-1/2 -translate-x-1/2 scale-110'
+                  }`}>
                   {uploadedLogo ? (
                     <div className="relative p-2.5 sm:p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-300 shadow-2xl flex flex-col items-center max-w-[140px] sm:max-w-[180px] group/stamp transition-all hover:scale-105">
-                      <img 
-                        src={uploadedLogo} 
-                        alt="Uploaded Brand Logo" 
-                        className="max-h-12 sm:max-h-16 w-auto object-contain drop-shadow" 
+                      <img
+                        src={uploadedLogo}
+                        alt="Uploaded Brand Logo"
+                        className="max-h-12 sm:max-h-16 w-auto object-contain drop-shadow"
                       />
                       <span className="text-[8.5px] font-mono font-bold text-slate-700 uppercase mt-1 px-1.5 py-0.5 rounded bg-slate-100 tracking-wider">
                         {technique === 'embroidery' ? '🧵 Tajima Embroidery' : technique === 'puff' ? '💨 3D Puff' : '🎨 High-Res Print'}
@@ -167,7 +166,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
 
             {/* Controls (5 cols) */}
             <div className="lg:col-span-5 space-y-5">
-              
+
               {/* 1. Garment Selector */}
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
@@ -178,11 +177,10 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                     <button
                       key={g.id}
                       onClick={() => setSelectedGarment(g.id)}
-                      className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all text-left preset-box-hover cursor-pointer ${
-                        selectedGarment === g.id
+                      className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all text-left preset-box-hover cursor-pointer ${selectedGarment === g.id
                           ? 'border-slate-900 bg-slate-900 text-white shadow-xs'
                           : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300'
-                      }`}
+                        }`}
                     >
                       <p className="truncate">{g.name}</p>
                       <p className={`text-[10px] font-mono mt-0.5 ${selectedGarment === g.id ? 'text-amber-400' : 'text-slate-500'}`}>
@@ -205,9 +203,8 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                       onClick={() => setSelectedColor(c.hex)}
                       title={c.name}
                       style={{ backgroundColor: c.hex }}
-                      className={`w-7 h-7 rounded-full border-2 transition-all cursor-pointer ${
-                        selectedColor === c.hex ? 'border-slate-900 scale-125 shadow-sm' : 'border-slate-300 hover:scale-115'
-                      }`}
+                      className={`w-7 h-7 rounded-full border-2 transition-all cursor-pointer ${selectedColor === c.hex ? 'border-slate-900 scale-125 shadow-sm' : 'border-slate-300 hover:scale-115'
+                        }`}
                     />
                   ))}
                 </div>
@@ -242,11 +239,10 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                   <button
                     type="button"
                     onClick={() => setBrandingMode('upload')}
-                    className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                      brandingMode === 'upload'
+                    className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${brandingMode === 'upload'
                         ? 'bg-white text-slate-950 shadow-xs'
                         : 'text-slate-600 hover:text-slate-900'
-                    }`}
+                      }`}
                   >
                     <Upload className="w-3.5 h-3.5 text-amber-600" />
                     <span>Upload Logo File</span>
@@ -254,11 +250,10 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                   <button
                     type="button"
                     onClick={() => setBrandingMode('text')}
-                    className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                      brandingMode === 'text'
+                    className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${brandingMode === 'text'
                         ? 'bg-white text-slate-950 shadow-xs'
                         : 'text-slate-600 hover:text-slate-900'
-                    }`}
+                      }`}
                   >
                     <FileText className="w-3.5 h-3.5 text-slate-500" />
                     <span>Type Text / Monogram</span>
@@ -350,9 +345,8 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                       <button
                         key={pos}
                         onClick={() => setLogoPosition(pos)}
-                        className={`px-2.5 py-1.5 rounded-lg text-xs font-medium capitalize text-left transition-all chip-hover cursor-pointer ${
-                          logoPosition === pos ? 'bg-slate-900 text-white font-semibold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-medium capitalize text-left transition-all chip-hover cursor-pointer ${logoPosition === pos ? 'bg-slate-900 text-white font-semibold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                          }`}
                       >
                         {pos === 'chest' ? 'Chest Pocket (Left)' : pos === 'center' ? 'Center Chest' : 'Full Back'}
                       </button>
@@ -369,9 +363,8 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                       <button
                         key={t}
                         onClick={() => setTechnique(t)}
-                        className={`px-2.5 py-1.5 rounded-lg text-xs font-medium capitalize text-left transition-all chip-hover cursor-pointer ${
-                          technique === t ? 'bg-slate-900 text-white font-semibold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-medium capitalize text-left transition-all chip-hover cursor-pointer ${technique === t ? 'bg-slate-900 text-white font-semibold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                          }`}
                       >
                         {t === 'embroidery' ? '🧵 Tajima Embroidery' : t === 'puff' ? '💨 3D High Puff' : '🎨 Silkscreen / DTF'}
                       </button>
@@ -382,9 +375,9 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
 
               {/* CTA */}
               <button
-                onClick={() => onOpenQuoteModal('studio-sample', { 
-                  garment: currentItem.name, 
-                  color: selectedColor, 
+                onClick={() => onOpenQuoteModal('studio-sample', {
+                  garment: currentItem.name,
+                  color: selectedColor,
                   technique,
                   logoUploaded: !!uploadedLogo,
                   logoFileName,

@@ -11,19 +11,20 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'KRAFTWEAR DUBAI | Custom Apparel, Uniforms & Corporate Merchandise UAE',
+  title: 'UNIFORM STUDIO 81 | EFZEE Fashion — Custom Uniforms, Workwear & Corporate Gifts UAE',
   description:
-    'UAE’s premier integrated custom clothing manufacturer, industrial workwear specialist & corporate gifting house. Direct factory in Ajman and showroom in Dubai.',
+    'Every Thread Counts. With 35+ years of expertise and 30,000+ garments/month capacity, Uniform Studio 81 (EFZEE Fashion Tailoring LLC) delivers custom corporate wear, hospitality, healthcare, school uniforms, industrial workwear, and corporate gifts across UAE & GCC.',
   keywords: [
-    'custom clothing Dubai',
-    'uniform manufacturer UAE',
-    'corporate gifts Dubai',
-    'workwear Ajman',
-    'print on demand UAE',
-    'flame resistant coveralls',
-    'the merchlist',
-    'times clothing',
-    'klothon',
+    'Uniform Studio 81',
+    'EFZEE Fashion',
+    'custom uniforms Dubai',
+    'uniform supplier Ajman UAE',
+    'corporate wear UAE',
+    'hospitality uniforms Dubai',
+    'school uniforms UAE',
+    'industrial workwear',
+    'sublimation printing Dubai',
+    'corporate gifts UAE',
   ],
 };
 

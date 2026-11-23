@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { Currency } from '@/types';
@@ -57,16 +57,16 @@ export default function ReadyStockShop({ currentCurrency, onOpenQuoteModal }: Re
   const ecomProducts: EcomProduct[] = [
     {
       id: 'ecom-tee-280',
-      title: 'Heavyweight Luxury Oversized Tee (280 GSM)',
+      title: 'Personalized Corporate & Event Polo (240 GSM)',
       category: 'apparel',
-      sku: 'KW-TEE-280-BLK',
-      samplePriceAED: 38,
-      wholesalePriceAED: 26,
+      sku: 'US81-POLO-240',
+      samplePriceAED: 44,
+      wholesalePriceAED: 32,
       stockCount: 4250,
       rating: 4.9,
       reviewCount: 164,
-      image: '/images/products/heavy-tee.jpg',
-      fabric: '100% Combed Compact Cotton, Bio-Washed',
+      image: '/images/efzee/hero-1.jpg',
+      fabric: 'Combed Cotton Pique â€¢ Embroidery, 3D & DTF Ready',
       colors: [
         { name: 'Onyx Black', hex: '#0f172a' },
         { name: 'Pure White', hex: '#f8fafc' },
@@ -74,143 +74,143 @@ export default function ReadyStockShop({ currentCurrency, onOpenQuoteModal }: Re
         { name: 'Gulf Navy', hex: '#1e3a8a' },
       ],
       sizes: ['S', 'M', 'L', 'XL', '2XL'],
-      badge: 'Bestseller • In Stock',
+      badge: 'Bestseller â€¢ In Stock',
     },
     {
       id: 'ecom-polo-240',
-      title: 'Executive Pique Corporate Polo (240 GSM)',
+      title: 'Hospitality & F&B Service Uniform Set',
       category: 'apparel',
-      sku: 'KW-POLO-240-NVY',
-      samplePriceAED: 44,
-      wholesalePriceAED: 32,
+      sku: 'US81-HOSP-101',
+      samplePriceAED: 65,
+      wholesalePriceAED: 48,
       stockCount: 2800,
       rating: 4.8,
       reviewCount: 92,
-      image: '/images/products/executive-polo.jpg',
-      fabric: 'Double-Lacoste Combed Pique with Anti-Curl Collar',
+      image: '/images/efzee/hospitality-1.png',
+      fabric: 'Breathable Stain-Resistant Poly-Cotton Twill',
       colors: [
         { name: 'Midnight Navy', hex: '#1e293b' },
         { name: 'Crisp White', hex: '#ffffff' },
         { name: 'Slate Grey', hex: '#64748b' },
       ],
       sizes: ['S', 'M', 'L', 'XL', '2XL'],
-      badge: 'Corporate Choice',
+      badge: 'Hospitality Choice',
     },
     {
       id: 'ecom-hoodie-380',
-      title: 'Brushed Heavyweight Fleece Hoodie (380 GSM)',
+      title: 'Premium Winter Jacket (Fleece, Bomber & Waterproof)',
       category: 'apparel',
-      sku: 'KW-HOD-380-BLK',
-      samplePriceAED: 78,
-      wholesalePriceAED: 58,
+      sku: 'US81-WINT-380',
+      samplePriceAED: 125,
+      wholesalePriceAED: 89,
       stockCount: 1400,
       rating: 5.0,
       reviewCount: 118,
-      image: '/images/products/fleece-hoodie.jpg',
-      fabric: '380 GSM Cross-Grain Fleece, Double Aglet Hood',
+      image: '/images/efzee/feature-1.png',
+      fabric: 'Weather-Resistant Shell & Warm Fleece Lining',
       colors: [
+        { name: 'Desert Camel', hex: '#78350f' },
         { name: 'Charcoal Black', hex: '#18181b' },
-        { name: 'Heather Grey', hex: '#94a3b8' },
-        { name: 'Earth Sand', hex: '#a8a29e' },
+        { name: 'Deep Navy', hex: '#1e3a8a' },
       ],
       sizes: ['M', 'L', 'XL', '2XL'],
-      badge: 'Heavyweight Winter',
+      badge: 'New Collection',
     },
     {
       id: 'ecom-fr-coverall',
-      title: 'NFPA 2112 Certified FR Heavy Cotton Coverall',
+      title: 'Industrial Workwear & Safety Coverall',
       category: 'workwear',
-      sku: 'KW-FR-240-ORG',
+      sku: 'US81-IND-240',
       samplePriceAED: 89,
       wholesalePriceAED: 69,
       stockCount: 3100,
       rating: 4.9,
       reviewCount: 88,
-      image: '/images/products/fr-coverall.jpg',
-      fabric: '240 GSM Flame-Resistant Twill with 3M Reflective',
+      image: '/images/efzee/industrial-1.png',
+      fabric: 'Heavy-Duty Industrial Twill with High-Vis Reflective Tape',
       colors: [
         { name: 'High-Vis Orange', hex: '#ea580c' },
         { name: 'Industrial Navy', hex: '#1d4ed8' },
         { name: 'Petroleum Blue', hex: '#0e7490' },
       ],
       sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
-      badge: 'NFPA & EN Certified',
+      badge: 'Industrial Grade',
     },
     {
       id: 'ecom-vip-swag',
-      title: 'The "Dubai Elite" Executive VIP Onboarding Hamper',
-      category: 'gifting',
-      sku: 'KW-GIFT-VIP-01',
-      samplePriceAED: 135,
-      wholesalePriceAED: 105,
-      stockCount: 850,
+      title: 'Healthcare Antimicrobial Medical Scrubs & Lab Coat',
+      category: 'workwear',
+      sku: 'US81-HLTH-202',
+      samplePriceAED: 62,
+      wholesalePriceAED: 46,
+      stockCount: 1850,
       rating: 5.0,
       reviewCount: 76,
-      image: '/images/products/vip-swag-box.jpg',
-      fabric: 'Rigid Velvet Box, Smart Tumbler, MagSafe & Journal',
+      image: '/images/efzee/health-1.png',
+      fabric: 'Breathable 4-Way Stretch Clinical Fabric',
       colors: [
-        { name: 'Matte Obsidian', hex: '#09090b' },
-        { name: 'Deep Royal', hex: '#1e3a8a' },
+        { name: 'Medical Teal', hex: '#0d9488' },
+        { name: 'Royal Navy', hex: '#1e3a8a' },
       ],
-      sizes: ['Standard Kit'],
-      badge: 'Ready to Gift',
+      sizes: ['S', 'M', 'L', 'XL', '2XL'],
+      badge: 'Healthcare Ready',
     },
     {
       id: 'ecom-smart-tumbler',
-      title: 'Smart LED LCD Temperature Vacuum Tumbler (500ml)',
-      category: 'gifting',
-      sku: 'KW-TUMB-500-BLK',
-      samplePriceAED: 29,
-      wholesalePriceAED: 18,
+      title: 'Sublimation Sportswear & Team Jersey',
+      category: 'apparel',
+      sku: 'US81-SUB-500',
+      samplePriceAED: 49,
+      wholesalePriceAED: 34,
       stockCount: 5200,
       rating: 4.8,
       reviewCount: 204,
-      image: '/images/products/smart-tumbler.jpg',
-      fabric: 'Double-Wall Food-Grade 304 Stainless Steel (24h Cold)',
+      image: '/images/efzee/sportswear-1.png',
+      fabric: 'Moisture-Wicking DryFit with Full-Color Sublimation',
       colors: [
-        { name: 'Matte Black', hex: '#18181b' },
+        { name: 'Custom Team Color', hex: '#18181b' },
         { name: 'Arctic White', hex: '#ffffff' },
         { name: 'Emirates Green', hex: '#064e3b' },
       ],
-      sizes: ['500ml'],
-      badge: '24h Cold • Smart Lid',
+      sizes: ['S', 'M', 'L', 'XL', '2XL'],
+      badge: 'Full Sublimation',
     },
     {
       id: 'ecom-powerbank',
-      title: '10,000mAh Ultra-Slim Wireless MagSafe Power Bank',
-      category: 'gifting',
-      sku: 'KW-TECH-PB10K',
-      samplePriceAED: 68,
-      wholesalePriceAED: 49,
-      stockCount: 1900,
+      title: 'Complete School Uniform & PE Kit Program',
+      category: 'kits',
+      sku: 'US81-SCH-100',
+      samplePriceAED: 75,
+      wholesalePriceAED: 52,
+      stockCount: 2900,
       rating: 4.9,
       reviewCount: 65,
-      image: '/images/products/wireless-powerbank.jpg',
-      fabric: 'Anodized Aluminum with Magnetic 15W + 20W PD Type-C',
+      image: '/images/efzee/school-uniforms.jpg',
+      fabric: 'Durable Cotton-Rich Shirting & Embroidered Crests',
       colors: [
-        { name: 'Space Titanium', hex: '#334155' },
-        { name: 'Midnight', hex: '#0f172a' },
+        { name: 'Academy Navy', hex: '#1e3a8a' },
+        { name: 'Crisp White', hex: '#f8fafc' },
       ],
-      sizes: ['10,000mAh'],
-      badge: 'GITEX Tech Hit',
+      sizes: ['Junior', 'Senior', 'Custom'],
+      badge: 'School Program',
     },
     {
       id: 'ecom-swatch-ring',
-      title: 'Master Fabric Swatch Ring & Panton Stitch Kit',
+      title: 'Eco-Friendly Recycled Uniform Fabric Swatch Kit',
       category: 'kits',
-      sku: 'KW-SWATCH-2026',
+      sku: 'US81-ECO-2026',
       samplePriceAED: 25,
       wholesalePriceAED: 15,
       stockCount: 650,
       rating: 5.0,
       reviewCount: 94,
-      image: '/images/sectors/hospitality.jpg',
-      fabric: 'Includes 45 Real Cut Swatches, FR Twills, Madeira Threads',
+      image: '/images/efzee/feature-2.png',
+      fabric: 'Includes Recycled Fabrics, Twills, Pique & Embroidery Samples',
       colors: [
-        { name: 'Full Archive', hex: '#f59e0b' },
+        { name: 'Full Archive', hex: '#E2B027' },
       ],
-      sizes: ['Complete 45-Piece Ring'],
-      badge: 'Procurement Tool',
+      sizes: ['Complete Swatch Kit'],
+      badge: 'Eco-Friendly Options',
     },
   ];
 
@@ -250,17 +250,17 @@ export default function ReadyStockShop({ currentCurrency, onOpenQuoteModal }: Re
           <div className="space-y-2 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider">
               <Zap className="w-3.5 h-3.5 text-amber-600 fill-amber-600" />
-              <span>DIRECT IN-STOCK WHOLESALE & SAMPLE STORE</span>
+              <span>UNIFORM STUDIO 81 â€¢ READY STOCK &amp; SAMPLES</span>
               <span className="text-amber-300">|</span>
-              <span className="font-mono text-[11px] text-amber-800">Dispatches in 24h</span>
+              <span className="font-mono text-[11px] text-amber-800">30,000+ Garments/Month</span>
             </div>
             
             <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
-              Ready-to-Ship Wholesale Inventory & Instant Samples
+              Ready-to-Ship Uniforms &amp; Instant Sample Store
             </h2>
             
             <p className="text-slate-600 text-sm">
-              Order physical pre-production test samples with next-day UAE delivery or unlock immediate bulk tier wholesale pricing directly from our Dubai & Ajman warehouses.
+              Order physical test samples or bulk corporate, hospitality, healthcare, industrial, and school uniforms directly from our Fashion Mart, Ajman showroom.
             </p>
           </div>
 
@@ -452,7 +452,7 @@ export default function ReadyStockShop({ currentCurrency, onOpenQuoteModal }: Re
                       onClick={() => onOpenQuoteModal(product.category, { product: product.title, color: activeColor })}
                       className="btn-luxury w-full py-1.5 rounded-full text-[11px] font-semibold text-slate-600 hover:text-slate-950 hover:bg-slate-100 transition-colors flex items-center justify-center gap-1 group/btn"
                     >
-                      <span>Scale Bulk Order (50–50k pcs)</span>
+                      <span>Scale Bulk Order (50â€“50k pcs)</span>
                       <ArrowRight className="w-3 h-3 hover-arrow group-hover/btn:translate-x-1 transition-transform" />
                     </button>
                   </div>
@@ -510,3 +510,4 @@ export default function ReadyStockShop({ currentCurrency, onOpenQuoteModal }: Re
     </section>
   );
 }
+

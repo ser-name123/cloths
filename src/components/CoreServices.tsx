@@ -52,132 +52,132 @@ export default function CoreServices({ onOpenQuoteModal }: CoreServicesProps) {
       categoryKey: 'apparel',
       number: '01',
       tabCategory: 'apparel',
-      badge: 'Bespoke Production',
-      title: 'Bespoke Cut & Sew Apparel Manufacturing',
-      tagline: 'Custom Patterns • 180–450 GSM French Terry • Drop Shoulder Fits',
-      description: 'Full custom garment manufacturing from raw fabric yarn to finished apparel. We draft bespoke patterns, dye-match exact Pantone formulas, and produce luxury streetwear, heavyweight hoodies, oversized tees, and executive pique polos.',
-      turnaround: '48h Sampling • 7-10d Bulk',
-      moq: 'Min 50 pcs per style',
-      image: '/images/products/fleece-hoodie.jpg',
+      badge: 'Corporate & Custom Wear',
+      title: 'Custom Corporate Wear & Personalized Polos',
+      tagline: 'Tailored Fit • Brand-Aligned Fabrics • 30,000+ Garments/Month',
+      description: 'EFZEE Fashion designs and manufactures custom corporate uniforms, tailored blazers, oxford shirts, and personalized polos that reflect your brand identity while supporting daily operational comfort.',
+      turnaround: 'Fast Turnaround • Bulk Tiers',
+      moq: 'Flexible Corporate MOQ',
+      image: '/images/efzee/hero-1.jpg',
       icon: Scissors,
       specs: [
-        'Custom GSM (180 to 450 GSM heavyweight)',
-        '100% Combed & Supima Cotton / French Terry',
-        'Pantone TPX/TCX exact dye formula matching',
-        'Bio-washed, silicon-softened & pre-shrunk'
+        'Custom design, fabric selection & consistent sizing',
+        'Personalized polos, blazers, and executive shirts',
+        '3D print, rubberized print, embroidery & DTF options',
+        'Consistent re-order matching across departments'
       ],
-      idealFor: 'Luxury D2C streetwear brands, tech company merch, gym & fitness lines, executive polos',
-      highlightPills: ['180–450 GSM', 'Pantone Dye Match', 'Bio-Washed', 'Pre-Shrunk', 'Drop Shoulder'],
+      idealFor: 'Corporate offices, retail teams, security & facility management, executive staff',
+      highlightPills: ['35+ Years Experience', 'Corporate Wear', 'Personalized Polos', 'Consistent Fit'],
     },
     {
       id: 'tajima-embroidery',
       categoryKey: 'factory',
       number: '02',
       tabCategory: 'branding',
-      badge: 'Precision Tajima Tech',
-      title: '15-Needle Industrial Tajima Embroidery',
-      tagline: '3D High-Puff • Madeira Colorfast Threads • 1,000 RPM Heads',
-      description: 'Japanese 15-needle computerized Tajima multi-head machines deliver ultra-dense micro-monograms, 3D puff embroidery, and heavy chenille varsity patches with zero fraying or color loss over 100+ commercial wash cycles.',
-      turnaround: '24-48h Sample Swatch',
+      badge: '3D, Rubberized & Embroidery',
+      title: 'Precision Embroidery, 3D & Rubberized Print',
+      tagline: 'High-Density 3D Print • Rubberized Print • Colorfast Embroidery',
+      description: 'Extensive personalization options using the latest branding techniques including 3D print, rubberized print, and high-precision embroidery built to withstand commercial laundering without fading.',
+      turnaround: '24-48h Sample Proof',
       moq: 'Flexible / Bulk Tiers',
-      image: '/images/products/corporate-blazer.jpg',
+      image: '/images/efzee/feature-2.png',
       icon: Sparkles,
       specs: [
-        '15-Needle automated Japanese Tajima heads',
-        'Madeira Polyneon colorfast non-fade threads',
-        '3D high-density foam puff embroidery',
-        'Metallic gold/silver & reflective neon threads'
+        'Multi-head computerized embroidery for crests & logos',
+        'High-density 3D & raised rubberized branding',
+        'Colorfast threads & durable wash-resistant finishes',
+        'Hands-on fabric & branding review at Ajman showroom'
       ],
-      idealFor: 'Executive blazer crests, snapback & dad caps, hoodie chest logos, varsity jackets',
-      highlightPills: ['15-Needle Heads', '3D Puff Foam', 'Madeira Thread', 'Micro-Monogram', '100+ Washes'],
+      idealFor: 'Corporate blazer crests, hospitality aprons, security patches, winter jackets',
+      highlightPills: ['Embroidery', '3D Print', 'Rubberized Print', 'Wash Resistant'],
     },
     {
       id: 'printing-decoration',
       categoryKey: 'factory',
       number: '03',
       tabCategory: 'branding',
-      badge: 'High-Definition Inks',
-      title: 'Screen, DTF, Puff & Rotary Printing',
-      tagline: '12-Color M&R Carousel • High-Res DTF • Zero-Feel Discharge',
-      description: 'Our printing facility operates automated M&R 12-color carousels alongside high-resolution Direct-to-Film (DTF) transfer printers. We deliver ultra-fine gradient artwork, soft-hand waterbased discharge inks, and high-density 3D silicone puff prints.',
-      turnaround: 'Same-Day Proof • Express Run',
-      moq: 'Low MOQ / Flexible',
-      image: '/images/products/heavy-tee.jpg',
+      badge: 'Sublimation, DTF & Screen',
+      title: 'Sublimation, DTF & Screen Printing',
+      tagline: 'Full-Color Sublimation • High-Res DTF • Screen Printing',
+      description: 'Vibrant t-shirt prints, full-garment sublimation sportswear, and long-lasting screen printing engineered for bright, crisp branding across corporate events, delivery fleets, and sports teams.',
+      turnaround: 'Fast Turnaround • Express Run',
+      moq: 'Low MOQ / Bulk',
+      image: '/images/efzee/sublimation-1.png',
       icon: Palette,
       specs: [
-        'M&R automated 12-color precision carousels',
-        'High-density Direct-to-Film (DTF) transfers',
-        'Water-based discharge ink for zero hand-feel',
-        '50+ industrial washes crack-resistant guarantee'
+        'All-over sublimation printing for sportswear & PE kits',
+        'High-definition Direct-to-Film (DTF) transfers',
+        'Durable screen printing for promotional & event tees',
+        'Eco-friendly inks & recycled fabric options available'
       ],
-      idealFor: 'Complex multi-color graphic tees, event uniforms, corporate promotional merchandise',
-      highlightPills: ['12-Color Carousel', 'High-Res DTF', 'Zero-Feel Discharge', '3D Silicone Puff'],
+      idealFor: 'Sportswear, delivery & F&B uniforms, school PE kits, promotional merchandise',
+      highlightPills: ['Sublimation', 'DTF Print', 'Screen Printing', 'Eco-Friendly'],
     },
     {
       id: 'certified-workwear',
       categoryKey: 'workwear',
       number: '04',
       tabCategory: 'safety',
-      badge: 'ISO & NFPA Certified',
-      title: 'Certified Safety Workwear & Technical Uniforms',
-      tagline: 'NFPA 2112 • EN ISO 11612 • 3M Scotchlite Reflective',
-      description: 'Direct manufacturing of certified flame-retardant (FR) coveralls, anti-static workwear, heavy twill boiler suits, high-visibility Class 2/3 garments, and 4-way stretch antimicrobial clinical scrubs for healthcare facilities.',
-      turnaround: 'Tender-Ready • 48-72h UAE',
-      moq: '100 pcs / Government Tenders',
-      image: '/images/products/fr-coverall.jpg',
+      badge: 'Industrial, Health & Hospitality',
+      title: 'Industrial Workwear, Hospitality & Healthcare',
+      tagline: 'Logistics • Delivery & F&B • Healthcare • Industrial Safety',
+      description: 'Functional, durable uniforms built for demanding work environments — including industrial coveralls, hi-vis workwear, antimicrobial healthcare scrubs, hospitality chef wear, and school uniforms.',
+      turnaround: '30,000 Garments/Month',
+      moq: 'Enterprise & Tender Ready',
+      image: '/images/efzee/industrial-1.png',
       icon: ShieldCheck,
       specs: [
-        'NFPA 2112, EN ISO 11612 & ANSI Class 2/3 certified',
-        'Heavy-duty 240–350 GSM twill with Kevlar seams',
-        'Genuine 3M Scotchlite 8910 reflective tape',
-        'Lab-tested arc-flash & chemical splash resistance'
+        'Industrial workwear & high-visibility safety gear',
+        'Healthcare scrubs, lab coats & clinical uniforms',
+        'Hospitality, delivery & F&B front/back-of-house wear',
+        'School uniforms & recycled eco-friendly fabric lines'
       ],
-      idealFor: 'Oil & gas contractors (ADNOC compliant), MEP construction, clinical hospitals, industrial sites',
-      highlightPills: ['NFPA 2112 FR', '3M Scotchlite', 'Arc-Flash 40 Cal', 'Kevlar Seams', 'ADNOC Approved'],
+      idealFor: 'Logistics & delivery fleets, hospitals, hotels & restaurants, schools, industrial plants',
+      highlightPills: ['Industrial', 'Healthcare', 'Hospitality', 'School Uniforms', 'Eco Options'],
     },
     {
       id: 'corporate-gifting',
       categoryKey: 'gifting',
       number: '05',
       tabCategory: 'gifting',
-      badge: 'VIP Executive Swag',
-      title: 'Curated Corporate Gifting & Luxury Swag Hampers',
-      tagline: 'Rigid Magnetic Boxes • Velvet Laser EVA • Rotary Laser Etching',
-      description: 'Elevate your brand presence with turnkey VIP corporate gifting sets. Custom rigid gift boxes with magnetic closures, precision laser-cut high-density EVA velvet inserts, smart LED temperature bottles, and eco-certified bamboo desk sets.',
-      turnaround: 'Express 48-72h Assembly',
-      moq: 'From 25 sets',
-      image: '/images/products/vip-swag-box.jpg',
+      badge: 'New Collection & Gifting',
+      title: 'Premium Winter Jackets & Corporate Gifts',
+      tagline: 'Fleece, Bomber & Waterproof Jackets • Promotional Gifts',
+      description: 'Exclusive winter jackets designed for dynamic professionals in Dubai (fleece, bomber, and waterproof styles) alongside custom promotional gifts and curated corporate merchandise.',
+      turnaround: 'Express UAE & GCC Dispatch',
+      moq: 'Custom Bulk Tiers',
+      image: '/images/efzee/feature-1.png',
       icon: Gift,
       specs: [
-        'Bespoke rigid magnetic-closure luxury boxes',
-        'Precision laser-cut high-density velvet EVA foam',
-        '360° rotary laser etching & UV color printing',
-        'Custom corporate greeting cards & wax seals'
+        'Fleece, bomber & waterproof winter jackets with logo',
+        'Custom promotional gifts & corporate welcome kits',
+        'Weather-resistant, breathable professional materials',
+        'Ideal for corporate settings, outdoor events & commutes'
       ],
-      idealFor: 'C-Suite onboarding boxes, VIP client hampers, exhibition giveaways, UAE National Day & Ramadan gifts',
-      highlightPills: ['Rigid Magnetic Box', 'Velvet EVA Foam', 'Smart LED Tumbler', 'Rotary Laser', 'GCC Freight'],
+      idealFor: 'Corporate winter outerwear, outdoor event teams, client gifting, promotional campaigns',
+      highlightPills: ['Winter Jackets', 'Fleece & Bomber', 'Corporate Gifts', 'Logo Branded'],
     },
     {
       id: 'private-labeling',
       categoryKey: 'apparel',
       number: '06',
       tabCategory: 'apparel',
-      badge: 'Retail Ready',
-      title: 'Private Labeling & Turnkey Retail Packaging',
-      tagline: 'Woven Damask Neck Labels • FSC Hangtags • SKU Barcoding',
-      description: 'Complete white-label rebranding that transforms custom manufactured garments into retail-ready merchandise. We produce high-definition damask woven neck labels, soft satin care tags, matte FSC hangtags with metal eyelets, and individual barcode polybagging.',
-      turnaround: 'Integrated with Bulk Run',
-      moq: 'Included with Cut & Sew',
-      image: '/images/products/executive-polo.jpg',
+      badge: 'Showroom & Consultation',
+      title: 'Hands-On Showroom Development & Sizing',
+      tagline: 'Showroom #1 Fashion Mart Ajman • HO CBD Building Dubai',
+      description: 'Visit our centrally located showroom for hands-on uniform development — meet our consultants, review fabric swatches, finalize fits, and align designs with your brand and operational requirements.',
+      turnaround: 'Direct Consultation',
+      moq: 'End-to-End Partnership',
+      image: '/images/efzee/showroom-team.jpg',
       icon: Tag,
       specs: [
-        'High-density woven damask & satin care labels',
-        'Tear-away neck tags & heat-transfer neck prints',
-        'Heavyweight 400 GSM FSC hangtags with wax cords',
-        'Individual eco polybags with Amazon/retail SKU barcodes'
+        'Dedicated uniform consultants & fabric swatch review',
+        'Custom fit trials & department-wise size grading',
+        'Consistent multi-year re-order stock management',
+        'Serving UAE, Kuwait, Qatar & GCC enterprises'
       ],
-      idealFor: 'E-commerce fashion brands, retail clothing boutiques, corporate employee webstores',
-      highlightPills: ['Damask Woven', 'Satin Care Labels', 'FSC Hangtags', 'SKU Barcoding', 'Retail Bags'],
+      idealFor: 'Multi-branch corporates, schools, hospitality groups, government & security contractors',
+      highlightPills: ['Ajman Showroom #1', 'Dubai HO', 'Fit Trials', 'GCC Delivery'],
     },
   ];
 
@@ -197,26 +197,31 @@ export default function CoreServices({ onOpenQuoteModal }: CoreServicesProps) {
         {/* ============================================================== */}
         {/* SECTION HEADER & VALUE PROPOSITION                             */}
         {/* ============================================================== */}
-        <div className="max-w-3xl mx-auto text-center mb-10 lg:mb-14 reveal-on-scroll">
+        <div className="max-w-4xl mx-auto text-center mb-10 lg:mb-14 reveal-on-scroll">
           
           {/* Micro-badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-900 text-xs font-bold tracking-wide uppercase mb-4 shadow-2xs">
             <Layers className="w-3.5 h-3.5 text-amber-600" />
-            <span>End-to-End In-House Capabilities</span>
+            <span>Essay Group (Est. 1989) • Uniform Studio 81</span>
           </div>
 
           {/* Heading */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
-            Everything Under One Roof. <br className="hidden sm:inline" />
+            35+ Years of Uniform Craft. <br className="hidden sm:inline" />
             <span className="animate-text-shine">
-              Zero Trading Middlemen.
+              Every Thread Counts.
             </span>
           </h2>
 
           {/* Subheading */}
-          <p className="mt-4 text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed font-normal">
-            From raw yarn spinning and bespoke pattern drafting in our Ajman plant to 15-needle Tajima embroidery, high-definition screen printing, and VIP gift packaging — explore our full manufacturing service spectrum.
-          </p>
+          <div className="mt-5 space-y-3 text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed font-normal max-w-3xl mx-auto">
+            <p>
+              Uniform Studio 81 is a leading uniform and workwear manufacturer serving corporate and industrial clients across the GCC. We specialize in uniform development, manufacturing, and large-scale supply for organizations operating across diverse sectors.
+            </p>
+            <p>
+              As part of the <strong className="text-slate-900 font-semibold">Essay Group, established in 1989</strong>, we bring decades of group expertise combined with a focused, execution-driven approach to uniform production — supporting major corporations across the GCC with high-quality, reliable workwear solutions tailored to industry needs.
+            </p>
+          </div>
 
           {/* Service Category Filter Pills (Touch-scrollable on mobile) */}
           <div className="mt-6 sm:mt-8 flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pb-2 px-1">
@@ -369,8 +374,8 @@ export default function CoreServices({ onOpenQuoteModal }: CoreServicesProps) {
                 <Factory className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-xs sm:text-sm font-bold text-slate-900">Ajman In-House Mill</h4>
-                <p className="text-[11px] text-slate-500 leading-tight">50,000 sq ft zero-middlemen facility</p>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900">EFZEE Fashion Ajman</h4>
+                <p className="text-[11px] text-slate-500 leading-tight">30,000+ garments monthly capacity</p>
               </div>
             </div>
 

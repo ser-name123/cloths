@@ -49,61 +49,61 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
     {
       id: 'apparel',
       number: '01',
-      category: 'CUSTOM APPAREL',
-      verticalTitle: 'Custom Apparel',
-      title: 'Bespoke Knits, Executive Polos & Luxury Streetwear',
-      subtitle: 'Direct In-House UAE Mill',
-      description: '100% Combed French Terry Cotton (280–380 GSM), brushed fleece hoodies, executive pique polos, and varsity bombers with Tajima embroidery and 48-hour UAE fulfillment.',
-      image: '/images/products/heavy-tee.jpg',
-      badge: 'No MOQ / Bulk Tiers',
-      tint: 'bg-[#121620]/80',
+      category: 'UNIFORM STUDIO 81',
+      verticalTitle: 'Every Thread Counts',
+      title: 'Crafting Identity Through Exceptional Uniform Design',
+      subtitle: '35+ Years of Excellence • EFZEE Fashion',
+      description: 'Good uniform design is more than clothing — it is a powerful statement about your company. Exclusively crafted uniforms create outstanding first impressions, elevate your brand image, and enhance every guest’s experience.',
+      image: '/images/efzee/showroom-team.jpg',
+      badge: '30,000+ Garments / Month',
+      tint: 'bg-[#121620]/75',
       categoryKey: 'apparel',
-      highlights: ['280–380 GSM Knits', 'Bio-Washed & Pre-Shrunk', '3D Puff & Screen Ready'],
+      highlights: ['35+ Years Expertise', 'Showroom #1 Ajman', 'HO CBD Building Dubai'],
       link: '#catalog',
     },
     {
       id: 'workwear',
       number: '02',
-      category: 'SAFETY & INDUSTRIAL',
-      verticalTitle: 'Safety & Workwear',
-      title: 'NFPA 2112 & EN ISO Certified Flame-Resistant Workwear',
-      subtitle: 'Engineered for Heavy GCC Industry',
-      description: 'Certified 240/300 GSM heavy twill FR coveralls, anti-static high-vis vests, arc-flash protection, and clinical scrubs engineered specifically for ADNOC contractors and heavy industrial sites.',
-      image: '/images/sectors/oil-gas.jpg',
-      badge: 'ISO 9001 & NFPA 2112',
-      tint: 'bg-[#2b170c]/80',
+      category: 'CORPORATE & HOSPITALITY',
+      verticalTitle: 'Corporate & Hospitality',
+      title: 'Customized Company Uniforms to Tell Your Brand Story',
+      subtitle: 'Corporate • Hospitality • Healthcare • F&B',
+      description: 'EFZEE Fashion specializes in custom-designed uniform solutions for corporates, hospitality, healthcare, and logistics — combining thoughtful design, comfortable fabrics, and consistent fit across your teams.',
+      image: '/images/efzee/hero-1.jpg',
+      badge: 'Tailored Brand Identity',
+      tint: 'bg-[#2b170c]/75',
       categoryKey: 'workwear',
-      highlights: ['NFPA 2112 Compliant', '3M Scotchlite Reflective', '4-Way Stretch Scrubs'],
+      highlights: ['Corporate & Executive Wear', 'Hospitality & F&B', 'Antimicrobial Healthcare'],
       link: '#industries',
     },
     {
       id: 'factory',
       number: '03',
-      category: 'IN-HOUSE FACTORY',
-      verticalTitle: 'In-House Factory',
-      title: 'Ajman 50,000 Sq Ft Precision Manufacturing Plant',
-      subtitle: 'Zero Trading Middlemen',
-      description: 'Integrated textile cutting and stitching with 15-needle Tajima embroidery machines, computerized Gerber CAD fabric nesting, M&R screen printing, and in-line QA wash-testing labs.',
-      image: '/images/products/fr-coverall.jpg',
-      badge: '50,000 Sq Ft Facility',
-      tint: 'bg-[#10221c]/80',
+      category: 'WINTER & WORKWEAR',
+      verticalTitle: 'Winter & Workwear',
+      title: 'Premium Winter Jackets & Certified Industrial Workwear',
+      subtitle: 'Fleece • Bomber • Waterproof • FR Coveralls',
+      description: 'Embrace the cooler season with our exclusive collection of winter jackets designed for dynamic professionals in Dubai, alongside heavy-duty industrial workwear customizable with 3D print, embroidery, DTF & sublimation.',
+      image: '/images/efzee/hero-3.jpg',
+      badge: 'New Collection',
+      tint: 'bg-[#10221c]/75',
       categoryKey: 'factory',
-      highlights: ['15-Needle Tajima Heads', 'Gerber CAD Fabric Cutting', '48-72h Doorstep Dispatch'],
+      highlights: ['3D & Rubberized Print', 'Embroidery & DTF', 'Eco-Friendly Options'],
       link: '#factory',
     },
     {
       id: 'gifting',
       number: '04',
-      category: 'CORPORATE GIFTS',
-      verticalTitle: 'Corporate Gifts',
-      title: 'Curated Executive Swag Boxes & VIP Client Hampers',
-      subtitle: 'VIP Unboxing Experience',
-      description: 'Smart LED temperature tumblers, MagSafe power banks, luxury rigid magnetic boxes, and zero-plastic sustainable ESG kits with bespoke monogramming and express GCC freight dispatch.',
-      image: '/images/products/vip-swag-box.jpg',
-      badge: 'VIP Onboarding Sets',
-      tint: 'bg-[#1f1622]/80',
+      category: 'SCHOOL & SUBLIMATION',
+      verticalTitle: 'Schools & Gifts',
+      title: 'School Uniforms, Sublimation Printing & Corporate Gifts',
+      subtitle: 'Complete Educational & Promotional Solutions',
+      description: 'Durable, comfortable school uniforms, vibrant sublimation sportswear, personalized polos, and curated corporate gifting — backed by our Fashion Mart Ajman showroom and rapid UAE & GCC delivery.',
+      image: '/images/efzee/school-uniforms.jpg',
+      badge: 'Eco-Friendly & Recycled',
+      tint: 'bg-[#1f1622]/75',
       categoryKey: 'gifting',
-      highlights: ['Rigid Magnetic Boxes', 'Smart LED Tumblers', 'Precision Laser Etching'],
+      highlights: ['School & PE Uniforms', 'Full-Color Sublimation', 'Promotional Gifts'],
       link: '#gifting',
     },
   ];
@@ -156,7 +156,7 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
   const current = slides[activeSlide];
 
   return (
-    <section className="relative bg-[#0d0f14] text-white border-b border-slate-800/90 pt-4 pb-10 lg:pt-6 lg:pb-12 overflow-hidden">
+    <section className="relative bg-gradient-to-b from-slate-50 via-white to-[#f8f9fb] text-slate-900 border-b border-slate-200/80 pt-4 pb-10 lg:pt-6 lg:pb-12 overflow-hidden">
       
       {/* Background ambient lighting */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none animate-float-slow" />
@@ -186,8 +186,8 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
                 onClick={() => handleSlideClick(idx)}
                 className={`relative rounded-2xl sm:rounded-3xl overflow-hidden transition-[flex,width,max-width] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                   isActive
-                    ? 'flex-[4] sm:flex-[4] lg:flex-[5] shadow-2xl ring-1 ring-white/10'
-                    : 'w-10 sm:w-16 md:w-20 lg:w-28 flex-shrink-0 cursor-pointer hover:brightness-110 border border-white/5 shadow-md'
+                    ? 'flex-[4] sm:flex-[4] lg:flex-[5] shadow-2xl ring-1 ring-slate-200'
+                    : 'w-10 sm:w-16 md:w-20 lg:w-28 flex-shrink-0 cursor-pointer hover:brightness-105 border border-slate-200/90 shadow-md bg-white'
                 }`}
               >
                 {/* Background Image */}
@@ -196,31 +196,31 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
                   alt={slide.title}
                   className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 pointer-events-none ${
                     isActive 
-                      ? 'scale-105 filter brightness-90' 
-                      : 'filter brightness-[0.4] grayscale-[0.2]'
+                      ? 'scale-105 filter brightness-95' 
+                      : 'filter brightness-90 opacity-35'
                   }`}
                   loading="eager"
                 />
 
-                {/* Inactive State: Semi-transparent Colored Tint + Vertical Title + Outline Number */}
+                {/* Inactive State: Light Frosted Tint + Vertical Title + Number */}
                 <div 
-                  className={`absolute inset-0 ${slide.tint} backdrop-blur-[1px] flex flex-col justify-between items-center py-4 sm:py-6 px-0.5 sm:px-1 transition-opacity duration-300 pointer-events-none ${
+                  className={`absolute inset-0 bg-white/70 backdrop-blur-[2px] flex flex-col justify-between items-center py-4 sm:py-6 px-0.5 sm:px-1 transition-opacity duration-300 pointer-events-none ${
                     isActive ? 'opacity-0' : 'opacity-100'
                   }`}
                 >
                   {/* Top Accent Dot */}
-                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white/40" />
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500" />
 
                   {/* Centered Rotated Vertical Title */}
                   <div className="flex-1 flex items-center justify-center my-auto">
-                    <span className="writing-mode-vertical text-white/95 font-semibold text-[10px] sm:text-xs md:text-sm lg:text-[15px] tracking-wider sm:tracking-[0.2em] uppercase whitespace-nowrap drop-shadow-sm">
+                    <span className="writing-mode-vertical text-slate-900 font-bold text-[10px] sm:text-xs md:text-sm lg:text-[15px] tracking-wider sm:tracking-[0.2em] uppercase whitespace-nowrap">
                       {slide.verticalTitle}
                     </span>
                   </div>
 
-                  {/* Bottom Hollow Outline Number (Baharnani Stencil Style) */}
+                  {/* Bottom Number */}
                   <div className="select-none pointer-events-none">
-                    <span className="stroke-number text-lg sm:text-2xl md:text-3xl lg:text-4xl tracking-tighter">
+                    <span className="text-slate-400 font-black font-mono text-lg sm:text-2xl md:text-3xl lg:text-4xl tracking-tighter">
                       {slide.number}
                     </span>
                   </div>
@@ -359,24 +359,24 @@ export default function Hero({ currentCurrency, onOpenQuoteModal }: HeroProps) {
         </div>
 
         {/* ============================================================== */}
-        {/* BOTTOM STATS MATRIX (Clean, High-Contrast Trust Anchors)        */}
+        {/* BOTTOM STATS MATRIX (Clean, High-Contrast Light Trust Anchors) */}
         {/* ============================================================== */}
-        <div className="mt-8 pt-7 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
-          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-1">
-            <p className="text-xl sm:text-2xl font-bold text-white font-mono">10M+</p>
-            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Garments Produced in UAE</p>
+        <div className="mt-8 pt-7 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
+          <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-1">
+            <p className="text-xl sm:text-2xl font-bold text-slate-900 font-mono">35+ Years</p>
+            <p className="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Uniform Industry Expertise</p>
           </div>
-          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-1">
-            <p className="text-xl sm:text-2xl font-bold text-white font-mono">450+</p>
-            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">GCC Enterprise Clients</p>
+          <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-1">
+            <p className="text-xl sm:text-2xl font-bold text-slate-900 font-mono">30,000+</p>
+            <p className="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Garments Monthly Capacity</p>
           </div>
-          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-1">
-            <p className="text-xl sm:text-2xl font-bold text-amber-400 font-mono">48-72h</p>
-            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Express Delivery Speed</p>
+          <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-1">
+            <p className="text-xl sm:text-2xl font-bold text-amber-600 font-mono">48-72h</p>
+            <p className="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Express Delivery Speed</p>
           </div>
-          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-1">
-            <p className="text-xl sm:text-2xl font-bold text-emerald-400 font-mono">ISO 9001</p>
-            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Certified Quality Standard</p>
+          <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-1">
+            <p className="text-xl sm:text-2xl font-bold text-emerald-600 font-mono">Eco &amp; ISO</p>
+            <p className="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Recycled &amp; Certified Quality</p>
           </div>
         </div>
 

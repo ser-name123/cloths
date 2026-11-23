@@ -71,13 +71,13 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
           <div className="space-y-2 max-w-xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-900 tracking-wider shadow-2xs">
               <Tag className="w-3.5 h-3.5 text-amber-600" />
-              <span>WHOLESALE & ON-DEMAND CATALOG</span>
+              <span>UNIFORM STUDIO 81 • PRODUCT CATALOG</span>
             </div>
             <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-slate-900 tracking-tight">
-              Curated for Durability & Brand Distinction
+              Discover True Quality Across Every Sector
             </h2>
             <p className="text-slate-600 text-sm">
-              Direct factory production in Ajman adhering to ISO 9001 and international safety standards.
+              35+ years of expertise in corporate wear, hospitality, healthcare, school uniforms, winter jackets, industrial workwear, sublimation, and promotional gifts.
             </p>
           </div>
 
@@ -127,7 +127,7 @@ export default function ProductCatalog({ currentCurrency, onOpenQuoteModal }: Pr
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-650 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     loading="lazy"
                     onError={(e) => {
-                      e.currentTarget.src = '/images/products/fr-coverall.jpg';
+                      e.currentTarget.src = '/images/efzee/showroom-team.jpg';
                     }}
                   />
 

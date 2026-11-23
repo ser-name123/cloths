@@ -92,38 +92,38 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
       {/* ============================================================== */}
       {/* 1. TOP ANNOUNCEMENT TICKER (High-End Luxury Micro Bar)          */}
       {/* ============================================================== */}
-      <div className="w-full bg-slate-950 text-slate-300 text-[11px] py-2 border-b border-slate-800/80">
+      <div className="w-full bg-amber-50/90 text-slate-700 text-[11px] py-2 border-b border-amber-200/70">
         <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           
           {/* Left: Live Factory Status & Standards */}
           <div className="flex items-center gap-4 sm:gap-6 overflow-hidden">
-            <span className="inline-flex items-center gap-1.5 font-medium text-emerald-400 shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              Ajman Factory Active
+            <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-700 shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              Ajman Showroom &amp; Production Active
             </span>
-            <span className="hidden sm:inline-flex items-center gap-1 text-slate-300 font-medium shrink-0">
-              <Truck className="w-3.5 h-3.5 text-amber-400" />
-              Free UAE Express Delivery on Orders &gt; AED 250
+            <span className="hidden sm:inline-flex items-center gap-1 text-slate-700 font-medium shrink-0">
+              <Truck className="w-3.5 h-3.5 text-amber-600" />
+              30,000+ Garments Monthly Capacity
             </span>
-            <span className="hidden lg:inline-flex items-center gap-1 text-slate-400 shrink-0">
-              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-              Pay in 4 with Tabby & Tamara
+            <span className="hidden lg:inline-flex items-center gap-1 text-slate-500 shrink-0">
+              <ShieldCheck className="w-3.5 h-3.5 text-sky-600" />
+              35+ Years of Uniform Excellence
             </span>
           </div>
 
           {/* Right: Direct UAE Hotline */}
           <div className="flex items-center gap-3 shrink-0">
             <a
-              href="https://wa.me/971501234567?text=Hi%20Kraftwear%20Dubai,%20I%20would%20like%20to%20inquire%20about%20custom%20apparel."
+              href="https://wa.me/971522954810?text=Hi%20Uniform%20Studio%2081%20(EFZEE%20Fashion),%20I%20would%20like%20to%20inquire%20about%20custom%20uniforms."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors font-medium text-[11px]"
+              className="inline-flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 transition-colors font-semibold text-[11px]"
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              <span>WhatsApp: +971 50 123 4567</span>
+              <span>WhatsApp: +971 52 295 4810</span>
             </a>
-            <span className="text-slate-700 hidden sm:inline">|</span>
-            <span className="text-slate-400 font-mono text-[10px] hidden sm:inline">Showroom: Dubai d3</span>
+            <span className="text-slate-300 hidden sm:inline">|</span>
+            <span className="text-slate-600 font-mono text-[10px] hidden sm:inline">Showroom #1, Fashion Mart, Ajman • HO: CBD Building, Dubai</span>
           </div>
 
         </div>
@@ -344,7 +344,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/heavy-tee.jpg" 
+                      src="/images/efzee/sportswear-1.png" 
                       alt="Heavyweight 280 GSM Tee" 
                       className="w-full h-full object-cover"
                     />
@@ -372,7 +372,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/fleece-hoodie.jpg" 
+                      src="/images/efzee/sublimation-1.png" 
                       alt="380 GSM Brushed Fleece Hoodie" 
                       className="w-full h-full object-cover"
                     />
@@ -400,7 +400,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/heavy-tee.jpg" 
+                      src="/images/efzee/sportswear-1.png" 
                       alt="Activewear & DriFit Performance" 
                       className="w-full h-full object-cover"
                     />
@@ -445,7 +445,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/executive-polo.jpg" 
+                      src="/images/efzee/hero-4.jpg" 
                       alt="Executive Pique Corporate Polos" 
                       className="w-full h-full object-cover"
                     />
@@ -473,7 +473,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/varsity-bomber.jpg" 
+                      src="/images/efzee/feature-1.png" 
                       alt="Varsity Bomber & Quilted Jackets" 
                       className="w-full h-full object-cover"
                     />
@@ -536,7 +536,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
 
                 <div className="relative h-36 w-full rounded-xl overflow-hidden bg-slate-800 mb-3 border border-slate-700/60 shadow-inner group">
                   <img
-                    src="/images/products/heavy-tee.jpg"
+                    src="/images/efzee/sportswear-1.png"
                     alt="Heavyweight Streetwear Tee"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -646,7 +646,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/fr-coverall.jpg" 
+                      src="/images/efzee/industrial-1.png" 
                       alt="NFPA 2112 Cotton FR Coverall" 
                       className="w-full h-full object-cover"
                     />
@@ -674,7 +674,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/hi-vis-vest.jpg" 
+                      src="/images/efzee/industrial-2.png" 
                       alt="High-Vis Class 2 Safety Vests" 
                       className="w-full h-full object-cover"
                     />
@@ -745,7 +745,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/medical-scrub.jpg" 
+                      src="/images/efzee/health-1.png" 
                       alt="Antimicrobial 4-Way Stretch Scrubs" 
                       className="w-full h-full object-cover"
                     />
@@ -799,7 +799,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/corporate-blazer.jpg" 
+                      src="/images/efzee/hero-1.jpg" 
                       alt="Executive Corporate Suits" 
                       className="w-full h-full object-cover"
                     />
@@ -836,7 +836,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
 
                 <div className="relative h-36 w-full rounded-xl overflow-hidden bg-slate-800 mb-3 border border-slate-700/60 shadow-inner group">
                   <img
-                    src="/images/products/fr-coverall.jpg"
+                    src="/images/efzee/industrial-1.png"
                     alt="NFPA 2112 FR Coverall"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -931,7 +931,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/vip-swag-box.jpg" 
+                      src="/images/efzee/hero-2.jpg" 
                       alt="The Dubai Elite Executive Box" 
                       className="w-full h-full object-cover"
                     />
@@ -959,7 +959,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/eco-tote.jpg" 
+                      src="/images/efzee/feature-2.png" 
                       alt="Sustainable Eco ESG Welcome Kit" 
                       className="w-full h-full object-cover"
                     />
@@ -987,7 +987,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/smart-tumbler.jpg" 
+                      src="/images/efzee/hero-3.jpg" 
                       alt="GITEX & Conference Swag Bundles" 
                       className="w-full h-full object-cover"
                     />
@@ -1032,7 +1032,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/smart-tumbler.jpg" 
+                      src="/images/efzee/hero-3.jpg" 
                       alt="Smart LED Temperature Tumbler" 
                       className="w-full h-full object-cover"
                     />
@@ -1060,7 +1060,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/wireless-powerbank.jpg" 
+                      src="/images/efzee/hospitality-1.png" 
                       alt="10,000mAh MagSafe Power Bank" 
                       className="w-full h-full object-cover"
                     />
@@ -1075,7 +1075,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                       </span>
                     </div>
                     <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
-                      Anodized aluminum finish with 360° laser rotary engraving.
+                      Anodized aluminum finish with 360Â° laser rotary engraving.
                     </p>
                   </div>
                   <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-amber-600 group-hover:translate-x-0.5 transition-all shrink-0" />
@@ -1088,7 +1088,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                     <img 
-                      src="/images/products/eco-tote.jpg" 
+                      src="/images/efzee/feature-2.png" 
                       alt="14oz Organic Canvas Exhibition Tote" 
                       className="w-full h-full object-cover"
                     />
@@ -1125,7 +1125,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
 
                 <div className="relative h-36 w-full rounded-xl overflow-hidden bg-slate-800 mb-3 border border-slate-700/60 shadow-inner group">
                   <img
-                    src="/images/products/vip-swag-box.jpg"
+                    src="/images/efzee/hero-2.jpg"
                     alt="VIP Swag Box"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -1233,7 +1233,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
                 <li className="flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-semibold text-slate-900 block">360° Rotary Laser Fiber Etching</span>
+                    <span className="font-semibold text-slate-900 block">360Â° Rotary Laser Fiber Etching</span>
                     <span className="text-[11px] text-slate-500">Direct metal drinkware & tech personalization</span>
                   </div>
                 </li>
@@ -1331,25 +1331,25 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-400 text-slate-950 uppercase tracking-wider">
-                    50,000 Sq Ft Plant
+                    30,000+ Garments/Mo
                   </span>
                   <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Ajman Plant Open
+                    Ajman Showroom Open
                   </span>
                 </div>
 
                 <h4 className="text-xs font-semibold text-white">
-                  Book an In-Person Factory Tour
+                  Visit Showroom #1, Fashion Mart Ajman
                 </h4>
                 <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">
-                  Tour our production lines in Ajman Industrial Area 1. Meet master pattern makers and see Tajima embroidery heads in action.
+                  Hands-on uniform development in Industrial Area 1, Ajman. Meet our consultants, review fabric swatches, and finalize fits.
                 </p>
 
                 <div className="mt-3 p-2 rounded-xl bg-slate-800/80 border border-slate-700/80 text-[11px] text-slate-300 space-y-1">
                   <div className="flex items-center gap-1.5">
                     <Building2 className="w-3 h-3 text-amber-400 shrink-0" />
-                    <span>Showroom: Dubai Design District (d3)</span>
+                    <span>HO: CBD Building, Dubai, UAE</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Clock className="w-3 h-3 text-emerald-400 shrink-0" />
@@ -1360,7 +1360,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
 
               <div className="pt-4 border-t border-slate-800 flex items-center gap-2 mt-3">
                 <a
-                  href="https://wa.me/971501234567?text=Hi%20Kraftwear%20Dubai,%20I%20would%20like%20to%20schedule%20an%20Ajman%20factory%20tour."
+                  href="https://wa.me/971522954810?text=Hi%20Uniform%20Studio%2081%20(EFZEE%20Fashion),%20I%20would%20like%20to%20schedule%20a%20showroom%20visit%20at%20Fashion%20Mart%20Ajman."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold text-center transition-all flex items-center justify-center gap-1.5 shadow-sm"
@@ -1383,7 +1383,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
               </span>
               <span className="inline-flex items-center gap-1.5 text-slate-700">
                 <Sparkles className="w-3.5 h-3.5 text-sky-500" />
-                Zero Intermediaries • Wholesale Mill Direct
+                Zero Intermediaries â€¢ Wholesale Mill Direct
               </span>
               <span className="inline-flex items-center gap-1.5 text-slate-700">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
@@ -1521,7 +1521,7 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
             </button>
 
             <a
-              href="https://wa.me/971501234567?text=Hi%20Kraftwear%20Dubai,%20I%20would%20like%20to%20discuss%20a%20bulk%20order."
+              href="https://wa.me/971522954810?text=Hi%20Uniform%20Studio%2081%20(EFZEE%20Fashion),%20I%20would%20like%20to%20discuss%20a%20bulk%20order."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3 rounded-full bg-[#25D366] text-slate-950 text-xs font-bold text-center flex items-center justify-center gap-2 shadow"
@@ -1537,3 +1537,4 @@ export default function Header({ currentCurrency = 'AED', onCurrencyChange, onOp
     </header>
   );
 }
+

@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-amber-50: #FDF9EA;
+  --color-amber-100: #FAF0CA;
+  --color-amber-200: #F4DF95;
+  --color-amber-300: #EDCC5E;
+  --color-amber-400: #E7BD3E;
+  --color-amber-500: #E2B027;
+  --color-amber-600: #C89719;
+  --color-amber-700: #9E7413;
+  --color-amber-800: #785814;
+  --color-amber-900: #5E4514;
+  --color-amber-950: #362608;
+}
+
 :root {
   --font-sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -19,13 +33,13 @@ body {
 }
 
 ::selection {
-  background-color: #fef3c7;
-  color: #78350f;
+  background-color: #FAF0CA;
+  color: #5E4514;
 }
 
 /* ============================================================== */
 /* LUXURY THEME CUSTOM SIDE SCROLLBAR                             */
-/* Sleek 8px width with Dubai Warm Amber & Obsidian Palette        */
+/* Sleek 8px width matching Uniform Studio 81 Logo Gold (#E2B027) */
 /* ============================================================== */
 
 /* Chrome, Edge, Safari, Opera */
@@ -35,25 +49,25 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #f59e0b 0%, #d97706 60%, #b45309 100%);
+  background: linear-gradient(180deg, #E7BD3E 0%, #E2B027 60%, #C89719 100%);
   border-radius: 9999px;
-  border: 1.5px solid #090d16;
+  border: 1.5px solid #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 60%, #d97706 100%);
-  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+  background: linear-gradient(180deg, #EDCC5E 0%, #E2B027 60%, #9E7413 100%);
+  box-shadow: 0 0 10px rgba(226, 176, 39, 0.45);
 }
 
 /* Firefox standard scrollbar */
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: #d97706 #090d16;
+  scrollbar-color: #E2B027 #f1f5f9;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera (specific elements with .no-scrollbar) */
@@ -194,7 +208,7 @@ h4 {
   border-radius: inherit;
   background: radial-gradient(
     420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(245, 158, 11, 0.12),
+    rgba(226, 176, 39, 0.12),
     transparent 80%
   );
   opacity: 0;
@@ -226,8 +240,8 @@ h4 {
 
 .interactive-card:hover {
   transform: translateY(-7px) scale(1.008);
-  box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.14), 0 0 24px -2px rgba(245, 158, 11, 0.16);
-  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.14), 0 0 24px -2px rgba(226, 176, 39, 0.16);
+  border-color: rgba(226, 176, 39, 0.5);
 }
 
 /* 4b. Dark Mode / Dark Card Interactive Lift */
@@ -241,8 +255,8 @@ h4 {
 
 .interactive-card-dark:hover {
   transform: translateY(-6px) scale(1.008);
-  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6), 0 0 28px -4px rgba(245, 158, 11, 0.25);
-  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6), 0 0 28px -4px rgba(226, 176, 39, 0.25);
+  border-color: rgba(226, 176, 39, 0.6);
 }
 
 /* 4c. Tactile Luxury Buttons (CTAs & Actions) */
@@ -259,7 +273,7 @@ h4 {
 
 .btn-luxury:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 28px -6px rgba(245, 158, 11, 0.38), 0 4px 12px -2px rgba(245, 158, 11, 0.2);
+  box-shadow: 0 12px 28px -6px rgba(226, 176, 39, 0.38), 0 4px 12px -2px rgba(226, 176, 39, 0.2);
 }
 
 .btn-luxury:active {
@@ -279,7 +293,7 @@ h4 {
 
 .btn-luxury-dark:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 14px 32px -8px rgba(15, 23, 42, 0.4), 0 0 18px -2px rgba(245, 158, 11, 0.15);
+  box-shadow: 0 14px 32px -8px rgba(15, 23, 42, 0.4), 0 0 18px -2px rgba(226, 176, 39, 0.15);
 }
 
 .btn-luxury-dark:active {
@@ -301,10 +315,10 @@ h4 {
 
 .chip-hover:hover {
   transform: translateY(-2px) scale(1.03);
-  border-color: rgba(245, 158, 11, 0.7);
+  border-color: rgba(226, 176, 39, 0.7);
   background-color: rgba(254, 243, 199, 0.6);
   color: #78350f;
-  box-shadow: 0 6px 16px -3px rgba(245, 158, 11, 0.22);
+  box-shadow: 0 6px 16px -3px rgba(226, 176, 39, 0.22);
 }
 
 .chip-hover:active {
@@ -324,7 +338,7 @@ h4 {
 
 .link-glide:hover {
   transform: translateX(5px);
-  color: #f59e0b;
+  color: #E2B027;
 }
 
 /* 4f. Inner Arrow / Icon Glide */
@@ -361,8 +375,8 @@ a:hover .hover-arrow,
 
 .preset-box-hover:hover {
   transform: translateY(-2px) scale(1.015);
-  border-color: rgba(245, 158, 11, 0.6);
-  box-shadow: 0 8px 20px -4px rgba(245, 158, 11, 0.18);
+  border-color: rgba(226, 176, 39, 0.6);
+  box-shadow: 0 8px 20px -4px rgba(226, 176, 39, 0.18);
 }
 
 .preset-box-hover:active {
@@ -385,13 +399,13 @@ a:hover .hover-arrow,
 .animate-text-shine {
   background: linear-gradient(
     90deg,
-    #b45309 0%,
-    #d97706 20%,
-    #f59e0b 45%,
+    #9E7413 0%,
+    #C89719 20%,
+    #E2B027 45%,
     #fef08a 55%,
-    #f59e0b 65%,
-    #d97706 80%,
-    #b45309 100%
+    #E2B027 65%,
+    #C89719 80%,
+    #9E7413 100%
   );
   background-size: 250% auto;
   -webkit-background-clip: text;
@@ -418,7 +432,7 @@ a:hover .hover-arrow,
   content: '';
   position: absolute;
   inset: -100%;
-  background: conic-gradient(from 0deg, transparent 0 320deg, #f59e0b 345deg, #fbbf24 360deg);
+  background: conic-gradient(from 0deg, transparent 0 320deg, #E2B027 345deg, #EDCC5E 360deg);
   animation: rotate-conic 4s linear infinite;
   pointer-events: none;
   opacity: 0.6;
@@ -565,8 +579,8 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
   outline: none;
-  border-color: #f59e0b !important;
-  box-shadow: 0 0 0 3.5px rgba(245, 158, 11, 0.25) !important;
+  border-color: #E2B027 !important;
+  box-shadow: 0 0 0 3.5px rgba(226, 176, 39, 0.25) !important;
 }
 
 /* Hover elevate utility */
@@ -577,7 +591,7 @@ textarea:focus-visible {
 
 .hover-elevate:hover {
   transform: translateY(-5px);
-  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.12), 0 0 16px -2px rgba(245, 158, 11, 0.12);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.12), 0 0 16px -2px rgba(226, 176, 39, 0.12);
 }
 
 /* Badge pulse on hover */
@@ -587,6 +601,7 @@ textarea:focus-visible {
 
 .badge-interactive:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px -2px rgba(245, 158, 11, 0.25);
-  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 4px 12px -2px rgba(226, 176, 39, 0.25);
+  border-color: rgba(226, 176, 39, 0.6);
 }
+
