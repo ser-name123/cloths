@@ -7,6 +7,7 @@ import GarmentMockup, {
   FabricFinish,
   FontStyleKey,
   GarmentShape,
+  PatternStyleKey,
   PlacementKey,
   SleeveLength,
   TechniqueKey,
@@ -28,6 +29,9 @@ import {
   RotateCw,
   RotateCcw,
   Move,
+  ZoomIn,
+  ZoomOut,
+  Download,
 } from 'lucide-react';
 
 interface LiveCustomizerProps {
@@ -53,7 +57,10 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
   const [selectedGarmentId, setSelectedGarmentId] = useState<string>('corp-polo');
   const [viewSide, setViewSide] = useState<ViewSide>('front');
   const [selectedColor, setSelectedColor] = useState('#1e3a8a');
+  const [matchSleeves, setMatchSleeves] = useState<boolean>(true);
+  const [sleeveColor, setSleeveColor] = useState('#0f172a');
   const [accentColor, setAccentColor] = useState('#E2B027');
+  const [patternStyle, setPatternStyle] = useState<PatternStyleKey>('solid');
   const [sleeveLength, setSleeveLength] = useState<SleeveLength>('short');
   const [hasPocket, setHasPocket] = useState<boolean>(false);
   const [fabricFinish, setFabricFinish] = useState<FabricFinish>('pique');
@@ -66,8 +73,10 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
   const [logoFileName, setLogoFileName] = useState<string>('');
   const [brandingMode, setBrandingMode] = useState<'upload' | 'text'>('text');
   const [logoScale, setLogoScale] = useState<number>(100);
+  const [logoRotation, setLogoRotation] = useState<number>(0);
   const [logoBackdrop, setLogoBackdrop] = useState<'patch' | 'transparent'>('transparent');
   const [ecoFabric, setEcoFabric] = useState<boolean>(false);
+  const [zoomed, setZoomed] = useState<boolean>(false);
   const [dragOffset, setDragOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [quantityTier, setQuantityTier] = useState<number>(50);
 
@@ -183,7 +192,10 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
 
   const handleResetStudio = () => {
     setSelectedColor('#1e3a8a');
+    setMatchSleeves(true);
+    setSleeveColor('#0f172a');
     setAccentColor('#E2B027');
+    setPatternStyle('solid');
     setSleeveLength('short');
     setHasPocket(false);
     setFabricFinish('pique');
@@ -193,10 +205,39 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
     setTextColor('#ffffff');
     setFontStyle('bold');
     setLogoScale(100);
+    setLogoRotation(0);
     setLogoBackdrop('transparent');
     setEcoFabric(false);
+    setZoomed(false);
     setDragOffset({ x: 0, y: 0 });
     setQuantityTier(50);
+  };
+
+  const handleDownloadMockup = () => {
+    const svgEl = document.getElementById('us81-garment-svg');
+    if (!svgEl) return;
+    const svgData = new XMLSerializer().serializeToString(svgEl);
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 800;
+      canvas.height = 880;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const pngUrl = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = pngUrl;
+        link.download = `uniform-studio-81-${currentItem.id}-${viewSide}.png`;
+        link.click();
+      }
+      URL.revokeObjectURL(url);
+    };
+    img.src = url;
   };
 
   const colors = [
@@ -244,7 +285,13 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
   const activeTier = quantityTiers.find((t) => t.qty === quantityTier) || quantityTiers[1];
   const activeTech = techniques.find((t) => t.id === technique) || techniques[0];
 
-  const rawUnitAED = currentItem.basePrice + (ecoFabric ? 6 : 0) + (sleeveLength === 'full' ? 8 : 0) + (hasPocket ? 3 : 0);
+  const effectiveSleeveColor = matchSleeves ? selectedColor : sleeveColor;
+  const rawUnitAED =
+    currentItem.basePrice +
+    (ecoFabric ? 6 : 0) +
+    (sleeveLength === 'full' ? 8 : 0) +
+    (hasPocket ? 3 : 0) +
+    (patternStyle !== 'solid' ? 5 : 0);
   const discountedUnitAED = rawUnitAED * (1 - activeTier.discount);
   const estimatedUnitPrice = Math.round(discountedUnitAED * curr.rate);
   const estimatedTotalPrice = Math.round(discountedUnitAED * quantityTier * curr.rate);
@@ -280,7 +327,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
     const colorName = colors.find((c) => c.hex === selectedColor)?.name || selectedColor;
     const trimName = trimColors.find((c) => c.hex === accentColor)?.name || accentColor;
     const text = encodeURIComponent(
-      `Hello Uniform Studio 81 (EFZEE Fashion)!\nI configured a custom uniform in your Studio:\n- Garment: ${currentItem.name}\n- Sleeve: ${sleeveLength} | Pocket: ${hasPocket ? 'Yes' : 'No'} | Finish: ${fabricFinish}\n- Body Color: ${colorName} | Trim: ${trimName}\n- Technique: ${activeTech.label}\n- Placement: ${logoPosition.toUpperCase()} (${viewSide} view)\n- Eco-Friendly: ${ecoFabric ? 'Yes' : 'No'}\n- Quantity: ${quantityTier} pcs (Est. ${curr.symbol} ${estimatedUnitPrice}/pc)\n- Brand Text/File: ${uploadedLogo ? logoFileName : brandText}\n\nPlease share sample & bulk quotation.`
+      `Hello Uniform Studio 81 (EFZEE Fashion)!\nI configured a custom uniform in your Studio:\n- Garment: ${currentItem.name}\n- Pattern: ${patternStyle} | Sleeve: ${sleeveLength} | Pocket: ${hasPocket ? 'Yes' : 'No'} | Finish: ${fabricFinish}\n- Body Color: ${colorName} | Sleeves: ${matchSleeves ? 'Same' : effectiveSleeveColor} | Trim: ${trimName}\n- Technique: ${activeTech.label}\n- Placement: ${logoPosition.toUpperCase()} (${viewSide} view)\n- Eco-Friendly: ${ecoFabric ? 'Yes' : 'No'}\n- Quantity: ${quantityTier} pcs (Est. ${curr.symbol} ${estimatedUnitPrice}/pc)\n- Brand Text/File: ${uploadedLogo ? logoFileName : brandText}\n\nPlease share sample & bulk quotation.`
     );
     window.open(`https://wa.me/971522954810?text=${text}`, '_blank');
   };
@@ -302,7 +349,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
             Interactive Uniform &amp; Branding Studio
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm">
-            Customize sleeves, pockets, fabric weave, body &amp; collar colors, drag your logo onto Front/Back views, and calculate instant bulk pricing.
+            Customize cut-and-sew patterns, contrast sleeves, pockets, fabric weave, body &amp; collar colors, drag &amp; rotate your logo, and export your mockup.
           </p>
         </div>
 
@@ -328,18 +375,26 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
               ))}
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <div className="hidden md:flex items-center gap-1.5 text-[11px] font-medium text-slate-500">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>30,000+ Garments/Month • Essay Group (Est. 1989)</span>
+                <span>Essay Group (Est. 1989)</span>
               </div>
+              <button
+                type="button"
+                onClick={handleDownloadMockup}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-[11px] font-semibold transition-colors cursor-pointer"
+              >
+                <Download className="w-3 h-3" />
+                <span>Save Mockup</span>
+              </button>
               <button
                 type="button"
                 onClick={handleResetStudio}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold transition-colors cursor-pointer"
               >
                 <RotateCcw className="w-3 h-3" />
-                <span>Reset Studio</span>
+                <span>Reset</span>
               </button>
             </div>
           </div>
@@ -349,39 +404,54 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
             {/* Left Column: Interactive Garment Stage & Live Spec Sheet (7 cols) */}
             <div className="lg:col-span-7 space-y-4">
               <div
-                className="relative w-full h-[420px] sm:h-[520px] rounded-2xl overflow-hidden border border-slate-200 flex items-center justify-center shadow-inner"
+                className="relative w-full h-[430px] sm:h-[540px] rounded-2xl overflow-hidden border border-slate-200 flex items-center justify-center shadow-inner"
                 style={{
                   backgroundColor: '#f8fafc',
                   backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)',
                   backgroundSize: '20px 20px',
                 }}
               >
-                {/* Top Left: Front / Back Switcher */}
-                <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-1 bg-white/95 backdrop-blur p-1 rounded-full border border-slate-200 shadow-sm">
+                {/* Top Left: Front / Back + Zoom Switcher */}
+                <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-1.5 flex-wrap">
+                  <div className="flex items-center gap-1 bg-white/95 backdrop-blur p-1 rounded-full border border-slate-200 shadow-sm">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setViewSide('front');
+                        if (logoPosition === 'back') handlePlacementChange('chest');
+                      }}
+                      className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
+                        viewSide === 'front' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                    >
+                      Front View
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setViewSide('back');
+                        handlePlacementChange('back');
+                      }}
+                      className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                        viewSide === 'back' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                    >
+                      <RotateCw className="w-3 h-3" />
+                      <span>Back View</span>
+                    </button>
+                  </div>
+
                   <button
                     type="button"
-                    onClick={() => {
-                      setViewSide('front');
-                      if (logoPosition === 'back') handlePlacementChange('chest');
-                    }}
-                    className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
-                      viewSide === 'front' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:text-slate-900'
+                    onClick={() => setZoomed(!zoomed)}
+                    className={`p-2 rounded-full border shadow-sm transition-all cursor-pointer ${
+                      zoomed
+                        ? 'bg-amber-500 text-slate-950 border-amber-500'
+                        : 'bg-white/95 text-slate-700 border-slate-200 hover:bg-slate-50'
                     }`}
+                    title={zoomed ? 'Fit View' : 'Zoom Chest'}
                   >
-                    Front View
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setViewSide('back');
-                      handlePlacementChange('back');
-                    }}
-                    className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
-                      viewSide === 'back' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:text-slate-900'
-                    }`}
-                  >
-                    <RotateCw className="w-3 h-3" />
-                    <span>Back View</span>
+                    {zoomed ? <ZoomOut className="w-3.5 h-3.5" /> : <ZoomIn className="w-3.5 h-3.5" />}
                   </button>
                 </div>
 
@@ -389,7 +459,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                 <div className="absolute top-3.5 right-3.5 flex items-center gap-2 z-20 flex-wrap justify-end">
                   <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 text-slate-600 border border-slate-200 text-[10px] font-medium shadow-2xs">
                     <Move className="w-3 h-3 text-amber-600" />
-                    <span>Drag logo on garment</span>
+                    <span>Drag logo</span>
                   </span>
                   {ecoFabric && (
                     <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-bold shadow">
@@ -407,18 +477,22 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                   shape={currentItem.shape}
                   view={viewSide}
                   bodyColor={selectedColor}
+                  sleeveColor={effectiveSleeveColor}
                   accentColor={accentColor}
+                  patternStyle={patternStyle}
                   sleeveLength={sleeveLength}
                   hasPocket={hasPocket}
                   fabricFinish={fabricFinish}
                   placement={logoPosition}
                   technique={technique}
                   logoScale={logoScale}
+                  logoRotation={logoRotation}
                   logoBackdrop={logoBackdrop}
                   uploadedLogo={uploadedLogo}
                   brandText={brandText}
                   textColor={textColor}
                   fontStyle={fontStyle}
+                  zoomed={zoomed}
                   dragOffset={dragOffset}
                   onDragOffsetChange={setDragOffset}
                 />
@@ -445,15 +519,15 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
               {/* Live Spec Summary Strip */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs">
                 <div>
-                  <span className="text-[10px] font-mono uppercase text-slate-400 block">Garment Style</span>
+                  <span className="text-[10px] font-mono uppercase text-slate-400 block">Cut &amp; Pattern</span>
                   <span className="font-semibold text-slate-800 capitalize">
-                    {sleeveLength} Sleeve {hasPocket ? '+ Pocket' : ''}
+                    {patternStyle.replace('-', ' ')} • {sleeveLength}
                   </span>
                 </div>
                 <div>
                   <span className="text-[10px] font-mono uppercase text-slate-400 block">Fabric Finish</span>
                   <span className="font-semibold text-slate-800 capitalize">
-                    {ecoFabric ? 'Eco Recycled ' : ''}{fabricFinish}
+                    {ecoFabric ? 'Eco Recycled ' : ''}{fabricFinish} {hasPocket ? '+ Pocket' : ''}
                   </span>
                 </div>
                 <div>
@@ -470,7 +544,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
             </div>
 
             {/* Right Column: Controls (5 cols) */}
-            <div className="lg:col-span-5 space-y-4">
+            <div className="lg:col-span-5 space-y-3.5">
 
               {/* 1. Garment Selector */}
               <div className="space-y-1.5">
@@ -499,7 +573,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                 </div>
               </div>
 
-              {/* 2. Dress Tailoring: Sleeves, Pocket & Fabric Finish */}
+              {/* 2. Cut-and-Sew Pattern, Sleeves, Pocket & Fabric */}
               <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2.5">
                 <div className="flex items-center justify-between gap-2 flex-wrap">
                   <div className="flex items-center gap-1.5">
@@ -508,14 +582,14 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                       <button
                         type="button"
                         onClick={() => setSleeveLength('short')}
-                        className={`px-2.5 py-1 rounded-md cursor-pointer ${sleeveLength === 'short' ? 'bg-slate-900 text-white' : 'text-slate-600'}`}
+                        className={`px-2.5 py-0.5 rounded-md cursor-pointer ${sleeveLength === 'short' ? 'bg-slate-900 text-white' : 'text-slate-600'}`}
                       >
                         Short
                       </button>
                       <button
                         type="button"
                         onClick={() => setSleeveLength('full')}
-                        className={`px-2.5 py-1 rounded-md cursor-pointer ${sleeveLength === 'full' ? 'bg-slate-900 text-white' : 'text-slate-600'}`}
+                        className={`px-2.5 py-0.5 rounded-md cursor-pointer ${sleeveLength === 'full' ? 'bg-slate-900 text-white' : 'text-slate-600'}`}
                       >
                         Full
                       </button>
@@ -525,7 +599,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                   <button
                     type="button"
                     onClick={() => setHasPocket(!hasPocket)}
-                    className={`px-2.5 py-1.5 rounded-lg border text-[11px] font-semibold cursor-pointer transition-all ${
+                    className={`px-2.5 py-1 rounded-lg border text-[11px] font-semibold cursor-pointer transition-all ${
                       hasPocket ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200'
                     }`}
                   >
@@ -533,6 +607,29 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                   </button>
                 </div>
 
+                {/* Cut-and-Sew Pattern */}
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-[11px] font-bold uppercase text-slate-600">Pattern:</span>
+                  {([
+                    { id: 'solid', label: 'Solid' },
+                    { id: 'chest-stripe', label: 'Chest Stripe' },
+                    { id: 'side-panels', label: 'Side Panels' },
+                    { id: 'two-tone', label: 'Two-Tone' },
+                  ] as const).map((p) => (
+                    <button
+                      key={p.id}
+                      type="button"
+                      onClick={() => setPatternStyle(p.id)}
+                      className={`px-2 py-1 rounded-md text-[10.5px] font-semibold cursor-pointer ${
+                        patternStyle === p.id ? 'bg-slate-900 text-white' : 'bg-white border border-slate-200 text-slate-600'
+                      }`}
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Fabric Finish + Eco */}
                 <div className="flex items-center justify-between gap-2 flex-wrap">
                   <div className="flex items-center gap-1.5 flex-wrap">
                     <span className="text-[11px] font-bold uppercase text-slate-600">Fabric:</span>
@@ -563,50 +660,81 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                 </div>
               </div>
 
-              {/* 3. Body & Collar/Trim Colors */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 block">
-                    2. Dress Body Color
-                  </label>
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    {colors.map((c) => (
-                      <button
-                        key={c.hex}
-                        type="button"
-                        onClick={() => setSelectedColor(c.hex)}
-                        title={c.name}
-                        style={{ backgroundColor: c.hex }}
-                        className={`w-6 h-6 rounded-full border-2 transition-all cursor-pointer ${
-                          selectedColor === c.hex ? 'border-slate-900 scale-120 shadow-sm' : 'border-slate-300 hover:scale-110'
-                        }`}
-                      />
-                    ))}
+              {/* 3. Body, Sleeve & Collar/Trim Colors */}
+              <div className="space-y-2.5 pt-0.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 block">
+                      2. Dress Body Color
+                    </label>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {colors.map((c) => (
+                        <button
+                          key={c.hex}
+                          type="button"
+                          onClick={() => setSelectedColor(c.hex)}
+                          title={c.name}
+                          style={{ backgroundColor: c.hex }}
+                          className={`w-6 h-6 rounded-full border-2 transition-all cursor-pointer ${
+                            selectedColor === c.hex ? 'border-slate-900 scale-120 shadow-sm' : 'border-slate-300 hover:scale-110'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 block">
+                      Collar / Trim Accent
+                    </label>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {trimColors.map((tc) => (
+                        <button
+                          key={tc.hex}
+                          type="button"
+                          onClick={() => setAccentColor(tc.hex)}
+                          title={tc.name}
+                          style={{ backgroundColor: tc.hex }}
+                          className={`w-6 h-6 rounded-full border-2 transition-all cursor-pointer ${
+                            accentColor === tc.hex ? 'border-slate-900 scale-120 shadow-sm' : 'border-slate-300 hover:scale-110'
+                          }`}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 block">
-                    Collar / Trim Accent
-                  </label>
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    {trimColors.map((tc) => (
-                      <button
-                        key={tc.hex}
-                        type="button"
-                        onClick={() => setAccentColor(tc.hex)}
-                        title={tc.name}
-                        style={{ backgroundColor: tc.hex }}
-                        className={`w-6 h-6 rounded-full border-2 transition-all cursor-pointer ${
-                          accentColor === tc.hex ? 'border-slate-900 scale-120 shadow-sm' : 'border-slate-300 hover:scale-110'
-                        }`}
-                      />
-                    ))}
-                  </div>
+                {/* Contrast Sleeves */}
+                <div className="flex items-center justify-between gap-2 flex-wrap">
+                  <button
+                    type="button"
+                    onClick={() => setMatchSleeves(!matchSleeves)}
+                    className={`px-2.5 py-1 rounded-lg border text-[11px] font-semibold cursor-pointer ${
+                      !matchSleeves ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-50 text-slate-600 border-slate-200'
+                    }`}
+                  >
+                    {matchSleeves ? '+ Contrast Sleeves' : '✓ Contrast Sleeves'}
+                  </button>
+                  {!matchSleeves && (
+                    <div className="flex items-center gap-1.5">
+                      {colors.slice(0, 5).map((sc) => (
+                        <button
+                          key={sc.hex}
+                          type="button"
+                          onClick={() => setSleeveColor(sc.hex)}
+                          title={sc.name}
+                          style={{ backgroundColor: sc.hex }}
+                          className={`w-5 h-5 rounded-full border-2 cursor-pointer ${
+                            sleeveColor === sc.hex ? 'border-slate-900 scale-115' : 'border-slate-300'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {/* 4. Brand Logo Upload / Monogram + Font & Thread Color */}
+              {/* 4. Brand Logo Upload / Monogram + Font, Thread & Rotation */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
@@ -731,10 +859,10 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                   </div>
                 )}
 
-                {/* Logo Size & Style Controls */}
-                <div className="flex items-center justify-between gap-3 pt-0.5">
-                  <div className="flex-1 flex items-center gap-2">
-                    <SlidersHorizontal className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                {/* Logo Size, Rotation & Backdrop Controls */}
+                <div className="grid grid-cols-12 items-center gap-2 pt-0.5">
+                  <div className="col-span-5 flex items-center gap-1.5">
+                    <SlidersHorizontal className="w-3 h-3 text-slate-400 shrink-0" />
                     <input
                       type="range"
                       min={70}
@@ -744,20 +872,33 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                       className="w-full accent-amber-500 cursor-pointer"
                       aria-label="Logo size"
                     />
-                    <span className="text-[10px] font-mono text-slate-500 w-9 text-right">{logoScale}%</span>
+                    <span className="text-[10px] font-mono text-slate-500 w-7">{logoScale}%</span>
                   </div>
-                  <div className="flex rounded-lg bg-slate-100 p-0.5 text-[10px] font-bold">
+                  <div className="col-span-4 flex items-center gap-1.5">
+                    <RotateCw className="w-3 h-3 text-slate-400 shrink-0" />
+                    <input
+                      type="range"
+                      min={-20}
+                      max={20}
+                      value={logoRotation}
+                      onChange={(e) => setLogoRotation(Number(e.target.value))}
+                      className="w-full accent-amber-500 cursor-pointer"
+                      aria-label="Logo rotation"
+                    />
+                    <span className="text-[10px] font-mono text-slate-500 w-7">{logoRotation}°</span>
+                  </div>
+                  <div className="col-span-3 flex rounded-lg bg-slate-100 p-0.5 text-[10px] font-bold justify-end">
                     <button
                       type="button"
                       onClick={() => setLogoBackdrop('transparent')}
-                      className={`px-2 py-1 rounded-md cursor-pointer ${logoBackdrop === 'transparent' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500'}`}
+                      className={`px-1.5 py-0.5 rounded-md cursor-pointer ${logoBackdrop === 'transparent' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500'}`}
                     >
                       Direct
                     </button>
                     <button
                       type="button"
                       onClick={() => setLogoBackdrop('patch')}
-                      className={`px-2 py-1 rounded-md cursor-pointer ${logoBackdrop === 'patch' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500'}`}
+                      className={`px-1.5 py-0.5 rounded-md cursor-pointer ${logoBackdrop === 'patch' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500'}`}
                     >
                       Badge
                     </button>
@@ -837,10 +978,12 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                     onOpenQuoteModal('studio-sample', {
                       garment: currentItem.name,
                       sector: selectedSector,
+                      patternStyle,
                       sleeveLength,
                       hasPocket,
                       fabricFinish,
                       color: selectedColor,
+                      sleeveColor: effectiveSleeveColor,
                       trimColor: accentColor,
                       technique: activeTech.label,
                       placement: logoPosition,
