@@ -664,8 +664,9 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
               <div className="space-y-2.5 pt-0.5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 block">
-                      2. Dress Body Color
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 flex items-center justify-between">
+                      <span>2. Dress Body Color</span>
+                      <span className="font-mono text-[10px] text-slate-400">{selectedColor}</span>
                     </label>
                     <div className="flex items-center gap-1.5 flex-wrap">
                       {colors.map((c) => (
@@ -680,12 +681,27 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                           }`}
                         />
                       ))}
+                      <label
+                        title="Pick any custom body color"
+                        className="relative w-6 h-6 rounded-full border-2 border-slate-300 hover:border-slate-900 cursor-pointer flex items-center justify-center overflow-hidden shadow-2xs"
+                        style={{ background: 'conic-gradient(#ef4444, #eab308, #22c55e, #3b82f6, #a855f7, #ef4444)' }}
+                      >
+                        <span className="w-3 h-3 rounded-full bg-white text-[9px] font-black text-slate-900 flex items-center justify-center leading-none">+</span>
+                        <input
+                          type="color"
+                          value={selectedColor}
+                          onChange={(e) => setSelectedColor(e.target.value)}
+                          className="sr-only"
+                          aria-label="Custom dress body color"
+                        />
+                      </label>
                     </div>
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 block">
-                      Collar / Trim Accent
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 flex items-center justify-between">
+                      <span>Collar / Trim Accent</span>
+                      <span className="font-mono text-[10px] text-slate-400">{accentColor}</span>
                     </label>
                     <div className="flex items-center gap-1.5 flex-wrap">
                       {trimColors.map((tc) => (
@@ -700,6 +716,20 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                           }`}
                         />
                       ))}
+                      <label
+                        title="Pick any custom trim color"
+                        className="relative w-6 h-6 rounded-full border-2 border-slate-300 hover:border-slate-900 cursor-pointer flex items-center justify-center overflow-hidden shadow-2xs"
+                        style={{ background: 'conic-gradient(#ef4444, #eab308, #22c55e, #3b82f6, #a855f7, #ef4444)' }}
+                      >
+                        <span className="w-3 h-3 rounded-full bg-white text-[9px] font-black text-slate-900 flex items-center justify-center leading-none">+</span>
+                        <input
+                          type="color"
+                          value={accentColor}
+                          onChange={(e) => setAccentColor(e.target.value)}
+                          className="sr-only"
+                          aria-label="Custom collar trim color"
+                        />
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -729,6 +759,20 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                           }`}
                         />
                       ))}
+                      <label
+                        title="Pick any custom sleeve color"
+                        className="relative w-5 h-5 rounded-full border-2 border-slate-300 hover:border-slate-900 cursor-pointer flex items-center justify-center overflow-hidden"
+                        style={{ background: 'conic-gradient(#ef4444, #eab308, #22c55e, #3b82f6, #a855f7, #ef4444)' }}
+                      >
+                        <span className="w-2.5 h-2.5 rounded-full bg-white text-[8px] font-black text-slate-900 flex items-center justify-center leading-none">+</span>
+                        <input
+                          type="color"
+                          value={sleeveColor}
+                          onChange={(e) => setSleeveColor(e.target.value)}
+                          className="sr-only"
+                          aria-label="Custom sleeve color"
+                        />
+                      </label>
                     </div>
                   )}
                 </div>
@@ -840,6 +884,20 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
                             }`}
                           />
                         ))}
+                        <label
+                          title="Pick any custom thread/ink color"
+                          className="relative w-5 h-5 rounded-full border-2 border-slate-300 hover:border-slate-900 cursor-pointer flex items-center justify-center overflow-hidden"
+                          style={{ background: 'conic-gradient(#ef4444, #eab308, #22c55e, #3b82f6, #a855f7, #ef4444)' }}
+                        >
+                          <span className="w-2.5 h-2.5 rounded-full bg-white text-[8px] font-black text-slate-900 flex items-center justify-center leading-none">+</span>
+                          <input
+                            type="color"
+                            value={textColor}
+                            onChange={(e) => setTextColor(e.target.value)}
+                            className="sr-only"
+                            aria-label="Custom monogram thread color"
+                          />
+                        </label>
                       </div>
                       <div className="flex rounded-lg bg-slate-100 p-0.5 text-[10px] font-bold">
                         {(['bold', 'sans', 'serif', 'mono'] as const).map((fs) => (
