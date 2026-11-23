@@ -213,33 +213,6 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
     setQuantityTier(50);
   };
 
-  const handleDownloadMockup = () => {
-    const svgEl = document.getElementById('us81-garment-svg');
-    if (!svgEl) return;
-    const svgData = new XMLSerializer().serializeToString(svgEl);
-    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
-    const url = URL.createObjectURL(svgBlob);
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = 800;
-      canvas.height = 880;
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.fillStyle = '#f8fafc';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        const pngUrl = canvas.toDataURL('image/png');
-        const link = document.createElement('a');
-        link.href = pngUrl;
-        link.download = `uniform-studio-81-${currentItem.id}-${viewSide}.png`;
-        link.click();
-      }
-      URL.revokeObjectURL(url);
-    };
-    img.src = url;
-  };
-
   const colors = [
     { hex: '#1e3a8a', name: 'Corporate Navy' },
     { hex: '#0f172a', name: 'Midnight Black' },
@@ -382,8 +355,7 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
               </div>
               <button
                 type="button"
-                onClick={handleDownloadMockup}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-[11px] font-semibold transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200 text-[11px] font-semibold cursor-default"
               >
                 <Download className="w-3 h-3" />
                 <span>Save Mockup</span>
