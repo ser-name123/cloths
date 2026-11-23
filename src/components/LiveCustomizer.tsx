@@ -187,7 +187,11 @@ export default function LiveCustomizer({ currentCurrency, onOpenQuoteModal }: Li
   const handlePlacementChange = (pos: PlacementKey) => {
     setLogoPosition(pos);
     setDragOffset({ x: 0, y: 0 });
-    setViewSide(pos === 'back' ? 'back' : 'front');
+    if (pos === 'back') {
+      setViewSide('back');
+    } else if (pos === 'chest') {
+      setViewSide('front');
+    }
   };
 
   const handleResetStudio = () => {
